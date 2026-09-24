@@ -14,7 +14,7 @@ body{
   margin:0;
   color:#111827;
   background:#f5f7fb;
-  font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif;
+  font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif
 }
 a{color:inherit}
 button{font:inherit}
@@ -26,39 +26,42 @@ button{font:inherit}
   --light:#f5f7fb;
   --muted:#6b7280;
   --line:#e5e7eb;
-  --shadow:0 14px 40px rgba(8,30,65,.10);
+  --shadow:0 14px 40px rgba(8,30,65,.10)
 }
 
 .container{
   width:min(1180px,92%);
-  margin:auto;
+  margin:auto
 }
 
-/* TOP BAR */
+/* TOP */
 .topbar{
   background:var(--blue);
   color:#fff;
-  font-size:13px;
+  font-size:13px
 }
+
 .topbar-inner{
   min-height:38px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:15px
 }
+
 .live{
   display:flex;
   align-items:center;
   gap:8px;
-  font-weight:700;
+  font-weight:700
 }
+
 .live-dot{
   width:8px;
   height:8px;
   border-radius:50%;
   background:#ff3345;
-  box-shadow:0 0 12px #ff3345;
+  box-shadow:0 0 12px #ff3345
 }
 
 /* HEADER */
@@ -67,38 +70,46 @@ header{
   border-bottom:1px solid var(--line);
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:20
 }
+
 .header-main{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:25px;
-  padding:17px 0 13px;
+  padding:17px 0 13px
 }
+
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
-  text-decoration:none;
+  text-decoration:none
 }
+
 .brand img{
   width:54px;
   height:54px;
   object-fit:contain;
-  border-radius:50%;
+  border-radius:50%
 }
+
 .brand-text strong{
   display:block;
   font-size:27px;
   line-height:1;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:-1px
 }
-.brand-text strong span{color:var(--red)}
+
+.brand-text strong span{
+  color:var(--red)
+}
+
 .brand-text small{
   color:#6b7280;
-  font-size:12px;
+  font-size:12px
 }
 
 .search{
@@ -109,27 +120,31 @@ header{
   border:1px solid #d8dee8;
   background:#fafbfd;
   border-radius:999px;
-  padding:10px 15px;
+  padding:10px 15px
 }
+
 .search input{
   border:0;
   outline:0;
   background:transparent;
   width:100%;
-  font-size:14px;
+  font-size:14px
 }
 
 /* NAV */
 .nav-wrap{
   overflow-x:auto;
-  scrollbar-width:none;
+  scrollbar-width:none
 }
-.nav-wrap::-webkit-scrollbar{display:none}
+
+.nav-wrap::-webkit-scrollbar{
+  display:none
+}
 
 nav{
   display:flex;
   gap:26px;
-  min-width:max-content;
+  min-width:max-content
 }
 
 nav a{
@@ -139,11 +154,12 @@ nav a{
   font-size:15px;
   font-weight:800;
   color:#303744;
+  cursor:pointer
 }
 
 nav a:hover,
 nav a.active{
-  color:var(--red);
+  color:var(--red)
 }
 
 nav a.active:after{
@@ -154,33 +170,51 @@ nav a.active:after{
   bottom:0;
   height:3px;
   background:var(--red);
-  border-radius:5px 5px 0 0;
+  border-radius:5px 5px 0 0
 }
 
 /* HERO */
 .hero{
   margin:28px 0 38px;
-  min-height:370px;
+  min-height:430px;
   border-radius:20px;
   overflow:hidden;
   position:relative;
   display:flex;
   align-items:flex-end;
+  background:#071a3b;
+  box-shadow:var(--shadow)
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
     linear-gradient(
       90deg,
-      rgba(2,20,52,.92) 0%,
-      rgba(3,31,73,.65) 47%,
-      rgba(2,20,52,.12) 100%
-    ),
-    url("assets/banner.jpg") center/cover no-repeat;
-  box-shadow:var(--shadow);
+      rgba(2,20,52,.93) 0%,
+      rgba(3,31,73,.66) 48%,
+      rgba(2,20,52,.16) 100%
+    );
+  z-index:1
 }
 
 .hero-content{
-  max-width:680px;
+  max-width:720px;
   color:#fff;
   padding:45px;
+  position:relative;
+  z-index:2
 }
 
 .hero-label{
@@ -190,30 +224,32 @@ nav a.active:after{
   background:var(--red);
   font-size:12px;
   font-weight:900;
-  margin-bottom:14px;
+  margin-bottom:14px
 }
 
 .hero h1{
-  font-size:clamp(30px,4vw,52px);
-  line-height:1.15;
+  font-size:clamp(30px,4vw,48px);
+  line-height:1.25;
   margin:0 0 13px;
-  letter-spacing:-1px;
+  letter-spacing:-1px
 }
 
 .hero p{
   margin:0 0 22px;
   color:#e8edf7;
-  line-height:1.7;
+  line-height:1.7
 }
 
 .hero-btn{
   display:inline-block;
+  border:0;
   text-decoration:none;
   background:#fff;
   color:var(--blue);
   font-weight:900;
   padding:11px 17px;
   border-radius:8px;
+  cursor:pointer
 }
 
 /* SECTION */
@@ -222,31 +258,30 @@ nav a.active:after{
   align-items:end;
   justify-content:space-between;
   gap:20px;
-  margin:0 0 18px;
+  margin:0 0 18px
 }
 
-.section-head h1,
-.section-head h2{
+.section-head h1{
   margin:0;
-  font-size:30px;
+  font-size:30px
 }
 
 .section-head p{
   margin:5px 0 0;
-  color:var(--muted);
+  color:var(--muted)
 }
 
 .count{
   font-size:13px;
-  color:var(--muted);
+  color:var(--muted)
 }
 
-/* NEWS GRID */
+/* NEWS */
 .news-list{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:22px;
-  padding-bottom:65px;
+  padding-bottom:65px
 }
 
 .news-card{
@@ -255,12 +290,12 @@ nav a.active:after{
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 7px 25px rgba(20,40,70,.06);
-  transition:transform .2s,box-shadow .2s;
+  transition:.2s
 }
 
 .news-card:hover{
   transform:translateY(-4px);
-  box-shadow:0 15px 35px rgba(20,40,70,.12);
+  box-shadow:0 15px 35px rgba(20,40,70,.12)
 }
 
 .news-cover{
@@ -268,24 +303,24 @@ nav a.active:after{
   aspect-ratio:16/9;
   object-fit:cover;
   display:block;
-  background:#dce4ef;
+  background:#dce4ef
 }
 
 .news-body{
-  padding:18px;
+  padding:18px
 }
 
 .category{
   color:var(--red);
   font-size:12px;
   font-weight:900;
-  margin-bottom:8px;
+  margin-bottom:8px
 }
 
 .news-title{
   margin:0;
   font-size:20px;
-  line-height:1.45;
+  line-height:1.45
 }
 
 .news-summary{
@@ -296,13 +331,13 @@ nav a.active:after{
   display:-webkit-box;
   -webkit-line-clamp:3;
   -webkit-box-orient:vertical;
-  overflow:hidden;
+  overflow:hidden
 }
 
 .news-meta{
   margin-top:15px;
   color:#8a93a1;
-  font-size:12px;
+  font-size:12px
 }
 
 .read-btn{
@@ -314,11 +349,17 @@ nav a.active:after{
   background:var(--blue);
   color:#fff;
   font-weight:900;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .read-btn:hover{
-  background:var(--blue2);
+  background:var(--blue2)
+}
+
+/* EMPTY */
+.empty{
+  display:none;
+  min-height:280px
 }
 
 /* ARTICLE */
@@ -329,43 +370,43 @@ nav a.active:after{
   box-shadow:var(--shadow);
   max-width:900px;
   margin:30px auto 70px;
-  overflow:hidden;
+  overflow:hidden
 }
 
 .article-head{
-  padding:32px 35px 0;
+  padding:32px 35px 0
 }
 
 .article-category{
   color:var(--red);
   font-weight:900;
-  font-size:13px;
+  font-size:13px
 }
 
 .article h1{
   margin:9px 0 12px;
   font-size:clamp(28px,4vw,44px);
-  line-height:1.35;
+  line-height:1.35
 }
 
 .article-summary{
   color:#5f6877;
   font-size:17px;
-  line-height:1.75;
+  line-height:1.75
 }
 
 .article-date{
   color:#8a93a1;
   font-size:13px;
-  margin-top:12px;
+  margin-top:12px
 }
 
 .article-cover{
   width:100%;
-  max-height:600px;
+  max-height:650px;
   object-fit:cover;
   display:block;
-  margin-top:25px;
+  margin-top:25px
 }
 
 .article-content{
@@ -374,24 +415,29 @@ nav a.active:after{
   line-height:2;
   color:#252b35;
   white-space:pre-wrap;
-  overflow-wrap:anywhere;
+  overflow-wrap:anywhere
+}
+
+/* ภาพข่าวในเนื้อหา */
+.content-image-wrap{
+  padding:0 35px
 }
 
 .content-image{
   display:block;
   width:auto;
-  max-width:calc(100% - 70px);
-  max-height:800px;
+  max-width:100%;
+  max-height:900px;
   object-fit:contain;
-  margin:28px auto;
-  border-radius:12px;
+  margin:30px auto;
+  border-radius:12px
 }
 
 .article-actions{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  padding:28px 35px 35px;
+  padding:28px 35px 35px
 }
 
 .action-btn{
@@ -399,33 +445,17 @@ nav a.active:after{
   border-radius:8px;
   padding:11px 16px;
   cursor:pointer;
-  font-weight:900;
+  font-weight:900
 }
 
 .back-btn{
   background:#edf1f6;
-  color:#263244;
+  color:#263244
 }
 
 .share-btn{
   background:var(--red);
-  color:#fff;
-}
-
-/* EMPTY */
-.empty{
-  display:none;
-  min-height:280px;
-}
-
-/* ERROR */
-.error-box{
-  background:#fff;
-  border:1px solid #f0c4c8;
-  border-radius:14px;
-  padding:30px;
-  color:#9b1c27;
-  margin-bottom:50px;
+  color:#fff
 }
 
 /* FOOTER */
@@ -433,97 +463,98 @@ footer{
   background:var(--blue);
   color:#dce6f6;
   padding:30px 0;
-  margin-top:30px;
+  margin-top:30px
 }
 
 .footer-inner{
   display:flex;
   justify-content:space-between;
   gap:20px;
-  flex-wrap:wrap;
+  flex-wrap:wrap
 }
 
 footer strong{
-  color:#fff;
+  color:#fff
 }
 
 /* MOBILE */
 @media(max-width:900px){
   .news-list{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .hero{
-    min-height:330px;
+    grid-template-columns:repeat(2,minmax(0,1fr))
   }
 }
 
 @media(max-width:650px){
+
   .container{
-    width:92%;
+    width:92%
   }
 
   .header-main{
-    align-items:flex-start;
+    align-items:flex-start
   }
 
   .search{
-    display:none;
+    display:none
   }
 
   .brand img{
     width:46px;
-    height:46px;
+    height:46px
   }
 
   .brand-text strong{
-    font-size:24px;
+    font-size:24px
   }
 
   nav{
-    gap:19px;
+    gap:19px
   }
 
   nav a{
-    font-size:14px;
+    font-size:14px
   }
 
   .hero{
-    min-height:330px;
-    border-radius:15px;
+    min-height:470px;
+    border-radius:15px
   }
 
   .hero-content{
-    padding:28px 25px;
+    padding:28px 25px
   }
 
   .hero h1{
-    font-size:31px;
+    font-size:31px
   }
 
   .news-list{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .section-head h1{
-    font-size:27px;
+    font-size:27px
   }
 
   .article-head{
-    padding:25px 20px 0;
+    padding:25px 20px 0
   }
 
   .article-content{
     padding:22px 20px 0;
-    font-size:17px;
+    font-size:17px
+  }
+
+  .content-image-wrap{
+    padding:0 20px
   }
 
   .content-image{
-    max-width:calc(100% - 40px);
+    max-width:100%
   }
 
   .article-actions{
-    padding:24px 20px 28px;
+    padding:24px 20px 28px
   }
 }
 </style>
@@ -549,9 +580,12 @@ footer strong{
       <a
         class="brand"
         href="./index.html"
-        onclick="goHome();return false;"
+        onclick="showLatest();return false;"
       >
-        <img src="assets/logo.png" alt="THAI NEWS">
+        <img
+          src="assets/logo.png"
+          alt="THAI NEWS"
+        >
 
         <div class="brand-text">
           <strong>THAI <span>NEWS</span></strong>
@@ -579,71 +613,92 @@ footer strong{
 
 <main class="container">
 
-  <section id="homePage">
+<section id="homePage">
 
-    <div class="hero">
+  <div class="hero">
 
-      <div class="hero-content">
+    <img
+      id="heroImage"
+      class="hero-bg"
+      src="assets/banner.jpg"
+      alt=""
+    >
 
-        <div class="hero-label">
-          THAI NEWS
-        </div>
-
-        <h1>
-          เกาะติดทุกประเด็นสำคัญ<br>
-          อัปเดตข่าวสดรอบวัน
-        </h1>
-
-        <p>
-          ติดตามข่าวสารและเรื่องราวที่น่าสนใจจากหลากหลายหมวดข่าว
-          พร้อมอัปเดตเรื่องเด่นให้คุณไม่พลาดทุกความเคลื่อนไหว
-        </p>
-
-        <a
-          class="hero-btn"
-          href="#latest"
-          onclick="showLatest();return false;"
-        >
-          ดูข่าวล่าสุด →
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="section-head" id="latest">
-
-      <div>
-        <h1 id="pageTitle">ข่าวล่าสุด</h1>
-        <p id="pageSub">
-          ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS
-        </p>
-      </div>
+    <div class="hero-content">
 
       <div
-        class="count"
-        id="newsCount"
-      ></div>
+        id="heroCategory"
+        class="hero-label"
+      >
+        ข่าวบันเทิง
+      </div>
+
+      <h1 id="heroTitle">
+        เนเน่ รอยัล เปิดที่มาชุดรอบไฟนอล AGT
+        จากภาพในใจคุณแม่ สู่ลุคสุดทรงพลังบนเวที
+      </h1>
+
+      <p id="heroSummary">
+        เปิดเบื้องหลังลุคสำคัญ พร้อมเรื่องราวและแรงบันดาลใจ
+        จากครอบครัวสู่เวทีระดับโลก
+      </p>
+
+      <button
+        id="heroButton"
+        class="hero-btn"
+        onclick="openHeroArticle()"
+      >
+        อ่านข่าวนี้ →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="section-head"
+    id="latest"
+  >
+
+    <div>
+
+      <h1 id="pageTitle">
+        ข่าวล่าสุด
+      </h1>
+
+      <p id="pageSub">
+        ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS
+      </p>
 
     </div>
 
     <div
-      id="newsList"
-      class="news-list"
+      class="count"
+      id="newsCount"
     ></div>
 
-    <div
-      id="errorBox"
-      style="display:none"
-      class="error-box"
-    ></div>
+  </div>
 
-  </section>
 
-  <section
-    id="articlePage"
+  <div
+    id="newsList"
+    class="news-list"
+  ></div>
+
+
+  <div
+    id="errorBox"
     style="display:none"
-  ></section>
+  ></div>
+
+</section>
+
+
+<section
+  id="articlePage"
+  style="display:none"
+></section>
 
 </main>
 
@@ -664,37 +719,31 @@ footer strong{
 
 </footer>
 
+
 <script>
 
 /* =====================================================
-   THAI NEWS - SUPABASE FRONTEND
-
-   รองรับข้อมูลจาก Admin:
-
-   cover
-   content_image
-
-   และ:
-
-   cover_image
-   content_images
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
-  "https://vkzqqykkuvsbjzhnauxe.supabase.co";
+"https://vkzqqykkuvsbjzhnauxe.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
+"sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
 
 const TABLE =
-  "news_articles";
+"news_articles";
 
 const SITE_URL =
-  "https://thanwabuspracng850-ctrl.github.io/thai-news/";
+"https://thanwabuspracng850-ctrl.github.io/thai-news/";
 
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
 
 const CATEGORIES = [
-
   "ข่าวล่าสุด",
   "การเมือง",
   "บันเทิง",
@@ -704,39 +753,49 @@ const CATEGORIES = [
   "กีฬา",
   "ต่างประเทศ",
   "ข่าวทั่วไป"
-
 ];
 
 
 let cachedNews = [];
 
 let currentCategory =
-  "ข่าวล่าสุด";
+"ข่าวล่าสุด";
 
 let searchTerm =
-  "";
+"";
 
-
-const $ = id =>
-  document.getElementById(id);
+let heroNews =
+null;
 
 
 /* =====================================================
-   ESCAPE HTML
+   GET ELEMENT
+===================================================== */
+
+const $ =
+id =>
+document.getElementById(id);
+
+
+/* =====================================================
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
 
-  return String(value ?? "")
-    .replace(/[&<>"']/g, c => ({
-
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    c =>
+    ({
       "&":"&amp;",
       "<":"&lt;",
       ">":"&gt;",
       '"':"&quot;",
       "'":"&#039;"
-
-    }[c]));
+    }[c])
+  );
 
 }
 
@@ -747,9 +806,14 @@ function escapeHTML(value){
 
 function normalize(value){
 
-  return String(value || "")
-    .trim()
-    .replace(/\s+/g,"");
+  return String(
+    value || ""
+  )
+  .trim()
+  .replace(
+    /\s+/g,
+    ""
+  );
 
 }
 
@@ -760,7 +824,8 @@ function normalize(value){
 
 function formatDate(value){
 
-  if(!value) return "";
+  if(!value)
+    return "";
 
   const d =
     new Date(value);
@@ -769,9 +834,8 @@ function formatDate(value){
     Number.isNaN(
       d.getTime()
     )
-  ){
+  )
     return "";
-  }
 
   return d.toLocaleString(
     "th-TH",
@@ -788,7 +852,10 @@ function formatDate(value){
 
 
 /* =====================================================
-   COVER IMAGE
+   COVER
+   รองรับทั้ง:
+   cover_image
+   cover
 ===================================================== */
 
 function getCover(item){
@@ -806,6 +873,10 @@ function getCover(item){
 
 /* =====================================================
    CONTENT IMAGES
+   รองรับทั้ง:
+   content_images
+   content_image
+   images
 ===================================================== */
 
 function getContentImages(item){
@@ -816,55 +887,134 @@ function getContentImages(item){
     item?.images ??
     [];
 
-  if(!value){
 
+  if(!value)
     return [];
 
+
+  if(
+    Array.isArray(value)
+  ){
+
+    return value.filter(
+      Boolean
+    );
+
   }
 
 
-  if(Array.isArray(value)){
+  if(
+    typeof value ===
+    "string"
+  ){
 
-    return value.filter(Boolean);
+    let text =
+      value.trim();
 
-  }
+
+    if(!text)
+      return [];
 
 
-  if(typeof value === "string"){
+    /*
+      JSON array
+    */
 
     try{
 
       const parsed =
-        JSON.parse(value);
+        JSON.parse(
+          text
+        );
+
 
       if(
         Array.isArray(parsed)
       ){
 
-        return parsed.filter(Boolean);
+        return parsed.filter(
+          Boolean
+        );
 
       }
 
-      if(parsed){
-
-        return [parsed];
-
-      }
-
-    }catch(e){
 
       if(
-        value.startsWith(
-          "data:image/"
-        ) ||
-        value.startsWith(
-          "http"
-        )
+        typeof parsed ===
+        "string"
       ){
 
-        return [value];
+        return [
+          parsed
+        ];
 
       }
+
+    }
+    catch(error){}
+
+
+    /*
+      ถ้าเป็น Data URL
+    */
+
+    if(
+      text.startsWith(
+        "data:image/"
+      )
+    ){
+
+      return [
+        text
+      ];
+
+    }
+
+
+    /*
+      ถ้าเป็น URL เดียว
+    */
+
+    if(
+      text.startsWith(
+        "http://"
+      ) ||
+      text.startsWith(
+        "https://"
+      )
+    ){
+
+      return [
+        text
+      ];
+
+    }
+
+
+    /*
+      รองรับกรณี Admin เก็บ
+      URL คั่นด้วย comma
+    */
+
+    if(
+      text.includes(",")
+    ){
+
+      return text
+        .split(",")
+        .map(
+          x =>
+          x.trim()
+        )
+        .filter(
+          x =>
+          x.startsWith(
+            "http"
+          ) ||
+          x.startsWith(
+            "data:image/"
+          )
+        );
 
     }
 
@@ -877,23 +1027,21 @@ function getContentImages(item){
 
 
 /* =====================================================
-   SUPABASE REQUEST
+   SUPABASE
 ===================================================== */
 
 async function supabase(
   path,
-  options = {}
+  options={}
 ){
 
   const response =
     await fetch(
       `${SUPABASE_URL}/rest/v1/${path}`,
       {
-
         ...options,
 
         headers:{
-
           apikey:
             SUPABASE_KEY,
 
@@ -901,9 +1049,7 @@ async function supabase(
             `Bearer ${SUPABASE_KEY}`,
 
           ...(options.headers || {})
-
         }
-
       }
     );
 
@@ -911,30 +1057,38 @@ async function supabase(
   const text =
     await response.text();
 
-  let data = null;
+
+  let data =
+    null;
 
 
   try{
 
     data =
       text
-        ? JSON.parse(text)
-        : null;
+      ?
+      JSON.parse(text)
+      :
+      null;
 
-  }catch(e){}
+  }
+  catch(error){
+
+    data =
+      null;
+
+  }
 
 
   if(!response.ok){
 
     throw new Error(
-
       data?.message ||
       data?.hint ||
       data?.details ||
       data?.error_description ||
       text ||
       `HTTP ${response.status}`
-
     );
 
   }
@@ -951,15 +1105,56 @@ async function supabase(
 
 async function loadNews(){
 
+  /*
+    ใช้ select=*
+    เพื่อรองรับชื่อ field
+    ของ Admin ทั้งสองรุ่น
+  */
+
   const data =
     await supabase(
       `${TABLE}?select=*&published=eq.true&order=created_at.desc`
     );
 
+
   cachedNews =
     Array.isArray(data)
-      ? data
-      : [];
+    ?
+    data
+    :
+    [];
+
+
+  /*
+    ตั้งข่าว HERO
+    ให้เป็นข่าวเนเน่ก่อน
+    ถ้ามีข่าวเนเน่ในฐานข้อมูล
+  */
+
+  heroNews =
+    cachedNews.find(
+      item =>
+      String(
+        item.title ||
+        ""
+      ).includes(
+        "เนเน่"
+      ) ||
+      String(
+        item.title ||
+        ""
+      ).includes(
+        "รอยัล"
+      )
+    )
+    ||
+    cachedNews[0]
+    ||
+    null;
+
+
+  updateHero();
+
 
   return cachedNews;
 
@@ -967,63 +1162,119 @@ async function loadNews(){
 
 
 /* =====================================================
-   NAVIGATION
+   HERO
 ===================================================== */
 
-function buildNavigation(){
+function updateHero(){
 
-  $("nav").innerHTML =
-    CATEGORIES.map(
-      category => {
-
-        const isLatest =
-          category === "ข่าวล่าสุด";
+  if(!heroNews)
+    return;
 
 
-        return `
+  const cover =
+    getCover(
+      heroNews
+    );
 
-          <a
-            href="${
-              isLatest
-                ? "./index.html"
-                : `./index.html?category=${encodeURIComponent(category)}`
-            }"
-            data-category="${escapeHTML(category)}"
-            onclick="navigateCategory('${encodeURIComponent(category)}');return false;"
-          >
-            ${escapeHTML(category)}
-          </a>
 
-        `;
+  /*
+    ใช้ภาพข่าวจริง
+    ไม่ใช้ banner.jpg ถ้ามีภาพข่าว
+  */
 
-      }
-    ).join("");
+  if(cover){
+
+    $("heroImage").src =
+      cover;
+
+  }
+
+
+  $("heroCategory")
+    .textContent =
+    heroNews.category ||
+    "ข่าวบันเทิง";
+
+
+  $("heroTitle")
+    .textContent =
+    heroNews.title ||
+    "เนเน่ รอยัล เปิดที่มาชุดรอบไฟนอล AGT";
+
+
+  $("heroSummary")
+    .textContent =
+    heroNews.summary ||
+    "เปิดเบื้องหลังลุคสำคัญ พร้อมเรื่องราวและแรงบันดาลใจ";
+
+
+  $("heroButton")
+    .style.display =
+    "inline-block";
 
 }
 
 
 /* =====================================================
-   ACTIVE MENU
+   NAV
 ===================================================== */
 
-function setActiveNav(category){
+function buildNavigation(){
+
+  $("nav").innerHTML =
+    CATEGORIES
+    .map(
+      category => `
+
+        <a
+          href="${
+            category === "ข่าวล่าสุด"
+            ?
+            "./index.html"
+            :
+            `./index.html?category=${encodeURIComponent(category)}`
+          }"
+          data-category="${escapeHTML(category)}"
+          onclick="navigateCategory('${encodeURIComponent(category)}');return false;"
+        >
+          ${escapeHTML(category)}
+        </a>
+
+      `
+    )
+    .join("");
+
+}
+
+
+/* =====================================================
+   ACTIVE NAV
+===================================================== */
+
+function setActiveNav(
+  category
+){
 
   document
-    .querySelectorAll("#nav a")
-    .forEach(a => {
+  .querySelectorAll(
+    "#nav a"
+  )
+  .forEach(
+    a => {
 
       a.classList.toggle(
-
         "active",
-
         normalize(
           a.dataset.category
-        ) ===
-        normalize(category)
-
+        )
+        ===
+        normalize(
+          category
+        )
       );
 
-    });
+    }
+  );
 
 }
 
@@ -1032,26 +1283,32 @@ function setActiveNav(category){
    FILTER
 ===================================================== */
 
-function filterNews(news){
+function filterNews(
+  news
+){
 
   let result =
-    [...news];
+    [
+      ...news
+    ];
 
 
   if(
     currentCategory &&
-    currentCategory !== "ข่าวล่าสุด"
+    currentCategory !==
+    "ข่าวล่าสุด"
   ){
 
     result =
       result.filter(
         item =>
-          normalize(
-            item.category
-          ) ===
-          normalize(
-            currentCategory
-          )
+        normalize(
+          item.category
+        )
+        ===
+        normalize(
+          currentCategory
+        )
       );
 
   }
@@ -1060,22 +1317,29 @@ function filterNews(news){
   if(searchTerm){
 
     const q =
-      searchTerm.toLowerCase();
+      searchTerm
+      .toLowerCase();
 
 
     result =
       result.filter(
-        item =>
+        item => {
 
+          const text =
           `
           ${item.title || ""}
           ${item.summary || ""}
           ${item.content || ""}
           ${item.category || ""}
           `
-          .toLowerCase()
-          .includes(q)
+          .toLowerCase();
 
+
+          return text.includes(
+            q
+          );
+
+        }
       );
 
   }
@@ -1097,16 +1361,14 @@ function renderNews(){
       cachedNews
     );
 
+
   const box =
     $("newsList");
 
 
-  /*
-    ไม่มีข่าว =
-    ปล่อยหน้าโล่ง
-  */
+  box.innerHTML =
+    "";
 
-  box.innerHTML = "";
 
   $("errorBox")
     .style.display =
@@ -1115,9 +1377,11 @@ function renderNews(){
 
   $("newsCount")
     .textContent =
-      list.length
-        ? `${list.length} ข่าว`
-        : "";
+    list.length
+    ?
+    `${list.length} ข่าว`
+    :
+    "";
 
 
   if(
@@ -1133,12 +1397,13 @@ function renderNews(){
     $("pageSub")
       .textContent =
       searchTerm
+      ?
+      `ผลการค้นหา "${searchTerm}"`
+      :
+      "ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS";
 
-        ? `ผลการค้นหา "${searchTerm}"`
-
-        : "ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS";
-
-  }else{
+  }
+  else{
 
     $("pageTitle")
       .textContent =
@@ -1148,159 +1413,192 @@ function renderNews(){
     $("pageSub")
       .textContent =
       searchTerm
-
-        ? `ผลการค้นหา "${searchTerm}" ในหมวด ${currentCategory}`
-
-        : `ข่าวในหมวด ${currentCategory}`;
+      ?
+      `ผลการค้นหา "${searchTerm}" ในหมวด ${currentCategory}`
+      :
+      `ข่าวในหมวด ${currentCategory}`;
 
   }
 
 
-  list.forEach(item => {
+  /*
+    หมวดไม่มีข่าว
+    ให้โล่งจริง ๆ
+  */
 
-    const card =
-      document.createElement(
-        "article"
-      );
+  if(!list.length){
 
-    card.className =
-      "news-card";
+    return;
 
-
-    const cover =
-      getCover(item);
+  }
 
 
-    const image =
-      document.createElement(
-        "img"
-      );
+  list.forEach(
+    item => {
 
-    image.className =
-      "news-cover";
-
-    image.alt =
-      item.title ||
-      "THAI NEWS";
-
-    image.loading =
-      "lazy";
-
-    image.src =
-      cover ||
-      "assets/banner.jpg";
+      const card =
+        document.createElement(
+          "article"
+        );
 
 
-    const body =
-      document.createElement(
-        "div"
-      );
-
-    body.className =
-      "news-body";
+      card.className =
+        "news-card";
 
 
-    const category =
-      document.createElement(
-        "div"
-      );
-
-    category.className =
-      "category";
-
-    category.textContent =
-      item.category ||
-      "ข่าว";
+      const cover =
+        getCover(
+          item
+        );
 
 
-    const title =
-      document.createElement(
-        "h2"
-      );
-
-    title.className =
-      "news-title";
-
-    title.textContent =
-      item.title ||
-      "ไม่มีหัวข่าว";
+      const image =
+        document.createElement(
+          "img"
+        );
 
 
-    const summary =
-      document.createElement(
-        "div"
-      );
-
-    summary.className =
-      "news-summary";
-
-    summary.textContent =
-      item.summary ||
-      "";
+      image.className =
+        "news-cover";
 
 
-    const meta =
-      document.createElement(
-        "div"
-      );
-
-    meta.className =
-      "news-meta";
-
-    meta.textContent =
-      formatDate(
-        item.created_at
-      );
+      image.alt =
+        item.title ||
+        "THAI NEWS";
 
 
-    const button =
-      document.createElement(
-        "button"
-      );
+      image.loading =
+        "lazy";
 
-    button.className =
-      "read-btn";
 
-    button.textContent =
-      "อ่านข่าวต่อ →";
+      image.src =
+        cover ||
+        "assets/banner.jpg";
 
-    button.onclick =
-      () =>
+
+      const body =
+        document.createElement(
+          "div"
+        );
+
+
+      body.className =
+        "news-body";
+
+
+      const category =
+        document.createElement(
+          "div"
+        );
+
+
+      category.className =
+        "category";
+
+
+      category.textContent =
+        item.category ||
+        "ข่าว";
+
+
+      const title =
+        document.createElement(
+          "h2"
+        );
+
+
+      title.className =
+        "news-title";
+
+
+      title.textContent =
+        item.title ||
+        "ไม่มีหัวข่าว";
+
+
+      const summary =
+        document.createElement(
+          "div"
+        );
+
+
+      summary.className =
+        "news-summary";
+
+
+      summary.textContent =
+        item.summary ||
+        "";
+
+
+      const meta =
+        document.createElement(
+          "div"
+        );
+
+
+      meta.className =
+        "news-meta";
+
+
+      meta.textContent =
+        formatDate(
+          item.created_at
+        );
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "read-btn";
+
+
+      button.textContent =
+        "อ่านข่าวต่อ →";
+
+
+      button.onclick =
+        () =>
         openArticle(
           item.id
         );
 
 
-    body.append(
-      category,
-      title,
-      summary,
-      meta,
-      button
-    );
+      body.append(
+        category,
+        title,
+        summary,
+        meta,
+        button
+      );
 
 
-    card.append(
-      image,
-      body
-    );
+      card.append(
+        image,
+        body
+      );
 
 
-    box.appendChild(
-      card
-    );
+      box.appendChild(
+        card
+      );
 
-  });
+    }
+  );
 
 }
 
 
 /* =====================================================
-   CHANGE URL
+   URL
 ===================================================== */
 
 function setURL(
-  params = {}
+  params={}
 ){
 
   const url =
@@ -1315,13 +1613,17 @@ function setURL(
 
   Object.entries(
     params
-  ).forEach(
+  )
+  .forEach(
     ([key,value]) => {
 
       if(
-        value !== null &&
-        value !== undefined &&
-        value !== ""
+        value !==
+        null &&
+        value !==
+        undefined &&
+        value !==
+        ""
       ){
 
         url.searchParams.set(
@@ -1349,29 +1651,13 @@ function setURL(
 ===================================================== */
 
 async function navigateCategory(
-  encodedCategory
+  encoded
 ){
 
   const category =
     decodeURIComponent(
-      encodedCategory
+      encoded
     );
-
-
-  if(
-    category ===
-    "ข่าวล่าสุด"
-  ){
-
-    setURL({});
-
-  }else{
-
-    setURL({
-      category
-    });
-
-  }
 
 
   currentCategory =
@@ -1385,6 +1671,23 @@ async function navigateCategory(
   $("searchInput")
     .value =
     "";
+
+
+  if(
+    category ===
+    "ข่าวล่าสุด"
+  ){
+
+    setURL({});
+
+  }
+  else{
+
+    setURL({
+      category
+    });
+
+  }
 
 
   $("homePage")
@@ -1419,9 +1722,6 @@ async function navigateCategory(
 
 function showLatest(){
 
-  setURL({});
-
-
   currentCategory =
     "ข่าวล่าสุด";
 
@@ -1433,6 +1733,9 @@ function showLatest(){
   $("searchInput")
     .value =
     "";
+
+
+  setURL({});
 
 
   $("homePage")
@@ -1462,48 +1765,107 @@ function showLatest(){
 
 
 /* =====================================================
-   HOME
+   FIND ARTICLE
 ===================================================== */
 
-function goHome(){
+async function findArticle(
+  id
+){
 
-  showLatest();
+  let item =
+    cachedNews.find(
+      x =>
+      String(
+        x.id
+      )
+      ===
+      String(
+        id
+      )
+    );
+
+
+  if(item)
+    return item;
+
+
+  const result =
+    await supabase(
+      `${TABLE}?select=*&id=eq.${encodeURIComponent(id)}&published=eq.true&limit=1`
+    );
+
+
+  return Array.isArray(
+    result
+  )
+  ?
+  result[0]
+  :
+  null;
 
 }
 
 
 /* =====================================================
-   FIND ARTICLE
+   ARTICLE URL
 ===================================================== */
 
-async function findArticle(id){
+function articleURL(
+  id
+){
 
-  const local =
-    cachedNews.find(
-      item =>
-        String(item.id) ===
-        String(id)
+  const url =
+    new URL(
+      "./index.html",
+      SITE_URL
     );
 
 
-  if(local){
+  url.searchParams.set(
+    "article",
+    String(id)
+  );
 
-    return local;
+
+  return url.href;
+
+}
+
+
+/* =====================================================
+   OPEN HERO
+===================================================== */
+
+async function openHeroArticle(){
+
+  if(
+    heroNews &&
+    heroNews.id
+  ){
+
+    await openArticle(
+      heroNews.id
+    );
+
+    return;
 
   }
 
 
-  const rows =
-    await supabase(
+  if(
+    cachedNews.length
+  ){
 
-      `${TABLE}?select=*&id=eq.${encodeURIComponent(id)}&published=eq.true&limit=1`
-
+    await openArticle(
+      cachedNews[0].id
     );
 
+    return;
 
-  return Array.isArray(rows)
-    ? rows[0]
-    : null;
+  }
+
+
+  showLatest();
 
 }
 
@@ -1514,7 +1876,7 @@ async function findArticle(id){
 
 async function openArticle(
   id,
-  updateURL = true
+  changeURL=true
 ){
 
   try{
@@ -1540,41 +1902,43 @@ async function openArticle(
       $("articlePage")
         .innerHTML = `
 
-          <div class="article">
+        <div class="article">
 
-            <div class="article-head">
+          <div class="article-head">
 
-              <h1>
-                ไม่พบข่าวนี้
-              </h1>
-
-            </div>
-
-            <div class="article-actions">
-
-              <button
-                class="action-btn back-btn"
-                onclick="goHome()"
-              >
-                ← กลับหน้าข่าว
-              </button>
-
-            </div>
+            <h1>
+              ไม่พบข่าวนี้
+            </h1>
 
           </div>
 
-        `;
+          <div class="article-actions">
+
+            <button
+              class="action-btn back-btn"
+              onclick="showLatest()"
+            >
+              ← กลับหน้าข่าว
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
 
       return;
 
     }
 
 
-    if(updateURL){
+    if(changeURL){
 
       setURL({
         article:
-          String(item.id)
+        String(
+          item.id
+        )
       });
 
     }
@@ -1584,33 +1948,51 @@ async function openArticle(
       `${item.title || "ข่าว"} | THAI NEWS`;
 
 
+    const cover =
+      getCover(
+        item
+      );
+
+
+    const images =
+      getContentImages(
+        item
+      );
+
+
     const article =
       document.createElement(
         "article"
       );
 
+
     article.className =
       "article";
 
+
+    /* HEADER */
 
     const head =
       document.createElement(
         "div"
       );
 
+
     head.className =
       "article-head";
 
 
-    const cat =
+    const category =
       document.createElement(
         "div"
       );
 
-    cat.className =
+
+    category.className =
       "article-category";
 
-    cat.textContent =
+
+    category.textContent =
       item.category ||
       "ข่าว";
 
@@ -1619,6 +2001,7 @@ async function openArticle(
       document.createElement(
         "h1"
       );
+
 
     title.textContent =
       item.title ||
@@ -1630,8 +2013,10 @@ async function openArticle(
         "div"
       );
 
+
     summary.className =
       "article-summary";
+
 
     summary.textContent =
       item.summary ||
@@ -1643,8 +2028,10 @@ async function openArticle(
         "div"
       );
 
+
     date.className =
       "article-date";
+
 
     date.textContent =
       formatDate(
@@ -1653,55 +2040,59 @@ async function openArticle(
 
 
     head.append(
-      cat,
+      category,
       title,
       summary,
       date
     );
 
 
-    const cover =
-      getCover(item);
+    article.append(
+      head
+    );
 
+
+    /* COVER */
 
     if(cover){
 
-      const img =
+      const coverImg =
         document.createElement(
           "img"
         );
 
-      img.className =
+
+      coverImg.className =
         "article-cover";
 
-      img.src =
+
+      coverImg.src =
         cover;
 
-      img.alt =
+
+      coverImg.alt =
         item.title ||
-        "ภาพข่าว";
+        "ภาพปกข่าว";
+
 
       article.append(
-        head,
-        img
-      );
-
-    }else{
-
-      article.append(
-        head
+        coverImg
       );
 
     }
 
+
+    /* CONTENT */
 
     const content =
       document.createElement(
         "div"
       );
 
+
     content.className =
       "article-content";
+
 
     content.textContent =
       item.content ||
@@ -1713,41 +2104,80 @@ async function openArticle(
     );
 
 
-    getContentImages(
-      item
-    ).forEach(
-      src => {
+    /*
+      ภาพข่าวทั้งหมด
+      ที่ Admin ใส่ใน content_image
+      หรือ content_images
+    */
 
-        const img =
-          document.createElement(
-            "img"
-          );
+    if(images.length){
 
-        img.className =
-          "content-image";
-
-        img.src =
-          src;
-
-        img.alt =
-          "ภาพประกอบข่าว";
-
-        img.loading =
-          "lazy";
-
-
-        article.append(
-          img
+      const imageWrap =
+        document.createElement(
+          "div"
         );
 
-      }
-    );
 
+      imageWrap.className =
+        "content-image-wrap";
+
+
+      images.forEach(
+        src => {
+
+          const img =
+            document.createElement(
+              "img"
+            );
+
+
+          img.className =
+            "content-image";
+
+
+          img.src =
+            src;
+
+
+          img.alt =
+            "ภาพประกอบข่าว";
+
+
+          img.loading =
+            "lazy";
+
+
+          img.onerror =
+            function(){
+
+              this.style.display =
+                "none";
+
+            };
+
+
+          imageWrap.appendChild(
+            img
+          );
+
+        }
+      );
+
+
+      article.append(
+        imageWrap
+      );
+
+    }
+
+
+    /* ACTIONS */
 
     const actions =
       document.createElement(
         "div"
       );
+
 
     actions.className =
       "article-actions";
@@ -1758,14 +2188,17 @@ async function openArticle(
         "button"
       );
 
+
     back.className =
       "action-btn back-btn";
+
 
     back.textContent =
       "← กลับหน้าข่าว";
 
+
     back.onclick =
-      goHome;
+      showLatest;
 
 
     const share =
@@ -1773,17 +2206,20 @@ async function openArticle(
         "button"
       );
 
+
     share.className =
       "action-btn share-btn";
+
 
     share.textContent =
       "แชร์ข่าว";
 
+
     share.onclick =
       () =>
-        shareArticle(
-          item
-        );
+      shareArticle(
+        item
+      );
 
 
     actions.append(
@@ -1824,7 +2260,8 @@ async function openArticle(
     });
 
 
-  }catch(error){
+  }
+  catch(error){
 
     console.error(
       error
@@ -1844,32 +2281,34 @@ async function openArticle(
     $("articlePage")
       .innerHTML = `
 
-        <div class="article">
+      <div class="article">
 
-          <div class="article-head">
+        <div class="article-head">
 
-            <h1>
-              เปิดข่าวไม่สำเร็จ
-            </h1>
+          <h1>
+            เปิดข่าวไม่สำเร็จ
+          </h1>
 
-            <div class="article-summary">
-              ${escapeHTML(error.message)}
-            </div>
-
-          </div>
-
-          <div class="article-actions">
-
-            <button
-              class="action-btn back-btn"
-              onclick="goHome()"
-            >
-              ← กลับหน้าข่าว
-            </button>
-
+          <div class="article-summary">
+            ${escapeHTML(
+              error.message
+            )}
           </div>
 
         </div>
+
+        <div class="article-actions">
+
+          <button
+            class="action-btn back-btn"
+            onclick="showLatest()"
+          >
+            ← กลับหน้าข่าว
+          </button>
+
+        </div>
+
+      </div>
 
       `;
 
@@ -1887,19 +2326,12 @@ async function shareArticle(
 ){
 
   const url =
-    new URL(
-      "./index.html",
-      SITE_URL
+    articleURL(
+      item.id
     );
 
 
-  url.searchParams.set(
-    "article",
-    String(item.id)
-  );
-
-
-  const shareData = {
+  const data = {
 
     title:
       item.title ||
@@ -1910,8 +2342,7 @@ async function shareArticle(
       item.title ||
       "อ่านข่าวจาก THAI NEWS",
 
-    url:
-      url.href
+    url:url
 
   };
 
@@ -1923,7 +2354,7 @@ async function shareArticle(
     ){
 
       await navigator.share(
-        shareData
+        data
       );
 
       return;
@@ -1932,7 +2363,7 @@ async function shareArticle(
 
 
     await navigator.clipboard.writeText(
-      url.href
+      url
     );
 
 
@@ -1940,8 +2371,8 @@ async function shareArticle(
       "คัดลอกลิงก์ข่าวแล้ว"
     );
 
-
-  }catch(error){
+  }
+  catch(error){
 
     if(
       error.name !==
@@ -1949,8 +2380,8 @@ async function shareArticle(
     ){
 
       prompt(
-        "คัดลอกลิงก์ข่าวนี้:",
-        url.href
+        "คัดลอกลิงก์ข่าว:",
+        url
       );
 
     }
@@ -1961,10 +2392,10 @@ async function shareArticle(
 
 
 /* =====================================================
-   READ URL
+   ROUTE
 ===================================================== */
 
-function readRoute(){
+async function readRoute(){
 
   const params =
     new URLSearchParams(
@@ -1986,7 +2417,7 @@ function readRoute(){
 
   if(articleId){
 
-    openArticle(
+    await openArticle(
       articleId,
       false
     );
@@ -1996,22 +2427,14 @@ function readRoute(){
   }
 
 
-  document.title =
-    "THAI NEWS";
-
-
   currentCategory =
     category ||
     "ข่าวล่าสุด";
 
 
-  searchTerm =
-    "";
-
-
-  $("searchInput")
-    .value =
-    "";
+  setActiveNav(
+    currentCategory
+  );
 
 
   $("homePage")
@@ -2024,18 +2447,7 @@ function readRoute(){
     "none";
 
 
-  setActiveNav(
-    currentCategory
-  );
-
-
   renderNews();
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
 
 }
 
@@ -2045,33 +2457,107 @@ function readRoute(){
 ===================================================== */
 
 $("searchInput")
-  .addEventListener(
-    "input",
-    e => {
+.addEventListener(
+  "input",
+  event => {
 
-      searchTerm =
-        e.target.value.trim();
+    searchTerm =
+      event.target.value.trim();
 
-      renderNews();
 
-    }
-  );
+    renderNews();
+
+  }
+);
 
 
 /* =====================================================
-   BROWSER BACK / FORWARD
+   BACK / FORWARD
 ===================================================== */
 
 window.addEventListener(
   "popstate",
   async () => {
 
-    await loadNews();
+    try{
 
-    readRoute();
+      await loadNews();
+
+      await readRoute();
+
+    }
+    catch(error){
+
+      console.error(
+        error
+      );
+
+    }
 
   }
 );
+
+
+/* =====================================================
+   REALTIME
+===================================================== */
+
+try{
+
+  const supabaseRealtime =
+    window.supabase?.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  if(
+    supabaseRealtime
+  ){
+
+    supabaseRealtime
+    .channel(
+      "thai-news-live"
+    )
+    .on(
+      "postgres_changes",
+      {
+        event:"*",
+        schema:"public",
+        table:"news_articles"
+      },
+      async () => {
+
+        try{
+
+          await loadNews();
+
+          renderNews();
+
+        }
+        catch(error){
+
+          console.error(
+            error
+          );
+
+        }
+
+      }
+    )
+    .subscribe();
+
+  }
+
+}
+catch(error){
+
+  console.error(
+    "Realtime:",
+    error
+  );
+
+}
 
 
 /* =====================================================
@@ -2081,6 +2567,7 @@ window.addEventListener(
 async function start(){
 
   buildNavigation();
+
 
   $("year")
     .textContent =
@@ -2092,9 +2579,10 @@ async function start(){
 
     await loadNews();
 
-    readRoute();
+    await readRoute();
 
-  }catch(error){
+  }
+  catch(error){
 
     console.error(
       error
@@ -2109,6 +2597,11 @@ async function start(){
     $("errorBox")
       .style.display =
       "block";
+
+
+    $("errorBox")
+      .className =
+      "empty";
 
 
     $("errorBox")
