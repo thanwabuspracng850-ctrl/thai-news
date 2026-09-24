@@ -3,269 +3,1541 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THAI NEWS | Admin</title>
+<title>THAI NEWS | ADMIN</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#0d0f11;color:#f5f5f5;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}
-body{min-height:100vh}
-a{text-decoration:none;color:inherit}
-.header{border-bottom:2px solid #ff4b45;background:#111417}
-.header-inner{max-width:1050px;margin:auto;padding:24px}
-.logo{font-size:32px;font-weight:900}.logo span{color:#ff4b45}
-.nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}
-.nav a{color:#bbb;font-size:14px}.nav a:hover{color:#ff625c}
-.container{max-width:1050px;margin:auto;padding:35px 20px 70px}
-.box{background:#121518;border:1px solid #30353a;border-radius:14px;padding:28px}
-h1{margin:0 0 8px;font-size:30px}
-h2{font-size:21px;margin:30px 0 15px}
-.sub{margin:0 0 25px;color:#969da4}
-.field{margin:18px 0}
-label{display:block;margin-bottom:8px;font-weight:700}
-input,select,textarea{
- width:100%;padding:12px 13px;background:#0c0f11;color:#fff;
- border:1px solid #3b4147;border-radius:8px;font:inherit;outline:none
+*{
+  box-sizing:border-box;
 }
-input:focus,select:focus,textarea:focus{border-color:#ff4b45}
-textarea{min-height:180px;resize:vertical}
-small{display:block;color:#7f878e;margin-top:6px}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:12px 18px}
-.publish{background:#ff4b45;color:#fff;font-weight:800}
-.clear{background:#292e33;color:#fff}
-.status{display:none;margin:18px 0;padding:13px 15px;border-radius:8px}
-.success{display:block;background:#12351f;border:1px solid #267a45;color:#b9f0ca}
-.error{display:block;background:#3b1717;border:1px solid #ff4b45;color:#ffc1bd}
-.news-list{border-top:1px solid #2d3237;margin-top:25px}
-.news-row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 0;border-bottom:1px solid #292e33}
-.news-info{min-width:0}
-.news-title{font-weight:800;margin-bottom:5px}
-.news-meta{font-size:12px;color:#7f878e}
-.delete{background:#292e33;color:#fff;padding:8px 12px}
-.empty{color:#7f878e;padding:20px 0}
-.note{background:#181c20;border:1px solid #292e33;border-radius:8px;padding:12px;color:#9ea5ab;font-size:13px;line-height:1.7}
-@media(max-width:650px){
- .box{padding:20px}.logo{font-size:28px}.container{padding:25px 12px 50px}
- .news-row{align-items:flex-start;flex-direction:column}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:#080b12;
+  color:#fff;
+  font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.app{
+  min-height:100vh;
+  display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+  width:250px;
+  background:#0d111a;
+  border-right:1px solid #202735;
+  padding:25px 18px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  z-index:20;
+}
+
+.brand{
+  padding:8px 12px 28px;
+  border-bottom:1px solid #202735;
+  margin-bottom:22px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.brand h1 span{
+  color:#ff493d;
+}
+
+.brand small{
+  display:block;
+  color:#778091;
+  margin-top:5px;
+  font-size:12px;
+}
+
+.menu-title{
+  color:#555f70;
+  font-size:11px;
+  font-weight:bold;
+  margin:20px 12px 9px;
+  text-transform:uppercase;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.menu button,
+.menu a{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#aeb6c4;
+  padding:13px 14px;
+  border-radius:10px;
+  text-align:left;
+  font-weight:700;
+  transition:.2s;
+}
+
+.menu button:hover,
+.menu a:hover,
+.menu .active{
+  background:#171d29;
+  color:#fff;
+}
+
+.menu .active{
+  box-shadow:inset 3px 0 #ff493d;
+}
+
+.back{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:22px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  margin-left:250px;
+  width:calc(100% - 250px);
+  min-height:100vh;
+}
+
+.topbar{
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 35px;
+  border-bottom:1px solid #202735;
+  background:#0b0f17;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.page-title{
+  font-size:18px;
+  font-weight:800;
+}
+
+.admin-badge{
+  padding:8px 13px;
+  border-radius:20px;
+  background:#171d29;
+  color:#cbd2de;
+  font-size:12px;
+}
+
+.content{
+  padding:35px;
+  max-width:1250px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.hero{
+  margin-bottom:25px;
+}
+
+.hero h2{
+  margin:0;
+  font-size:30px;
+}
+
+.hero p{
+  margin:8px 0 0;
+  color:#778091;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.stat{
+  background:#0f141d;
+  border:1px solid #202735;
+  border-radius:15px;
+  padding:22px;
+}
+
+.stat-label{
+  color:#7f8999;
+  font-size:13px;
+}
+
+.stat-number{
+  font-size:31px;
+  font-weight:900;
+  margin-top:7px;
+}
+
+.stat.red .stat-number{
+  color:#ff493d;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+  background:#0f141d;
+  border:1px solid #202735;
+  border-radius:16px;
+  padding:25px;
+  margin-bottom:25px;
+}
+
+.panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.panel-head h3{
+  margin:0;
+  font-size:20px;
+}
+
+.panel-head span{
+  color:#6f7989;
+  font-size:12px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.field{
+  margin-bottom:18px;
+}
+
+.field.full{
+  grid-column:1 / -1;
+}
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:700;
+  color:#dce1e8;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #2a3342;
+  background:#090d14;
+  color:#fff;
+  border-radius:10px;
+  padding:13px 14px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#ff493d;
+}
+
+textarea{
+  min-height:190px;
+  resize:vertical;
+  line-height:1.7;
+}
+
+small{
+  display:block;
+  color:#697384;
+  margin-top:6px;
+}
+
+.file-box{
+  border:1px dashed #364052;
+  border-radius:10px;
+  padding:10px;
+}
+
+.file-box input{
+  border:0;
+  padding:5px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:13px 20px;
+  font-weight:800;
+}
+
+.btn-primary{
+  background:#ff493d;
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#ff5b50;
+}
+
+.btn-secondary{
+  background:#202735;
+  color:#fff;
+}
+
+.btn-danger{
+  background:#32191a;
+  color:#ff8078;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  display:none;
+  margin-bottom:20px;
+  padding:13px 15px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+.status.success{
+  display:block;
+  background:#10291b;
+  border:1px solid #246d3e;
+  color:#a8e9bc;
+}
+
+.status.error{
+  display:block;
+  background:#321719;
+  border:1px solid #a93838;
+  color:#ffb0aa;
+}
+
+/* =========================
+   NEWS LIST
+========================= */
+
+.news-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.news-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:15px;
+  background:#0a0e15;
+  border:1px solid #202735;
+  border-radius:12px;
+}
+
+.news-thumb{
+  width:85px;
+  height:60px;
+  object-fit:cover;
+  border-radius:8px;
+  background:#171d29;
+  flex-shrink:0;
+}
+
+.news-info{
+  flex:1;
+  min-width:0;
+}
+
+.news-title{
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.news-meta{
+  color:#697384;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.delete{
+  border:0;
+  background:#321719;
+  color:#ff8b83;
+  padding:9px 13px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.empty{
+  color:#697384;
+  text-align:center;
+  padding:30px;
+  border:1px dashed #293241;
+  border-radius:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu{
+  display:none;
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    width:220px;
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .mobile-menu{
+    display:block;
+    border:0;
+    background:#171d29;
+    color:#fff;
+    border-radius:8px;
+    padding:9px 12px;
+  }
+
+  .topbar{
+    padding:0 18px;
+  }
+
+  .content{
+    padding:20px 14px 50px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .news-row{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="logo">THAI <span>NEWS</span></div>
-    <nav class="nav">
-      <a href="index.html">← กลับเว็บไซต์ข่าว</a>
-    </nav>
+<div class="app">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="brand">
+    <h1>THAI <span>NEWS</span></h1>
+    <small>ADMIN CONTROL PANEL</small>
   </div>
+
+  <div class="menu-title">เมนูหลัก</div>
+
+  <div class="menu">
+
+    <button class="active" onclick="showSection('dashboard',this)">
+      🏠 &nbsp; แดชบอร์ด
+    </button>
+
+    <button onclick="showSection('addNews',this)">
+      ＋ &nbsp; เพิ่มข่าว
+    </button>
+
+    <button onclick="showSection('newsListSection',this)">
+      📰 &nbsp; ข่าวทั้งหมด
+    </button>
+
+  </div>
+
+  <div class="menu-title">เว็บไซต์</div>
+
+  <div class="menu">
+
+    <a href="index.html">
+      🌐 &nbsp; หน้าเว็บไซต์
+    </a>
+
+  </div>
+
+  <div class="back">
+    <div class="menu">
+      <a href="index.html">← กลับเว็บไซต์ข่าว</a>
+    </div>
+  </div>
+
+</aside>
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+<header class="topbar">
+
+  <button class="mobile-menu" onclick="toggleSidebar()">
+    ☰
+  </button>
+
+  <div class="page-title" id="pageTitle">
+    แดชบอร์ด
+  </div>
+
+  <div class="admin-badge">
+    ADMIN
+  </div>
+
 </header>
 
-<main class="container">
-  <section class="box">
-    <h1>ระบบจัดการข่าว</h1>
-    <p class="sub">เพิ่มข่าวจากหน้านี้ แล้วข่าวจะซิงค์ไปหน้าเว็บไซต์หลักอัตโนมัติ</p>
+<div class="content">
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard">
+
+  <div class="hero">
+    <h2>สวัสดี 👋</h2>
+    <p>จัดการข่าว THAI NEWS จากหน้านี้</p>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat red">
+      <div class="stat-label">ข่าวทั้งหมด</div>
+      <div class="stat-number" id="totalNews">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">ข่าววันนี้</div>
+      <div class="stat-number" id="todayNews">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">หมวดข่าว</div>
+      <div class="stat-number" id="categoryCount">0</div>
+    </div>
+
+  </div>
+
+  <div class="panel">
+
+    <div class="panel-head">
+      <h3>ข่าวล่าสุด</h3>
+      <span>รายการที่เผยแพร่ล่าสุด</span>
+    </div>
+
+    <div id="dashboardNews" class="news-list"></div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     ADD NEWS
+========================= -->
+
+<section id="addNews" style="display:none">
+
+  <div class="panel">
+
+    <div class="panel-head">
+      <h3>เพิ่มข่าวใหม่</h3>
+      <span>เผยแพร่ข่าวไปยังเว็บไซต์</span>
+    </div>
 
     <div id="status" class="status"></div>
 
-    <div class="note">
-      ระบบนี้ใช้พื้นที่ของเบราว์เซอร์โดยตรง และจะย่อภาพให้อัตโนมัติก่อนบันทึก
-      เพื่อป้องกันปัญหา <b>Storage quota exceeded</b>
-    </div>
-
     <form id="newsForm">
-      <div class="field">
-        <label for="category">หมวดข่าว *</label>
-        <select id="category" required>
-          <option value="บันเทิง">บันเทิง</option>
-          <option value="ข่าวล่าสุด">ข่าวล่าสุด</option>
-          <option value="การเมือง">การเมือง</option>
-          <option value="อุบัติเหตุ">อุบัติเหตุ</option>
-          <option value="เศรษฐกิจ">เศรษฐกิจ</option>
-          <option value="สังคม">สังคม</option>
-          <option value="ข่าวทั่วไป">ข่าวทั่วไป</option>
-        </select>
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label for="category">
+            หมวดข่าว *
+          </label>
+
+          <select id="category" required>
+
+            <option value="ข่าวล่าสุด">
+              ข่าวล่าสุด
+            </option>
+
+            <option value="บันเทิง">
+              บันเทิง
+            </option>
+
+            <option value="การเมือง">
+              การเมือง
+            </option>
+
+            <option value="อุบัติเหตุ">
+              อุบัติเหตุ
+            </option>
+
+            <option value="เศรษฐกิจ">
+              เศรษฐกิจ
+            </option>
+
+            <option value="สังคม">
+              สังคม
+            </option>
+
+            <option value="ข่าวทั่วไป">
+              ข่าวทั่วไป
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="title">
+            หัวข่าว *
+          </label>
+
+          <input
+            id="title"
+            type="text"
+            placeholder="ใส่หัวข่าว"
+            required
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="summary">
+            คำโปรยข่าว *
+          </label>
+
+          <input
+            id="summary"
+            type="text"
+            placeholder="คำโปรยสั้น ๆ"
+            required
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label for="content">
+            เนื้อข่าว *
+          </label>
+
+          <textarea
+            id="content"
+            placeholder="เขียนเนื้อข่าวที่นี่..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            ภาพปกข่าว *
+          </label>
+
+          <div class="file-box">
+
+            <input
+              id="cover"
+              type="file"
+              accept="image/*"
+              required
+            >
+
+          </div>
+
+          <small>
+            ระบบจะย่อภาพอัตโนมัติ
+          </small>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            ภาพเนื้อข่าว
+          </label>
+
+          <div class="file-box">
+
+            <input
+              id="contentImages"
+              type="file"
+              accept="image/*"
+              multiple
+            >
+
+          </div>
+
+          <small>
+            เลือกได้สูงสุด 6 ภาพ
+          </small>
+
+        </div>
+
       </div>
 
-      <div class="field">
-        <label for="title">หัวข่าว *</label>
-        <input id="title" type="text" required placeholder="ใส่หัวข่าว">
+
+      <div class="actions">
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          🚀 เผยแพร่ข่าว
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          type="reset"
+        >
+          ล้างฟอร์ม
+        </button>
+
       </div>
 
-      <div class="field">
-        <label for="summary">คำโปรยข่าว *</label>
-        <input id="summary" type="text" required placeholder="คำโปรยสั้น ๆ ใต้หัวข่าว">
-      </div>
-
-      <div class="field">
-        <label for="content">เนื้อข่าว *</label>
-        <textarea id="content" required placeholder="เขียนเนื้อข่าวที่นี่"></textarea>
-      </div>
-
-      <div class="field">
-        <label for="cover">ภาพปกข่าว *</label>
-        <input id="cover" type="file" accept="image/*" required>
-        <small>ภาพจะถูกย่อให้พอดีกับเว็บไซต์อัตโนมัติ</small>
-      </div>
-
-      <div class="field">
-        <label for="contentImages">ภาพเนื้อข่าว</label>
-        <input id="contentImages" type="file" accept="image/*" multiple>
-        <small>เลือกได้หลายภาพ แนะนำไม่เกิน 6 ภาพต่อข่าว</small>
-      </div>
-
-      <div class="btns">
-        <button class="publish" type="submit">เผยแพร่ข่าว</button>
-        <button class="clear" type="button" id="clearAll">ล้างข่าวทั้งหมด</button>
-      </div>
     </form>
 
-    <h2>ข่าวที่เผยแพร่แล้ว</h2>
+  </div>
+
+</section>
+
+<!-- =========================
+     NEWS MANAGEMENT
+========================= -->
+
+<section id="newsListSection" style="display:none">
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h3>ข่าวทั้งหมด</h3>
+
+      <button
+        class="btn btn-danger"
+        onclick="clearAllNews()"
+      >
+        ล้างข่าวทั้งหมด
+      </button>
+
+    </div>
+
     <div id="newsList" class="news-list"></div>
-  </section>
+
+  </div>
+
+</section>
+
+</div>
+
 </main>
 
+</div>
+
+
 <script>
-const SUPABASE_URL = "https://vkzqqykkuvsbjzhnauxe.supabase.co";
-const SUPABASE_KEY = "sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
-const API_URL = `${SUPABASE_URL}/rest/v1/news`;
+
+/* =========================
+   STORAGE
+========================= */
+
+const KEY = "thaiNewsData";
+const RESET_KEY = "thaiNewsResetAt";
+
 const $ = id => document.getElementById(id);
 
-const headers = {
-  "apikey": SUPABASE_KEY,
-  "Authorization": `Bearer ${SUPABASE_KEY}`,
-  "Content-Type": "application/json",
-  "Prefer": "return=representation"
-};
+
+/* =========================
+   GET NEWS
+========================= */
+
+function getNews(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(KEY) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================
+   SAVE NEWS
+========================= */
+
+function saveNews(data){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHTML(value){
-  return String(value ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[c]));
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g, c => ({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+
+    }[c]));
+
 }
 
-async function getNews(){
-  const res = await fetch(`${API_URL}?select=*&order=created_at.desc`, {headers});
-  if(!res.ok) throw new Error(`โหลดข่าวไม่สำเร็จ (${res.status})`);
-  const rows = await res.json();
-  return rows.map(normalizeRow);
-}
 
-function normalizeRow(row){
-  return {
-    id: row.id,
-    category: row.category || "ข่าว",
-    title: row.title || "",
-    summary: row.summary || "",
-    content: row.content || "",
-    coverImage: row.image_url || row.cover_image || row.coverImage || "",
-    contentImages: Array.isArray(row.content_images) ? row.content_images : (typeof row.content_images === "string" ? (()=>{try{return JSON.parse(row.content_images)}catch{return []}})() : []),
-    createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now()
-  };
-}
+/* =========================
+   STATUS
+========================= */
 
-function showStatus(message, type){
+function showStatus(message,type){
+
   const el = $("status");
+
   el.textContent = message;
-  el.className = "status " + type;
+
+  el.className =
+    "status " + type;
+
 }
 
-function resizeImage(file, maxWidth, maxHeight, quality){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onerror = () => reject(new Error("อ่านภาพไม่ได้"));
-    reader.onload = () => {
-      const img = new Image();
-      img.onerror = () => reject(new Error("ไฟล์ภาพไม่ถูกต้อง"));
-      img.onload = () => {
-        let w = img.width, h = img.height;
-        const ratio = Math.min(maxWidth / w, maxHeight / h, 1);
-        w = Math.max(1, Math.round(w * ratio));
-        h = Math.max(1, Math.round(h * ratio));
-        const canvas = document.createElement("canvas");
-        canvas.width = w; canvas.height = h;
-        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL("image/jpeg", quality));
+
+/* =========================
+   IMAGE RESIZE
+========================= */
+
+function resizeImage(
+  file,
+  maxWidth,
+  maxHeight,
+  quality
+){
+
+  return new Promise(
+    (resolve,reject)=>{
+
+      const reader =
+        new FileReader();
+
+      reader.onerror = () =>
+        reject(
+          new Error("อ่านภาพไม่ได้")
+        );
+
+      reader.onload = ()=>{
+
+        const img =
+          new Image();
+
+        img.onerror = () =>
+          reject(
+            new Error("ไฟล์ภาพไม่ถูกต้อง")
+          );
+
+        img.onload = ()=>{
+
+          let w = img.width;
+          let h = img.height;
+
+          const ratio =
+            Math.min(
+              maxWidth / w,
+              maxHeight / h,
+              1
+            );
+
+          w =
+            Math.max(
+              1,
+              Math.round(w * ratio)
+            );
+
+          h =
+            Math.max(
+              1,
+              Math.round(h * ratio)
+            );
+
+          const canvas =
+            document.createElement(
+              "canvas"
+            );
+
+          canvas.width = w;
+          canvas.height = h;
+
+          const ctx =
+            canvas.getContext("2d");
+
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            w,
+            h
+          );
+
+          resolve(
+            canvas.toDataURL(
+              "image/jpeg",
+              quality
+            )
+          );
+
+        };
+
+        img.src = reader.result;
+
       };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
 
-async function renderList(){
-  try{
-    const list = await getNews();
-    if(!list.length){
-      $("newsList").innerHTML = '<div class="empty">ยังไม่มีข่าวที่เผยแพร่</div>';
-      return;
+      reader.readAsDataURL(file);
+
     }
-    $("newsList").innerHTML = list.map(item => `
-      <div class="news-row">
-        <div class="news-info">
-          <div class="news-title">${escapeHTML(item.title)}</div>
-          <div class="news-meta">${escapeHTML(item.category)} · ${new Date(item.createdAt).toLocaleString("th-TH")}</div>
-        </div>
-        <button class="delete" data-id="${escapeHTML(item.id)}">ลบ</button>
-      </div>
-    `).join("");
-    document.querySelectorAll(".delete").forEach(btn=>{
-      btn.addEventListener("click", async ()=>{
-        const id = btn.dataset.id;
-        if(!confirm("ต้องการลบข่าวนี้ใช่หรือไม่?")) return;
-        try{
-          const res = await fetch(`${API_URL}?id=eq.${encodeURIComponent(id)}`, {method:"DELETE", headers});
-          if(!res.ok) throw new Error(await res.text());
-          await renderList();
-          showStatus("ลบข่าวเรียบร้อยแล้ว", "success");
-        }catch(e){ console.error(e); showStatus("ลบข่าวไม่สำเร็จ กรุณาตรวจสอบสิทธิ์ Supabase", "error"); }
-      });
-    });
-  }catch(e){ console.error(e); $("newsList").innerHTML='<div class="empty">เชื่อมต่อฐานข้อมูลไม่ได้</div>'; showStatus("เชื่อมต่อ Supabase ไม่สำเร็จ", "error"); }
+  );
+
 }
 
-$("newsForm").addEventListener("submit", async e=>{
-  e.preventDefault();
-  const coverFile = $("cover").files[0];
-  const contentFiles = Array.from($("contentImages").files || []).slice(0,6);
-  if(!coverFile){ showStatus("กรุณาเลือกภาพปกข่าว", "error"); return; }
-  try{
-    showStatus("กำลังย่อภาพและเผยแพร่ข่าว...", "success");
-    const coverImage = await resizeImage(coverFile, 1200, 700, 0.68);
-    const contentImages = [];
-    for(const file of contentFiles) contentImages.push(await resizeImage(file, 900, 650, 0.62));
-    const item = {
-      title: $("title").value.trim(),
-      category: $("category").value,
-      summary: $("summary").value.trim(),
-      content: $("content").value.trim(),
-      image_url: coverImage,
-      content_images: JSON.stringify(contentImages),
-      author: "THAI NEWS",
-      published: true
-    };
-    if(!item.title || !item.summary || !item.content){ showStatus("กรุณากรอกข้อมูลข่าวให้ครบ", "error"); return; }
-    const res = await fetch(API_URL, {method:"POST", headers, body:JSON.stringify(item)});
-    if(!res.ok) throw new Error(await res.text());
-    $("newsForm").reset();
-    await renderList();
-    showStatus("เผยแพร่ข่าวสำเร็จ ทุกมือถือและคอมจะเห็นข่าวเดียวกัน", "success");
-  }catch(err){
-    console.error(err);
-    showStatus("เผยแพร่ไม่สำเร็จ: " + (err.message || "ตรวจสอบ Supabase และสิทธิ์ตาราง news"), "error");
+
+/* =========================
+   SORT NEWS
+========================= */
+
+function sortedNews(){
+
+  return getNews().sort(
+    (a,b) =>
+      Number(b.createdAt || 0)
+      -
+      Number(a.createdAt || 0)
+  );
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function renderDashboard(){
+
+  const data = sortedNews();
+
+  $("totalNews").textContent =
+    data.length;
+
+
+  const today =
+    new Date().toDateString();
+
+  const todayCount =
+    data.filter(item =>
+      new Date(
+        item.createdAt
+      ).toDateString()
+      === today
+    ).length;
+
+  $("todayNews").textContent =
+    todayCount;
+
+
+  const categories =
+    new Set(
+      data.map(item =>
+        item.category
+      )
+    );
+
+  $("categoryCount").textContent =
+    categories.size;
+
+
+  const latest =
+    data.slice(0,5);
+
+
+  if(!latest.length){
+
+    $("dashboardNews").innerHTML =
+      '<div class="empty">ยังไม่มีข่าว</div>';
+
+    return;
+
   }
-});
 
-$("clearAll").addEventListener("click", async ()=>{
-  if(!confirm("ลบข่าวทั้งหมดออกจากฐานข้อมูลจริงหรือไม่?")) return;
-  try{
-    const res = await fetch(`${API_URL}?id=not.is.null`, {method:"DELETE", headers});
-    if(!res.ok) throw new Error(await res.text());
-    await renderList();
-    showStatus("ล้างข่าวทั้งหมดแล้ว", "success");
-  }catch(e){ console.error(e); showStatus("ล้างข่าวไม่สำเร็จ", "error"); }
-});
 
+  $("dashboardNews").innerHTML =
+    latest.map(item => `
+
+      <div class="news-row">
+
+        ${
+          item.coverImage
+          ?
+          `<img
+            class="news-thumb"
+            src="${item.coverImage}"
+          >`
+          :
+          `<div class="news-thumb"></div>`
+        }
+
+        <div class="news-info">
+
+          <div class="news-title">
+            ${escapeHTML(item.title)}
+          </div>
+
+          <div class="news-meta">
+            ${escapeHTML(item.category)}
+            ·
+            ${new Date(
+              item.createdAt
+            ).toLocaleString("th-TH")}
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   NEWS LIST
+========================= */
+
+function renderList(){
+
+  const list =
+    sortedNews();
+
+
+  if(!list.length){
+
+    $("newsList").innerHTML =
+      '<div class="empty">ยังไม่มีข่าวที่เผยแพร่</div>';
+
+    return;
+
+  }
+
+
+  $("newsList").innerHTML =
+    list.map(item => `
+
+      <div class="news-row">
+
+        ${
+          item.coverImage
+          ?
+          `<img
+            class="news-thumb"
+            src="${item.coverImage}"
+          >`
+          :
+          `<div class="news-thumb"></div>`
+        }
+
+        <div class="news-info">
+
+          <div class="news-title">
+            ${escapeHTML(item.title)}
+          </div>
+
+          <div class="news-meta">
+
+            ${escapeHTML(item.category)}
+
+            ·
+
+            ${new Date(
+              item.createdAt
+            ).toLocaleString("th-TH")}
+
+          </div>
+
+        </div>
+
+        <button
+          class="delete"
+          onclick="deleteNews('${escapeHTML(item.id)}')"
+        >
+          ลบ
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteNews(id){
+
+  if(
+    !confirm(
+      "ต้องการลบข่าวนี้ใช่หรือไม่?"
+    )
+  ){
+    return;
+  }
+
+
+  const data =
+    getNews().filter(
+      item => item.id !== id
+    );
+
+
+  saveNews(data);
+
+  renderDashboard();
+  renderList();
+
+  showStatus(
+    "ลบข่าวเรียบร้อยแล้ว",
+    "success"
+  );
+
+}
+
+
+/* =========================
+   CLEAR ALL
+========================= */
+
+function clearAllNews(){
+
+  if(
+    !confirm(
+      "ต้องการลบข่าวทั้งหมดจริงหรือไม่?"
+    )
+  ){
+    return;
+  }
+
+
+  localStorage.removeItem(KEY);
+
+  localStorage.setItem(
+    RESET_KEY,
+    String(Date.now())
+  );
+
+
+  renderDashboard();
+  renderList();
+
+}
+
+
+/* =========================
+   ADD NEWS
+========================= */
+
+$("newsForm").addEventListener(
+  "submit",
+  async e => {
+
+    e.preventDefault();
+
+
+    const coverFile =
+      $("cover").files[0];
+
+    const contentFiles =
+      Array.from(
+        $("contentImages").files || []
+      ).slice(0,6);
+
+
+    if(!coverFile){
+
+      showStatus(
+        "กรุณาเลือกภาพปกข่าว",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    try{
+
+      showStatus(
+        "กำลังย่อภาพและเผยแพร่ข่าว...",
+        "success"
+      );
+
+
+      const coverImage =
+        await resizeImage(
+          coverFile,
+          1200,
+          700,
+          0.68
+        );
+
+
+      const contentImages = [];
+
+
+      for(
+        const file
+        of contentFiles
+      ){
+
+        contentImages.push(
+          await resizeImage(
+            file,
+            900,
+            650,
+            0.62
+          )
+        );
+
+      }
+
+
+      const item = {
+
+        id:
+          crypto.randomUUID
+          ?
+          crypto.randomUUID()
+          :
+          String(Date.now()),
+
+        category:
+          $("category").value,
+
+        title:
+          $("title")
+            .value
+            .trim(),
+
+        summary:
+          $("summary")
+            .value
+            .trim(),
+
+        content:
+          $("content")
+            .value
+            .trim(),
+
+        coverImage,
+
+        contentImages,
+
+        createdAt:
+          Date.now()
+
+      };
+
+
+      if(
+        !item.title ||
+        !item.summary ||
+        !item.content
+      ){
+
+        showStatus(
+          "กรุณากรอกข้อมูลข่าวให้ครบ",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const data =
+        getNews();
+
+      data.push(item);
+
+
+      try{
+
+        saveNews(data);
+
+      }catch(error){
+
+        showStatus(
+          "พื้นที่เก็บข้อมูลเต็ม กรุณาลบข่าวเก่าบางรายการ",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      $("newsForm").reset();
+
+
+      renderDashboard();
+      renderList();
+
+
+      showStatus(
+        "เผยแพร่ข่าวสำเร็จ!",
+        "success"
+      );
+
+    }catch(err){
+
+      console.error(err);
+
+      showStatus(
+        "เกิดข้อผิดพลาดในการอ่านหรือย่อภาพ",
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   MENU
+========================= */
+
+function showSection(
+  sectionId,
+  button
+){
+
+  const sections = [
+    "dashboard",
+    "addNews",
+    "newsListSection"
+  ];
+
+
+  sections.forEach(id => {
+
+    $(id).style.display =
+      id === sectionId
+      ? "block"
+      : "none";
+
+  });
+
+
+  document
+    .querySelectorAll(".menu button")
+    .forEach(btn =>
+      btn.classList.remove(
+        "active"
+      )
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  const titles = {
+
+    dashboard:
+      "แดชบอร์ด",
+
+    addNews:
+      "เพิ่มข่าว",
+
+    newsListSection:
+      "ข่าวทั้งหมด"
+
+  };
+
+
+  $("pageTitle").textContent =
+    titles[sectionId] || "ADMIN";
+
+
+  $("sidebar")
+    .classList
+    .remove("open");
+
+}
+
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+function toggleSidebar(){
+
+  $("sidebar")
+    .classList
+    .toggle("open");
+
+}
+
+
+/* =========================
+   STORAGE UPDATE
+========================= */
+
+window.addEventListener(
+  "storage",
+  () => {
+
+    renderDashboard();
+    renderList();
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+renderDashboard();
 renderList();
+
 </script>
+
 </body>
 </html>
