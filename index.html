@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>THAI NEWS</title>
+<link rel="icon" href="assets/logo.png">
 
 <style>
 *{box-sizing:border-box}
@@ -441,7 +442,7 @@ document.getElementById("newsGrid").innerHTML=news.map(n=>`
 <div class="card-tag">${n.category||"ข่าวล่าสุด"}</div>
 <h3>${n.title}</h3>
 <p>${n.description||""}</p>
-<div class="date">เผยแพร่โดย THAI NEWS</div>
+<div class="date">${n.publishedAt ? new Date(n.publishedAt).toLocaleString("th-TH") : "เผยแพร่โดย THAI NEWS"}</div>
 <a class="btn" href="#news-${n.id}" onclick="openArticle(${n.id})">อ่านข่าว →</a>
 </div>
 </article>
@@ -474,7 +475,11 @@ document.getElementById("article").scrollIntoView({behavior:"smooth"});
 
 render();
 
-window.addEventListener("storage",render);
+window.addEventListener("storage",e=>{
+  if(!e.key || e.key==="thaiNews") render();
+});
+window.addEventListener("focus",render);
+
 </script>
 
 </body>

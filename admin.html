@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THAI NEWS — ADMIN</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif;
+background:#eef2f7;
+color:#172033;
+}
+
+button,input,textarea,select{font:inherit}
+
+.login{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at 20% 20%,#193f77,transparent 35%),
+linear-gradient(135deg,#06142e,#0c2b57);
+}
+
+.login-box{
+width:430px;
+background:rgba(255,255,255,.97);
+padding:42px;
+border-radius:25px;
+box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.login-brand{
+text-align:center;
+}
+
+.login-brand img{
+width:75px;
+height:75px;
+border-radius:50%;
+}
+
+.login-brand h1{
+font-size:30px;
+margin:10px 0 3px;
+}
+
+.login-brand h1 span{color:#e52b3b}
+
+.login-brand p{
+color:#777;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin:18px 0 8px;
+}
+
+input,textarea,select{
+width:100%;
+padding:14px 15px;
+border:1px solid #dce1e8;
+border-radius:11px;
+outline:none;
+background:#fff;
+}
+
+input:focus,textarea:focus,select:focus{
+border-color:#e52b3b;
+box-shadow:0 0 0 3px rgba(229,43,59,.1);
+}
+
+.login-btn,
+.primary{
+border:0;
+background:linear-gradient(135deg,#e52b3b,#bd1729);
+color:#fff;
+font-weight:bold;
+padding:14px 20px;
+border-radius:11px;
+cursor:pointer;
+}
+
+.login-btn{
+width:100%;
+margin-top:25px;
+font-size:16px;
+}
+
+.error{
+color:#e52b3b;
+text-align:center;
+margin-top:15px;
+font-size:14px;
+}
+
+.admin{
+display:none;
+min-height:100vh;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+bottom:0;
+width:270px;
+background:linear-gradient(180deg,#071b3a,#092a55);
+color:#fff;
+padding:22px 16px;
+z-index:10;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px;
+margin-bottom:30px;
+}
+
+.logo img{
+width:48px;
+height:48px;
+border-radius:50%;
+}
+
+.logo strong{
+font-size:21px;
+}
+
+.logo span{color:#ef3340}
+
+.menu-title{
+font-size:11px;
+color:#8da5c5;
+padding:0 12px;
+margin:20px 0 8px;
+}
+
+.menu{
+display:block;
+padding:13px 15px;
+border-radius:10px;
+margin:4px 0;
+cursor:pointer;
+color:#dce8f7;
+}
+
+.menu:hover,
+.menu.active{
+background:linear-gradient(90deg,#e52b3b,#bc1729);
+color:#fff;
+}
+
+.main{
+margin-left:270px;
+}
+
+.top{
+height:80px;
+background:#fff;
+border-bottom:1px solid #e5e8ed;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 35px;
+}
+
+.top-right{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.admin-name{
+font-weight:bold;
+color:#e52b3b;
+}
+
+.logout{
+border:0;
+background:#f2f3f5;
+padding:9px 14px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.page{
+padding:35px;
+max-width:1500px;
+}
+
+.page-title{
+margin-bottom:25px;
+}
+
+.page-title h1{
+margin:0;
+font-size:32px;
+}
+
+.page-title p{
+color:#77808e;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-bottom:25px;
+}
+
+.stat{
+background:#fff;
+padding:23px;
+border-radius:16px;
+box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.stat small{color:#7d8795}
+.stat strong{
+display:block;
+font-size:31px;
+margin-top:8px;
+}
+
+.panel{
+background:#fff;
+border-radius:18px;
+padding:25px;
+box-shadow:0 6px 20px rgba(0,0,0,.05);
+margin-bottom:25px;
+}
+
+.panel h2{
+margin-top:0;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.full{grid-column:1/-1}
+
+textarea{
+min-height:180px;
+resize:vertical;
+}
+
+.preview{
+max-width:300px;
+border-radius:12px;
+margin-top:10px;
+display:none;
+}
+
+.content-block{
+border:1px solid #e1e5eb;
+border-radius:14px;
+padding:18px;
+margin:15px 0;
+background:#fafbfc;
+position:relative;
+}
+
+.block-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.remove{
+border:0;
+background:#ffe5e8;
+color:#d82035;
+padding:7px 10px;
+border-radius:7px;
+cursor:pointer;
+}
+
+.toolbar{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin:15px 0;
+}
+
+.toolbar button{
+border:1px solid #ddd;
+background:#fff;
+padding:10px 14px;
+border-radius:9px;
+cursor:pointer;
+}
+
+.toolbar button:hover{
+border-color:#e52b3b;
+color:#e52b3b;
+}
+
+.news-table{
+width:100%;
+border-collapse:collapse;
+}
+
+.news-table th,
+.news-table td{
+padding:14px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+.news-table img{
+width:90px;
+height:55px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.badge{
+background:#e9f8ef;
+color:#168347;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+@media(max-width:900px){
+.sidebar{
+width:75px;
+}
+.sidebar .logo strong,
+.sidebar .menu-title,
+.sidebar .menu span{
+display:none;
+}
+.main{margin-left:75px}
+.stats{grid-template-columns:1fr 1fr}
+.form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div id="login" class="login">
+
+<div class="login-box">
+
+<div class="login-brand">
+<img src="assets/logo.png">
+<h1>THAI <span>NEWS</span></h1>
+<p>ADMIN PANEL</p>
+</div>
+
+<label>ชื่อผู้ใช้</label>
+<input id="username" value="THANWA">
+
+<label>รหัสผ่าน</label>
+<input id="password" type="password" value="1234">
+
+<button class="login-btn" onclick="login()">เข้าสู่ระบบผู้ดูแล</button>
+
+<div id="error" class="error"></div>
+
+</div>
+</div>
+
+
+<div id="admin" class="admin">
+
+<aside class="sidebar">
+
+<div class="logo">
+<img src="assets/logo.png">
+<strong>THAI <span>NEWS</span></strong>
+</div>
+
+<div class="menu-title">ADMIN MENU</div>
+
+<div class="menu active" onclick="showPage('dashboard')">📊 <span>แดชบอร์ด</span></div>
+<div class="menu" onclick="showPage('write')">✍️ <span>เขียนข่าวใหม่</span></div>
+<div class="menu" onclick="showPage('manage')">📰 <span>จัดการข่าว</span></div>
+<div class="menu" onclick="showPage('categories')">📂 <span>หมวดข่าว</span></div>
+<div class="menu" onclick="showPage('media')">🖼️ <span>คลังรูปภาพ</span></div>
+<div class="menu" onclick="showPage('comments')">💬 <span>ความคิดเห็น</span></div>
+<div class="menu" onclick="showPage('users')">👥 <span>ผู้ใช้งาน</span></div>
+<div class="menu" onclick="showPage('settings')">⚙️ <span>ตั้งค่าเว็บไซต์</span></div>
+
+</aside>
+
+<main class="main">
+
+<header class="top">
+<strong>THAI NEWS ADMIN</strong>
+
+<div class="top-right">
+<span class="admin-name">ADMIN · THANWA</span>
+<button class="logout" onclick="logout()">ออกจากระบบ</button>
+</div>
+</header>
+
+
+<section class="page">
+
+<div id="dashboardPage">
+
+<div class="page-title">
+<h1>แดชบอร์ด</h1>
+<p>ภาพรวมระบบจัดการเว็บไซต์ข่าว THAI NEWS</p>
+</div>
+
+<div class="stats">
+<div class="stat">
+<small>ข่าวทั้งหมด</small>
+<strong id="totalNews">3</strong>
+</div>
+
+<div class="stat">
+<small>ข่าวเผยแพร่</small>
+<strong id="publishedNews">3</strong>
+</div>
+
+<div class="stat">
+<small>หมวดข่าว</small>
+<strong>8</strong>
+</div>
+
+<div class="stat">
+<small>ผู้ดูแลระบบ</small>
+<strong>1</strong>
+</div>
+</div>
+
+<div class="panel">
+<h2>ข่าวล่าสุด</h2>
+<table class="news-table">
+<thead>
+<tr>
+<th>ภาพ</th>
+<th>หัวข้อ</th>
+<th>หมวด</th>
+<th>สถานะ</th>
+</tr>
+</thead>
+<tbody id="dashboardNews"></tbody>
+</table>
+</div>
+
+</div>
+
+
+<div id="writePage" style="display:none">
+
+<div class="page-title">
+<h1>เขียนข่าวใหม่</h1>
+<p>สร้างและเผยแพร่ข่าวไปยังหน้าเว็บไซต์ THAI NEWS</p>
+</div>
+
+<div class="panel">
+
+<div class="form-grid">
+
+<div class="full">
+<label>พาดหัวข่าว</label>
+<input id="title" placeholder="ใส่พาดหัวข่าว...">
+</div>
+
+<div>
+<label>หมวดข่าว</label>
+<select id="category">
+<option>ข่าวล่าสุด</option>
+<option>การเมือง</option>
+<option>บันเทิง</option>
+<option>อุบัติเหตุ</option>
+<option>เศรษฐกิจ</option>
+<option>สังคม</option>
+<option>กีฬา</option>
+<option>ต่างประเทศ</option>
+<option>ข่าวทั่วไป</option>
+</select>
+</div>
+
+<div>
+<label>คำโปรย</label>
+<input id="description" placeholder="คำโปรยข่าว...">
+</div>
+
+<div class="full">
+<label>รูปภาพหน้าปก</label>
+<input id="cover" type="file" accept="image/*" onchange="previewCover(event)">
+<img id="coverPreview" class="preview">
+</div>
+
+</div>
+
+<hr style="border:0;border-top:1px solid #eee;margin:30px 0">
+
+<h2>เนื้อหาข่าว</h2>
+
+<div class="toolbar">
+<button onclick="addText()">➕ เพิ่มข้อความ</button>
+<button onclick="addImage()">🖼️ แทรกรูปภาพ</button>
+</div>
+
+<div id="contentBlocks"></div>
+
+<button class="primary" onclick="publishNews()">
+🚀 เผยแพร่ข่าวลงเว็บไซต์
+</button>
+
+</div>
+
+</div>
+
+
+<div id="managePage" style="display:none">
+
+<div class="page-title">
+<h1>จัดการข่าว</h1>
+<p>ข่าวที่แสดงบนเว็บไซต์ THAI NEWS</p>
+</div>
+
+<div class="panel">
+
+<table class="news-table">
+<thead>
+<tr>
+<th>ภาพ</th>
+<th>หัวข้อ</th>
+<th>หมวด</th>
+<th>จัดการ</th>
+</tr>
+</thead>
+
+<tbody id="manageNews"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div id="categoriesPage" style="display:none">
+<div class="page-title">
+<h1>หมวดข่าว</h1>
+<p>จัดการหมวดหมู่เว็บไซต์</p>
+</div>
+<div class="panel">
+<h2>หมวดข่าวทั้งหมด</h2>
+<p>ข่าวล่าสุด · การเมือง · บันเทิง · อุบัติเหตุ · เศรษฐกิจ · สังคม · กีฬา · ต่างประเทศ · ข่าวทั่วไป</p>
+</div>
+</div>
+
+
+<div id="mediaPage" style="display:none">
+<div class="page-title">
+<h1>คลังรูปภาพ</h1>
+<p>จัดการภาพประกอบข่าว</p>
+</div>
+<div class="panel">
+<img src="assets/logo.png" style="width:120px;border-radius:15px">
+<img src="assets/banner.jpg" style="width:300px;border-radius:15px;margin-left:20px">
+</div>
+</div>
+
+
+<div id="commentsPage" style="display:none">
+<div class="page-title">
+<h1>ความคิดเห็น</h1>
+<p>จัดการความคิดเห็นจากผู้อ่าน</p>
+</div>
+<div class="panel">
+<h2>ยังไม่มีความคิดเห็นใหม่</h2>
+</div>
+</div>
+
+
+<div id="usersPage" style="display:none">
+<div class="page-title">
+<h1>ผู้ใช้งาน</h1>
+<p>ผู้ดูแลระบบเว็บไซต์</p>
+</div>
+<div class="panel">
+<strong>THANWA</strong>
+<p>Administrator</p>
+</div>
+</div>
+
+
+<div id="settingsPage" style="display:none">
+<div class="page-title">
+<h1>ตั้งค่าเว็บไซต์</h1>
+<p>การตั้งค่าระบบ THAI NEWS</p>
+</div>
+<div class="panel">
+<label>ชื่อเว็บไซต์</label>
+<input value="THAI NEWS">
+<label>คำอธิบาย</label>
+<input value="ข่าวไทย ข่าวจริง เพื่อคนไทย">
+</div>
+</div>
+
+</section>
+
+</main>
+</div>
+
+
+<script>
+
+const USER="THANWA";
+const PASS="1234";
+
+window.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && document.getElementById("login")?.style.display!=="none") login();
+});
+
+function login(){
+
+const u=document.getElementById("username").value.trim();
+const p=document.getElementById("password").value;
+
+if(u===USER && p===PASS){
+
+localStorage.setItem("thaiAdminLogin","1");
+
+document.getElementById("login").style.display="none";
+document.getElementById("admin").style.display="block";
+
+loadAdmin();
+
+}else{
+
+document.getElementById("error").innerText="ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+
+}
+
+}
+
+function logout(){
+
+localStorage.removeItem("thaiAdminLogin");
+location.reload();
+
+}
+
+function showPage(page){
+
+const clickedMenu = window.event && window.event.currentTarget;
+document.querySelectorAll("[id$='Page']").forEach(x=>{
+x.style.display="none";
+});
+
+document.getElementById(page+"Page").style.display="block";
+
+document.querySelectorAll(".menu").forEach(x=>{
+x.classList.remove("active");
+});
+
+if(clickedMenu) clickedMenu.classList.add("active");
+
+if(page==="dashboard"||page==="manage"){
+loadAdmin();
+}
+
+}
+
+function getNews(){
+
+const defaultNews=[
+{
+id:1,
+category:"ข่าวล่าสุด",
+title:"เนเน่ ร้อยลัคส์ เปิดที่มาชุดรอบไฟนอล AGT จากภาพในใจคุณแม่ สู่ลุคสุดทรงพลังบนเวที",
+description:"เรื่องราวข่าวบันเทิงและประเด็นที่กำลังได้รับความสนใจ",
+cover:"assets/banner.jpg",
+content:[
+{text:"ข่าวบันเทิงที่กำลังได้รับความสนใจจากแฟนๆ"},
+{image:"assets/banner.jpg"},
+{text:"ติดตามรายละเอียดเพิ่มเติมได้ทาง THAI NEWS"}
+]
+},
+{
+id:2,
+category:"บันเทิง",
+title:"ซีรีย์ใหม่ ธันวา บุษประจง เร็วๆนี้ แด่รายเส้นของเธอ",
+description:"จับตาผลงานซีรีย์ใหม่ที่กำลังพัฒนา",
+cover:"assets/banner.jpg",
+content:[
+{text:"ผลงานซีรีย์ใหม่ที่กำลังได้รับความสนใจ"},
+{image:"assets/banner.jpg"},
+{text:"ติดตามความคืบหน้าจาก THAI NEWS"}
+]
+},
+{
+id:3,
+category:"ข่าวทั่วไป",
+title:"เกาะติดทุกประเด็นสำคัญ อัปเดตข่าวสดรอบวัน",
+description:"รวมข่าวเด่นจากหลากหลายหมวด",
+cover:"assets/banner.jpg",
+content:[
+{text:"รวมข่าวสารสำคัญจากทั่วประเทศ"},
+{image:"assets/banner.jpg"},
+{text:"อัปเดตข่าวล่าสุดจาก THAI NEWS"}
+]
+}
+];
+
+try{
+
+const x=JSON.parse(localStorage.getItem("thaiNews"));
+
+return Array.isArray(x)&&x.length?x:defaultNews;
+
+}catch(e){
+
+return defaultNews;
+
+}
+
+}
+
+function saveNews(news){
+  const clean = Array.isArray(news) ? news.slice(0,3) : [];
+  localStorage.setItem("thaiNews", JSON.stringify(clean));
+  window.dispatchEvent(new StorageEvent("storage", {key:"thaiNews", newValue:JSON.stringify(clean)}));
+}
+
+function readImage(file, maxWidth=1400, quality=.72){
+  return new Promise((resolve,reject)=>{
+    if(!file){ resolve("assets/banner.jpg"); return; }
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const img=new Image();
+      img.onload=()=>{
+        const scale=Math.min(1,maxWidth/img.width);
+        const canvas=document.createElement("canvas");
+        canvas.width=Math.max(1,Math.round(img.width*scale));
+        canvas.height=Math.max(1,Math.round(img.height*scale));
+        const ctx=canvas.getContext("2d");
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        resolve(canvas.toDataURL("image/jpeg",quality));
+      };
+      img.onerror=()=>reject(new Error("ไม่สามารถอ่านรูปภาพได้"));
+      img.src=reader.result;
+    };
+    reader.onerror=()=>reject(new Error("ไม่สามารถอ่านไฟล์ได้"));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function publishNews(){
+  try{
+    const title=document.getElementById("title").value.trim();
+    if(!title){ alert("กรุณาใส่พาดหัวข่าว"); return; }
+
+    const category=document.getElementById("category").value;
+    const description=document.getElementById("description").value.trim();
+    const coverInput=document.getElementById("cover");
+    const cover=await readImage(coverInput.files[0],1400,.72);
+
+    const blocks=[];
+    const elements=document.querySelectorAll("#contentBlocks .content-block");
+    for(const el of elements){
+      const text=el.querySelector(".textBlock");
+      const image=el.querySelector(".imageBlock");
+      if(text && text.value.trim()) blocks.push({text:text.value.trim()});
+      if(image && image.files[0]) blocks.push({image:await readImage(image.files[0],1200,.68)});
+    }
+    if(!blocks.length) blocks.push({text:"เนื้อหาข่าวใหม่จาก THAI NEWS"});
+
+    const old=getNews();
+    const newItem={
+      id:Date.now(),
+      category,
+      title,
+      description,
+      cover,
+      content:blocks,
+      publishedAt:new Date().toISOString(),
+      author:"THAI NEWS"
+    };
+
+    saveNews([newItem,...old]);
+
+    document.getElementById("title").value="";
+    document.getElementById("description").value="";
+    document.getElementById("cover").value="";
+    document.getElementById("coverPreview").style.display="none";
+    document.getElementById("contentBlocks").innerHTML="";
+
+    loadAdmin();
+    alert("เผยแพร่ข่าวเรียบร้อยแล้ว ข่าวจะขึ้นหน้าเว็บไซต์ทันที");
+
+    // เปิดหน้าเว็บไซต์จากต้นทางเดียวกัน เพื่อให้ localStorage ชุดเดียวกันถูกใช้งาน
+    const target = new URL("index.html", window.location.href).href + "#latest";
+    window.open(target,"_blank");
+  }catch(error){
+    console.error(error);
+    alert("เผยแพร่ไม่สำเร็จ: "+error.message);
+  }
+}
+
+function showPageDirect(page){
+
+document.querySelectorAll("[id$='Page']").forEach(x=>{
+x.style.display="none";
+});
+
+document.getElementById(page+"Page").style.display="block";
+
+loadAdmin();
+
+}
+
+function deleteNews(id){
+
+let news=getNews();
+
+news=news.filter(n=>Number(n.id)!==Number(id));
+
+saveNews(news);
+
+loadAdmin();
+
+}
+
+if(localStorage.getItem("thaiAdminLogin")==="1"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("admin").style.display="block";
+
+loadAdmin();
+
+}
+
+</script>
+
+</body>
+</html>
