@@ -1,0 +1,212 @@
+/* =====================================================
+   MOBILE NEWS COVER FIX
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* ตัวหน้าเว็บ */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hero / ปกข่าวหลัก */
+  .hero,
+  .hero-card,
+  .featured-news,
+  .main-news,
+  .featured-card {
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 20px 16px !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  /* ส่วนรูปปกข่าว */
+  .hero img,
+  .hero-card img,
+  .featured-news img,
+  .main-news img,
+  .featured-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  /* ถ้ารูปเป็น background */
+  .hero,
+  .hero-card,
+  .featured-news,
+  .main-news,
+  .featured-card {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  /* ชั้นข้อความบนรูป */
+  .hero-content,
+  .hero-card-content,
+  .featured-content,
+  .main-news-content,
+  .featured-card-content {
+    position: relative !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 28px 24px !important;
+  }
+
+  /* ป้ายหมวดข่าว */
+  .hero .category,
+  .hero-card .category,
+  .featured-news .category,
+  .main-news .category,
+  .featured-card .category {
+    display: inline-block;
+    font-size: 14px !important;
+    padding: 9px 18px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* หัวข่าว */
+  .hero h1,
+  .hero-card h1,
+  .featured-news h1,
+  .main-news h1,
+  .featured-card h1 {
+    font-size: clamp(27px, 7vw, 42px) !important;
+    line-height: 1.28 !important;
+    margin: 0 0 16px !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* คำโปรย */
+  .hero p,
+  .hero-card p,
+  .featured-news p,
+  .main-news p,
+  .featured-card p {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* ปุ่มอ่านข่าว */
+  .hero a,
+  .hero button,
+  .hero-card a,
+  .hero-card button,
+  .featured-news a,
+  .featured-news button,
+  .main-news a,
+  .main-news button,
+  .featured-card a,
+  .featured-card button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-height: 52px !important;
+    padding: 12px 22px !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* หัวเว็บ */
+  header {
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* โลโก้ */
+  .logo,
+  .site-logo {
+    max-width: 220px !important;
+    height: auto !important;
+  }
+
+  /* เมนูหมวดข่าว */
+  nav {
+    width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav a {
+    display: inline-block !important;
+    white-space: nowrap !important;
+  }
+
+  /* ข่าวรายการด้านล่าง */
+  .news-grid,
+  .articles-grid,
+  .news-list {
+    width: calc(100% - 32px) !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .news-card,
+  .article-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .news-card img,
+  .article-card img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+  }
+}
+
+
+/* =====================================================
+   มือถือจอเล็กมาก
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+  .hero,
+  .hero-card,
+  .featured-news,
+  .main-news,
+  .featured-card {
+    width: calc(100% - 24px) !important;
+    margin: 12px !important;
+    border-radius: 20px !important;
+  }
+
+  .hero-content,
+  .hero-card-content,
+  .featured-content,
+  .main-news-content,
+  .featured-card-content {
+    padding: 24px 20px !important;
+  }
+
+  .hero h1,
+  .hero-card h1,
+  .featured-news h1,
+  .main-news h1,
+  .featured-card h1 {
+    font-size: 28px !important;
+    line-height: 1.3 !important;
+  }
+
+  .hero p,
+  .hero-card p,
+  .featured-news p,
+  .main-news p,
+  .featured-card p {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+}
