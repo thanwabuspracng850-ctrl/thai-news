@@ -1,294 +1,288 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>THAI NEWS</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THAI NEWS | ข่าวไทย ข่าวจริง เพื่อคนไทย</title>
+<meta name="description" content="THAI NEWS เกาะติดทุกประเด็นสำคัญ อัปเดตข่าวสดรอบวัน">
 <style>
 *{box-sizing:border-box}
-
+:root{
+--navy:#071a36;
+--navy2:#102c55;
+--red:#e31d3f;
+--gold:#e4b45c;
+--bg:#f4f6f9;
+--text:#182235;
+--muted:#7a8494;
+--white:#fff;
+}
+html{scroll-behavior:smooth}
 body{
 margin:0;
 font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif;
-background:#f5f7fb;
-color:#182235
+background:var(--bg);
+color:var(--text)
 }
-
 a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
 
-.topbar{
-height:42px;
-background:#071a3b;
-color:#fff;
+.top{
+height:38px;
+background:#041125;
+color:#dce5f4;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 6%;
-font-size:13px
+padding:0 max(20px,calc((100% - 1240px)/2));
+font-size:12px
 }
-
-.topbar b{color:#fff}
-.live{color:#ff334b}
-
+.live{color:#ff3454}
 .header{
 background:#fff;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-z-index:20
+border-bottom:1px solid #e9edf2
 }
-
 .header-inner{
-max-width:1200px;
+max-width:1240px;
+height:92px;
 margin:auto;
-height:88px;
+padding:0 20px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 25px
+gap:25px
 }
-
-.brand{
+.logo-box{
 display:flex;
 align-items:center;
-gap:12px
+gap:13px
 }
-
 .logo{
-width:52px;
-height:52px;
+width:58px;
+height:58px;
 border-radius:50%;
-object-fit:cover
+object-fit:cover;
+border:2px solid var(--red)
 }
-
-.brand-title{
-font-size:29px;
-font-weight:900;
-color:#182b4e
+.brand strong{
+font-size:30px;
+letter-spacing:-1px;
+color:var(--navy)
 }
-
-.brand-title span{color:#e51f35}
-
-.brand-sub{
+.brand strong span{color:var(--red)}
+.brand small{
+display:block;
+color:#7b8491;
 font-size:11px;
-color:#777;
 margin-top:2px
 }
-
 .search{
-width:270px;
+width:290px;
 height:42px;
-border:1px solid #ddd;
-border-radius:25px;
+border:1px solid #dfe4ea;
+border-radius:24px;
 padding:0 18px;
-outline:none
+outline:0;
+background:#f8fafc
 }
-
 .nav{
-background:#fff;
-border-bottom:1px solid #eee
+background:var(--navy);
+color:#fff
 }
-
 .nav-inner{
-max-width:1200px;
+max-width:1240px;
 margin:auto;
+padding:0 20px;
 display:flex;
-gap:30px;
-padding:15px 25px;
 overflow:auto
 }
-
 .nav a{
-font-weight:700;
+padding:16px 18px;
 font-size:14px;
+font-weight:700;
 white-space:nowrap
 }
-
-.nav a:hover,
-.nav a.active{
-color:#e51f35
+.nav a:hover,.nav a.active{
+background:var(--red)
 }
-
-.container{
-max-width:1200px;
-margin:30px auto;
-padding:0 25px
+.wrap{
+max-width:1240px;
+margin:auto;
+padding:28px 20px
 }
-
 .hero{
-height:370px;
-border-radius:22px;
+min-height:400px;
+border-radius:24px;
 overflow:hidden;
 position:relative;
 background:
-linear-gradient(90deg,rgba(4,18,45,.95),rgba(4,18,45,.25)),
+linear-gradient(90deg,rgba(4,17,38,.97),rgba(4,17,38,.28)),
 url("hero.jpg") center/cover
 }
-
 .hero-content{
-position:absolute;
-left:45px;
-bottom:45px;
-max-width:650px;
-color:white
+max-width:700px;
+padding:75px 55px;
+color:#fff
 }
-
-.badge{
+.kicker{
 display:inline-block;
-background:#e51f35;
-padding:7px 14px;
-border-radius:7px;
+background:var(--red);
+padding:7px 13px;
+border-radius:6px;
 font-size:12px;
-font-weight:bold;
-margin-bottom:14px
+font-weight:800;
+margin-bottom:15px
 }
-
 .hero h1{
-font-size:42px;
-line-height:1.2;
-margin:0 0 12px
+font-size:44px;
+line-height:1.18;
+margin:0 0 15px
 }
-
 .hero p{
-font-size:16px;
-opacity:.9;
-line-height:1.7
+line-height:1.8;
+color:#e6edf7
 }
-
-.btn{
-display:inline-block;
-background:#fff;
-color:#182235;
-border:0;
-border-radius:8px;
-padding:12px 20px;
-font-weight:bold;
-cursor:pointer
-}
-
 .section-head{
 display:flex;
 justify-content:space-between;
 align-items:end;
-margin:40px 0 20px
+margin:42px 0 20px
 }
-
-.section-head h2{
-font-size:30px;
-margin:0
-}
-
-.section-head p{
-color:#777;
-margin:5px 0 0
-}
-
-.news-grid{
+.section-head h2{margin:0;font-size:30px}
+.section-head p{margin:5px 0 0;color:var(--muted)}
+.grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:22px
 }
-
 .card{
 background:#fff;
 border-radius:18px;
 overflow:hidden;
-box-shadow:0 8px 30px rgba(0,0,0,.07);
-transition:.25s
+box-shadow:0 7px 28px rgba(10,25,50,.07);
+transition:.25s;
+cursor:pointer
 }
-
 .card:hover{
 transform:translateY(-6px);
-box-shadow:0 15px 40px rgba(0,0,0,.12)
+box-shadow:0 18px 40px rgba(10,25,50,.13)
 }
-
-.card img{
+.card-cover{
+height:220px;
+background:#e9edf2
+}
+.card-cover img{
 width:100%;
-height:210px;
-object-fit:cover;
-display:block
+height:100%;
+object-fit:cover
 }
-
-.card-body{
-padding:20px
-}
-
-.card-cat{
-display:inline-block;
-color:#e51f35;
+.card-body{padding:20px}
+.cat{
+color:var(--red);
 font-size:12px;
-font-weight:bold;
+font-weight:800;
 margin-bottom:9px
 }
-
 .card h3{
-font-size:21px;
-line-height:1.4;
-margin:0 0 10px
+font-size:20px;
+line-height:1.45;
+margin:0 0 9px
 }
-
 .card p{
-color:#666;
-line-height:1.65;
-font-size:14px
+font-size:14px;
+line-height:1.7;
+color:#697386;
+margin:0
 }
-
 .date{
-font-size:12px;
-color:#999;
-margin-top:14px
+margin-top:15px;
+font-size:11px;
+color:#9aa2ae
 }
-
 .empty{
-background:white;
-padding:50px;
-text-align:center;
+background:#fff;
+padding:65px 20px;
 border-radius:18px;
-color:#888
+text-align:center;
+color:#88919f
 }
-
+.article{
+display:none;
+background:#fff;
+border-radius:22px;
+padding:35px;
+box-shadow:0 8px 30px rgba(10,25,50,.06)
+}
+.article.active{display:block}
+.article .article-cat{
+color:var(--red);
+font-weight:800;
+font-size:13px
+}
+.article h1{
+font-size:42px;
+line-height:1.25;
+margin:10px 0
+}
+.article-meta{
+color:#8993a1;
+font-size:13px;
+margin-bottom:25px
+}
+.article-cover{
+width:100%;
+max-height:560px;
+object-fit:cover;
+border-radius:18px;
+margin-bottom:25px
+}
+.article-content{
+font-size:18px;
+line-height:2;
+color:#303b4d
+}
+.article-content img{
+display:block;
+max-width:100%;
+height:auto;
+margin:25px auto;
+border-radius:14px
+}
+.back{
+display:inline-block;
+margin-bottom:20px;
+background:var(--navy);
+color:#fff;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer
+}
 footer{
 margin-top:70px;
-background:#071a3b;
-color:white;
-padding:40px 20px;
+background:#041125;
+color:#dbe4f2;
+padding:45px 20px;
 text-align:center
 }
-
+footer strong{font-size:24px}
+footer span{color:var(--red)}
 @media(max-width:800px){
-.header-inner{
-height:auto;
-padding:18px 20px;
-gap:15px
-}
-
-.search{width:170px}
-
-.hero{
-height:430px
-}
-
-.hero-content{
-left:25px;
-right:25px;
-bottom:30px
-}
-
-.hero h1{
-font-size:30px
-}
-
-.news-grid{
-grid-template-columns:1fr
-}
+.header-inner{height:auto;padding:18px}
+.search{width:100%;max-width:190px}
+.hero-content{padding:50px 28px}
+.hero h1{font-size:32px}
+.grid{grid-template-columns:1fr}
+.article{padding:22px}
+.article h1{font-size:30px}
+.article-content{font-size:16px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
+<div class="top">
 <div><span class="live">●</span> THAI NEWS LIVE</div>
 <div>ข่าวไทย · ข่าวจริง · เพื่อคนไทย</div>
 </div>
@@ -296,171 +290,195 @@ grid-template-columns:1fr
 <header class="header">
 <div class="header-inner">
 
-<a class="brand" href="index.html">
-<img src="logo.png" class="logo" onerror="this.style.display='none'">
-
-<div>
-<div class="brand-title">
-THAI <span>NEWS</span>
-</div>
-<div class="brand-sub">ข่าวไทย ข่าวจริง เพื่อคนไทย</div>
+<a href="#" class="logo-box" onclick="showHome()">
+<img src="logo.png" class="logo" alt="THAI NEWS">
+<div class="brand">
+<strong>THAI <span>NEWS</span></strong>
+<small>ข่าวไทย ข่าวจริง เพื่อคนไทย</small>
 </div>
 </a>
 
-<input class="search" placeholder="🔎 ค้นหาข่าว..." id="search">
+<input id="search" class="search" placeholder="🔎 ค้นหาข่าว...">
 
 </div>
 </header>
 
 <nav class="nav">
 <div class="nav-inner">
-<a class="active" href="#">ข่าวล่าสุด</a>
-<a href="#">การเมือง</a>
-<a href="#">บันเทิง</a>
-<a href="#">อุบัติเหตุ</a>
-<a href="#">เศรษฐกิจ</a>
-<a href="#">สังคม</a>
-<a href="#">กีฬา</a>
-<a href="#">ต่างประเทศ</a>
-<a href="#">ข่าวทั่วไป</a>
+<a class="active" href="#" onclick="filterCategory('ทั้งหมด',this)">ข่าวล่าสุด</a>
+<a href="#" onclick="filterCategory('การเมือง',this)">การเมือง</a>
+<a href="#" onclick="filterCategory('บันเทิง',this)">บันเทิง</a>
+<a href="#" onclick="filterCategory('อุบัติเหตุ',this)">อุบัติเหตุ</a>
+<a href="#" onclick="filterCategory('เศรษฐกิจ',this)">เศรษฐกิจ</a>
+<a href="#" onclick="filterCategory('สังคม',this)">สังคม</a>
+<a href="#" onclick="filterCategory('กีฬา',this)">กีฬา</a>
+<a href="#" onclick="filterCategory('ต่างประเทศ',this)">ต่างประเทศ</a>
+<a href="#" onclick="filterCategory('ข่าวทั่วไป',this)">ข่าวทั่วไป</a>
 </div>
 </nav>
 
-<main class="container">
+<main class="wrap">
 
-<section class="hero">
+<section id="home">
+
+<div class="hero">
 <div class="hero-content">
-<span class="badge">THAI NEWS</span>
+<span class="kicker">THAI NEWS</span>
 <h1>เกาะติดทุกประเด็นสำคัญ<br>อัปเดตข่าวสดรอบวัน</h1>
 <p>
-ติดตามข่าวสารและเรื่องราวที่น่าสนใจ
-จากหลากหลายหมวดข่าว พร้อมอัปเดตเรื่องเด่นให้คุณ
+เกาะติดข่าวสารจากหลากหลายหมวด
+พร้อมเรื่องราวที่กำลังเป็นที่สนใจ
+อัปเดตข่าวสดให้คุณไม่พลาดทุกความเคลื่อนไหว
 </p>
-<a class="btn" href="#latest">ดูข่าวล่าสุด →</a>
 </div>
-</section>
-
-<section id="latest">
+</div>
 
 <div class="section-head">
 <div>
 <h2>ข่าวล่าสุด</h2>
-<p>ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS</p>
+<p>เรื่องเด่นที่เผยแพร่ล่าสุด</p>
+</div>
+<strong id="count">0 ข่าว</strong>
 </div>
 
-<span id="count"></span>
-</div>
-
-<div id="newsGrid" class="news-grid"></div>
+<div id="newsGrid" class="grid"></div>
 
 </section>
+
+<section id="article" class="article"></section>
 
 </main>
 
 <footer>
-<strong>THAI NEWS</strong>
+<strong>THAI <span>NEWS</span></strong>
 <br>
-<span>ข่าวไทย ข่าวจริง เพื่อคนไทย</span>
+ข่าวไทย ข่าวจริง เพื่อคนไทย
 </footer>
 
 <script>
-let newsData=[];
+const KEY="thaiNews";
 
 function getNews(){
-return JSON.parse(localStorage.getItem("thaiNews")||"[]");
+return JSON.parse(localStorage.getItem(KEY)||"[]");
 }
 
-function renderNews(list=getNews()){
+function cleanHTML(html){
+const d=document.createElement("div");
+d.innerHTML=html||"";
+return d.textContent||"";
+}
 
-newsData=list;
+function esc(text){
+const d=document.createElement("div");
+d.textContent=text||"";
+return d.innerHTML;
+}
+
+function render(list=getNews()){
 
 const grid=document.getElementById("newsGrid");
-const count=document.getElementById("count");
-
-count.textContent=list.length+" ข่าว";
-
+document.getElementById("count").textContent=list.length+" ข่าว";
 grid.innerHTML="";
 
 if(!list.length){
-
-grid.innerHTML=`
-<div class="empty">
-<h3>ยังไม่มีข่าว</h3>
-<p>สามารถเพิ่มข่าวจากระบบ ADMIN ได้</p>
-</div>
-`;
-
+grid.innerHTML='<div class="empty">ยังไม่มีข่าวในหมวดนี้</div>';
 return;
 }
 
-list.slice(0,3).forEach(news=>{
+list.slice(0,3).forEach(n=>{
 
-const card=document.createElement("article");
-card.className="card";
+const el=document.createElement("article");
+el.className="card";
+el.onclick=()=>openArticle(n.id);
 
-const image=news.cover
-?`<img src="${escapeHTML(news.cover)}">`
-:"";
-
-card.innerHTML=`
-${image}
-
+el.innerHTML=`
+<div class="card-cover">
+${n.cover?`<img src="${n.cover}" alt="">`:""}
+</div>
 <div class="card-body">
-
-<div class="card-cat">
-${escapeHTML(news.category)}
-</div>
-
-<h3>${escapeHTML(news.title)}</h3>
-
-<p>
-${stripHTML(news.content).substring(0,150)}
-${stripHTML(news.content).length>150?"...":""}
-</p>
-
-<div class="date">
-${escapeHTML(news.date)}
-</div>
-
+<div class="cat">${esc(n.category)}</div>
+<h3>${esc(n.title)}</h3>
+<p>${esc(cleanHTML(n.content).slice(0,145))}${cleanHTML(n.content).length>145?"...":""}</p>
+<div class="date">${esc(n.date)}</div>
 </div>
 `;
 
-grid.appendChild(card);
-
+grid.appendChild(el);
 });
 }
 
-function stripHTML(text){
-const div=document.createElement("div");
-div.innerHTML=text||"";
-return div.textContent||"";
+function openArticle(id){
+
+const n=getNews().find(x=>x.id==id);
+if(!n)return;
+
+document.getElementById("home").style.display="none";
+
+const article=document.getElementById("article");
+article.classList.add("active");
+
+article.innerHTML=`
+<button class="back" onclick="showHome()">← กลับหน้าข่าว</button>
+
+<div class="article-cat">${esc(n.category)}</div>
+
+<h1>${esc(n.title)}</h1>
+
+<div class="article-meta">
+เผยแพร่ ${esc(n.date)}
+</div>
+
+${n.cover?`<img class="article-cover" src="${n.cover}">`:""}
+
+<div class="article-content">
+${n.content}
+</div>
+`;
+
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function escapeHTML(text){
-const div=document.createElement("div");
-div.textContent=text||"";
-return div.innerHTML;
+function showHome(){
+
+document.getElementById("article").classList.remove("active");
+document.getElementById("home").style.display="block";
+
+render();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function filterCategory(category,el){
+
+document.querySelectorAll(".nav a")
+.forEach(x=>x.classList.remove("active"));
+
+el.classList.add("active");
+
+const list=getNews();
+
+if(category==="ทั้งหมด"){
+render(list);
+return;
+}
+
+render(list.filter(n=>n.category===category));
 }
 
 document.getElementById("search").addEventListener("input",function(){
 
 const q=this.value.toLowerCase();
 
-const filtered=getNews().filter(n=>
+render(getNews().filter(n=>
 n.title.toLowerCase().includes(q)||
 n.category.toLowerCase().includes(q)||
-stripHTML(n.content).toLowerCase().includes(q)
-);
-
-renderNews(filtered.slice(0,3));
+cleanHTML(n.content).toLowerCase().includes(q)
+));
 
 });
 
-renderNews();
+render();
 
-window.addEventListener("storage",()=>{
-renderNews();
-});
+window.addEventListener("storage",()=>render());
 </script>
 
 </body>

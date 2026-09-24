@@ -1,1356 +1,847 @@
+<!-- THAI_NEWS_admin.html -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>THAI NEWS - ADMIN</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THAI NEWS ADMIN</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
+*{box-sizing:border-box}
+:root{
+--navy:#06152e;
+--navy2:#102d57;
+--red:#e31d3f;
+--bg:#f3f6fa;
+--white:#fff;
+--text:#172338;
+--muted:#7c8797;
 }
-
 body{
-    margin:0;
-    background:#080808;
-    color:#fff;
-    font-family:Arial,"Noto Sans Thai",sans-serif;
+margin:0;
+font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif;
+background:var(--bg);
+color:var(--text)
+}
+button,input,textarea,select{font:inherit}
+
+#login{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at 20% 10%,#294a7b,transparent 35%),
+linear-gradient(135deg,#030a18,#0a2042);
+padding:20px
+}
+.login-box{
+width:440px;
+background:rgba(255,255,255,.98);
+border-radius:28px;
+padding:45px;
+box-shadow:0 35px 90px rgba(0,0,0,.4)
+}
+.login-logo{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+display:block;
+margin:auto;
+border:3px solid var(--red)
+}
+.login-box h1{
+text-align:center;
+font-size:30px;
+margin:17px 0 4px
+}
+.login-box h1 span{color:var(--red)}
+.login-box h2{
+text-align:center;
+font-size:15px;
+margin:0;
+color:#7d8796
+}
+.field{margin:20px 0}
+.field label{
+display:block;
+font-size:13px;
+font-weight:800;
+margin-bottom:8px
+}
+.field input,.field select{
+width:100%;
+height:48px;
+border:1px solid #dfe4ea;
+border-radius:11px;
+padding:0 14px;
+outline:none
+}
+.login-btn{
+width:100%;
+height:50px;
+border:0;
+border-radius:11px;
+background:var(--red);
+color:#fff;
+font-weight:800;
+cursor:pointer
+}
+#error{
+text-align:center;
+color:var(--red);
+font-size:13px;
+margin-top:13px
 }
 
-.container{
-    max-width:1000px;
-    margin:40px auto;
-    padding:20px;
+#admin{display:none}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+bottom:0;
+width:260px;
+background:linear-gradient(180deg,#06152e,#0d2d58);
+color:#fff;
+padding:25px 15px;
+z-index:100
+}
+.side-brand{
+display:flex;
+align-items:center;
+gap:11px;
+padding:4px 10px 30px
+}
+.side-brand img{
+width:48px;
+height:48px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid var(--red)
+}
+.side-brand strong{font-size:21px}
+.side-brand span{color:#ff3d5c}
+.menu-title{
+font-size:10px;
+opacity:.5;
+padding:13px 12px 8px;
+letter-spacing:1.4px
+}
+.menu button{
+width:100%;
+border:0;
+background:transparent;
+color:#fff;
+padding:13px;
+border-radius:10px;
+text-align:left;
+cursor:pointer;
+margin-bottom:5px
+}
+.menu button:hover,.menu button.active{
+background:rgba(255,255,255,.1);
+border-left:3px solid var(--red)
+}
+.logout{
+position:absolute;
+left:15px;
+right:15px;
+bottom:20px
+}
+.logout button{
+width:100%;
+border:1px solid rgba(255,255,255,.12);
+background:rgba(255,255,255,.06);
+color:#fff;
+padding:12px;
+border-radius:10px;
+cursor:pointer
 }
 
-h1{
-    color:#ff7a00;
-    margin-bottom:5px;
+.main{
+margin-left:260px;
+min-height:100vh
 }
-
-.sub{
-    color:#999;
-    margin-bottom:25px;
+.topbar{
+height:76px;
+background:#fff;
+border-bottom:1px solid #e8ecf1;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 35px;
+position:sticky;
+top:0;
+z-index:50
 }
+.user{
+display:flex;
+align-items:center;
+gap:9px;
+font-weight:700;
+font-size:13px
+}
+.dot{
+width:9px;
+height:9px;
+border-radius:50%;
+background:#1bc56b
+}
+.content{padding:35px}
+.page{display:none}
+.page.active{display:block}
+.title h1{margin:0;font-size:32px}
+.title p{color:var(--muted);margin:6px 0 25px}
 
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-bottom:25px
+}
+.stat{
+background:#fff;
+border-radius:18px;
+padding:23px;
+box-shadow:0 7px 25px rgba(12,28,53,.06)
+}
+.stat small{color:var(--muted)}
+.stat strong{
+display:block;
+font-size:31px;
+margin-top:9px
+}
 .panel{
-    background:#111;
-    border:1px solid #292929;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:20px;
+background:#fff;
+border-radius:20px;
+padding:25px;
+box-shadow:0 7px 25px rgba(12,28,53,.06);
+margin-bottom:22px
 }
+.panel h2{margin-top:0}
 
-label{
-    display:block;
-    margin:16px 0 8px;
-    color:#ddd;
-    font-weight:bold;
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px
 }
-
-input,
-select,
-textarea{
-    width:100%;
-    background:#080808;
-    color:#fff;
-    border:1px solid #333;
-    border-radius:10px;
-    padding:13px;
-    font-size:15px;
+.input{
+width:100%;
+border:1px solid #dfe4ea;
+border-radius:11px;
+padding:13px;
+outline:none
 }
-
-textarea{
-    min-height:250px;
-    resize:vertical;
+.editor{
+border:1px solid #dfe4ea;
+border-radius:14px;
+overflow:hidden
 }
-
-button{
-    border:0;
-    border-radius:10px;
-    padding:13px 20px;
-    cursor:pointer;
-    font-weight:bold;
+.toolbar{
+display:flex;
+gap:5px;
+padding:9px;
+background:#f5f7fa;
+border-bottom:1px solid #e1e5eb;
+flex-wrap:wrap
 }
-
-.publish{
-    width:100%;
-    background:#ff7a00;
-    color:#fff;
-    font-size:16px;
-    margin-top:20px;
+.toolbar button{
+border:1px solid #d9dee5;
+background:#fff;
+border-radius:7px;
+padding:7px 11px;
+cursor:pointer
 }
-
-.publish:hover{
-    background:#ff8c26;
+.editor-area{
+min-height:330px;
+padding:20px;
+outline:0;
+line-height:1.8
 }
-
-.status{
-    margin-top:15px;
-    padding:12px;
-    border-radius:10px;
-    display:none;
+.editor-area img{
+max-width:100%;
+height:auto;
+display:block;
+margin:20px auto;
+border-radius:12px
 }
-
-.success{
-    display:block;
-    background:#123b20;
-    color:#75e69a;
-}
-
-.error{
-    display:block;
-    background:#401313;
-    color:#ff8d8d;
-}
-
 .preview{
-    max-width:300px;
-    max-height:180px;
-    object-fit:cover;
-    border-radius:10px;
-    margin-top:10px;
-    display:none;
+width:100%;
+max-height:250px;
+object-fit:cover;
+border-radius:14px;
+display:none;
+margin-top:10px
 }
-
-.content-preview{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:10px;
+.actions{
+display:flex;
+gap:10px;
+margin-top:20px
 }
-
-.content-preview img{
-    width:120px;
-    height:80px;
-    object-fit:cover;
-    border-radius:8px;
+.primary,.secondary,.danger{
+border:0;
+padding:12px 19px;
+border-radius:10px;
+font-weight:800;
+cursor:pointer
 }
-
+.primary{background:var(--red);color:#fff}
+.secondary{background:var(--navy);color:#fff}
+.danger{background:#fff0f2;color:var(--red)}
 .news-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:15px 0;
-    border-bottom:1px solid #292929;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+padding:16px;
+border:1px solid #edf0f4;
+border-radius:12px;
+margin-bottom:10px
 }
+.news-row h3{margin:0 0 5px;font-size:16px}
+.news-row small{color:var(--muted)}
 
-.news-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    min-width:0;
+@media(max-width:900px){
+.sidebar{width:210px}
+.main{margin-left:210px}
+.stats{grid-template-columns:1fr 1fr}
+.grid2{grid-template-columns:1fr}
 }
-
-.news-thumb{
-    width:90px;
-    height:60px;
-    object-fit:cover;
-    border-radius:8px;
-    background:#222;
-    flex-shrink:0;
-}
-
-.news-title{
-    font-weight:bold;
-}
-
-.news-meta{
-    color:#888;
-    font-size:13px;
-    margin-top:5px;
-}
-
-.delete{
-    background:#7b1616;
-    color:white;
-    flex-shrink:0;
-}
-
-.delete:hover{
-    background:#a51e1e;
-}
-
-.empty{
-    color:#777;
-    padding:20px 0;
-}
-
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.site-btn{
-    background:#222;
-    color:#fff;
-    text-decoration:none;
-    padding:10px 15px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.site-btn:hover{
-    background:#ff7a00;
-}
-
 @media(max-width:650px){
-
-    .container{
-        margin:15px auto;
-        padding:15px;
-    }
-
-    .panel{
-        padding:18px;
-    }
-
-    .news-row{
-        align-items:flex-start;
-    }
-
-    .news-left{
-        align-items:flex-start;
-    }
-
-    .news-thumb{
-        width:75px;
-        height:55px;
-    }
-
-    .delete{
-        padding:9px 12px;
-    }
-
+.sidebar{
+position:relative;
+width:100%;
+height:auto
 }
-
+.main{margin-left:0}
+.stats{grid-template-columns:1fr}
+.topbar{padding:0 15px}
+.content{padding:18px}
+}
 </style>
 </head>
 
-
 <body>
 
+<section id="login">
 
-<div class="container">
+<div class="login-box">
 
+<img src="logo.png" class="login-logo" alt="THAI NEWS">
 
-<div class="top">
+<h1>THAI <span>NEWS</span></h1>
+<h2>ADMIN MANAGEMENT SYSTEM</h2>
 
-    <div>
-
-        <h1>THAI NEWS ADMIN</h1>
-
-        <div class="sub">
-            ระบบจัดการข่าวของเจ้าของเว็บไซต์
-        </div>
-
-    </div>
-
-
-    <a
-        class="site-btn"
-        href="index.html"
-        target="_blank"
-    >
-        ← เว็บไซต์ข่าว
-    </a>
-
+<div class="field">
+<label>ชื่อผู้ใช้</label>
+<input id="user" value="THANWA">
 </div>
 
+<div class="field">
+<label>รหัสผ่าน</label>
+<input id="pass" type="password" placeholder="รหัสผ่าน">
+</div>
 
-
-<!-- =========================================
-     FORM
-========================================= -->
-
-<div class="panel">
-
-<form id="newsForm">
-
-
-<label>
-    หัวข่าว
-</label>
-
-<input
-    id="title"
-    type="text"
-    required
-    placeholder="ใส่หัวข่าว"
-/>
-
-
-
-<label>
-    หมวดข่าว
-</label>
-
-<select id="category">
-
-    <option value="ข่าวล่าสุด">
-        ข่าวล่าสุด
-    </option>
-
-    <option value="การเมือง">
-        การเมือง
-    </option>
-
-    <option value="บันเทิง">
-        บันเทิง
-    </option>
-
-    <option value="อุบัติเหตุ">
-        อุบัติเหตุ
-    </option>
-
-    <option value="สังคม">
-        สังคม
-    </option>
-
-    <option value="เศรษฐกิจ">
-        เศรษฐกิจ
-    </option>
-
-    <option value="กีฬา">
-        กีฬา
-    </option>
-
-    <option value="ต่างประเทศ">
-        ต่างประเทศ
-    </option>
-
-    <option value="ข่าวทั่วไป">
-        ข่าวทั่วไป
-    </option>
-
-</select>
-
-
-
-<label>
-    คำโปรย
-</label>
-
-<input
-    id="summary"
-    type="text"
-    placeholder="คำโปรยใต้หัวข่าว"
-/>
-
-
-
-<label>
-    เนื้อหาข่าว
-</label>
-
-<textarea
-    id="content"
-    required
-    placeholder="เขียนเนื้อหาข่าวที่นี่"
-></textarea>
-
-
-
-<label>
-    ภาพปกข่าว
-</label>
-
-<input
-    id="cover"
-    type="file"
-    accept="image/*"
-    required
->
-
-<img
-    id="coverPreview"
-    class="preview"
-    alt="ตัวอย่างภาพปก"
->
-
-
-
-<label>
-    ภาพประกอบข่าว
-</label>
-
-<input
-    id="contentImages"
-    type="file"
-    accept="image/*"
-    multiple
->
-
-<div
-    id="contentPreview"
-    class="content-preview"
-></div>
-
-
-
-<button
-    class="publish"
-    type="submit"
->
-    เผยแพร่ข่าว
+<button class="login-btn" onclick="login()">
+เข้าสู่ระบบ
 </button>
 
-
-<div
-    id="status"
-    class="status"
-></div>
-
-
-</form>
+<div id="error"></div>
 
 </div>
 
+</section>
 
+<section id="admin">
 
-<!-- =========================================
-     NEWS LIST
-========================================= -->
+<aside class="sidebar">
+
+<div class="side-brand">
+<img src="logo.png">
+<strong>THAI <span>NEWS</span></strong>
+</div>
+
+<div class="menu-title">MAIN</div>
+
+<div class="menu">
+
+<button class="active" onclick="page('dashboard',this)">📊 แดชบอร์ด</button>
+<button onclick="page('write',this)">✍️ เขียนข่าวใหม่</button>
+<button onclick="page('manage',this)">📰 จัดการข่าว</button>
+<button onclick="page('media',this)">🖼️ คลังรูปภาพ</button>
+<button onclick="page('category',this)">📁 หมวดข่าว</button>
+
+</div>
+
+<div class="menu-title">SYSTEM</div>
+
+<div class="menu">
+<button onclick="page('website',this)">🌐 เว็บไซต์</button>
+<button onclick="page('settings',this)">⚙️ ตั้งค่า</button>
+</div>
+
+<div class="logout">
+<button onclick="logout()">🚪 ออกจากระบบ</button>
+</div>
+
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+<strong>THAI NEWS ADMIN</strong>
+<div class="user">
+<span class="dot"></span>
+ADMIN · THANWA
+</div>
+</header>
+
+<div class="content">
+
+<section id="dashboard" class="page active">
+
+<div class="title">
+<h1>แดชบอร์ด</h1>
+<p>ภาพรวมระบบเว็บไซต์ข่าว</p>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<small>ข่าวทั้งหมด</small>
+<strong id="total">0</strong>
+</div>
+
+<div class="stat">
+<small>ข่าวล่าสุด</small>
+<strong id="latest">0</strong>
+</div>
+
+<div class="stat">
+<small>หมวดข่าว</small>
+<strong>9</strong>
+</div>
+
+<div class="stat">
+<small>สถานะเว็บไซต์</small>
+<strong style="color:#19b967">LIVE</strong>
+</div>
+
+</div>
+
+<div class="panel">
+<h2>ข่าวล่าสุด</h2>
+<div id="dashList"></div>
+</div>
+
+</section>
+
+<section id="write" class="page">
+
+<div class="title">
+<h1>เขียนข่าวใหม่</h1>
+<p>สร้างข่าวพร้อมภาพประกอบแบบมืออาชีพ</p>
+</div>
 
 <div class="panel">
 
-<h2>
-    ข่าวที่เผยแพร่แล้ว
-</h2>
+<div class="field">
+<label>พาดหัวข่าว</label>
+<input id="title" class="input" placeholder="พาดหัวข่าว">
+</div>
 
-<div id="newsList">
-    กำลังโหลด...
+<div class="grid2">
+
+<div class="field">
+<label>หมวดข่าว</label>
+<select id="category" class="input">
+<option>ข่าวล่าสุด</option>
+<option>การเมือง</option>
+<option>บันเทิง</option>
+<option>อุบัติเหตุ</option>
+<option>เศรษฐกิจ</option>
+<option>สังคม</option>
+<option>กีฬา</option>
+<option>ต่างประเทศ</option>
+<option>ข่าวทั่วไป</option>
+</select>
+</div>
+
+<div class="field">
+<label>รูปหน้าปก</label>
+<input id="cover" class="input" type="file" accept="image/*" onchange="coverPreview(event)">
+<img id="preview" class="preview">
 </div>
 
 </div>
 
+<div class="field">
+<label>เนื้อข่าว</label>
+
+<div class="editor">
+
+<div class="toolbar">
+
+<button onclick="cmd('bold')"><b>B</b></button>
+<button onclick="cmd('italic')"><i>I</i></button>
+<button onclick="cmd('underline')"><u>U</u></button>
+<button onclick="cmd('justifyLeft')">ซ้าย</button>
+<button onclick="cmd('justifyCenter')">กลาง</button>
+<button onclick="cmd('justifyRight')">ขวา</button>
+<button onclick="insertImage()">🖼️ แทรกรูป</button>
 
 </div>
 
+<div id="editor" class="editor-area" contenteditable="true"></div>
 
+</div>
+
+</div>
+
+<div class="actions">
+<button class="primary" onclick="publish()">🚀 เผยแพร่ข่าว</button>
+<button class="secondary" onclick="clearForm()">ล้าง</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="manage" class="page">
+
+<div class="title">
+<h1>จัดการข่าว</h1>
+<p>ข่าวที่เผยแพร่บนเว็บไซต์</p>
+</div>
+
+<div class="panel">
+<div id="manageList"></div>
+</div>
+
+</section>
+
+<section id="media" class="page">
+
+<div class="title">
+<h1>คลังรูปภาพ</h1>
+<p>เพิ่มรูปภาพเพื่อใช้ประกอบข่าว</p>
+</div>
+
+<div class="panel">
+<input type="file" multiple accept="image/*">
+</div>
+
+</section>
+
+<section id="category" class="page">
+
+<div class="title">
+<h1>หมวดข่าว</h1>
+<p>จัดการหมวดหมู่ข่าว</p>
+</div>
+
+<div class="panel">
+<div class="news-row">ข่าวล่าสุด</div>
+<div class="news-row">การเมือง</div>
+<div class="news-row">บันเทิง</div>
+<div class="news-row">อุบัติเหตุ</div>
+<div class="news-row">เศรษฐกิจ</div>
+<div class="news-row">สังคม</div>
+<div class="news-row">กีฬา</div>
+<div class="news-row">ต่างประเทศ</div>
+<div class="news-row">ข่าวทั่วไป</div>
+</div>
+
+</section>
+
+<section id="website" class="page">
+
+<div class="title">
+<h1>เว็บไซต์</h1>
+<p>จัดการและดูเว็บไซต์ข่าว</p>
+</div>
+
+<div class="panel">
+<h2>สถานะเว็บไซต์</h2>
+<p style="color:#18b967;font-weight:800">● เว็บไซต์ออนไลน์</p>
+<a href="index.html" target="_blank" class="secondary" style="display:inline-block">
+เปิดเว็บไซต์ข่าว
+</a>
+</div>
+
+</section>
+
+<section id="settings" class="page">
+
+<div class="title">
+<h1>ตั้งค่า</h1>
+<p>ข้อมูลระบบผู้ดูแล</p>
+</div>
+
+<div class="panel">
+<h2>บัญชี Administrator</h2>
+<p>Username: <b>THANWA</b></p>
+<p>Password: <b>1234</b></p>
+<hr>
+<button class="danger" onclick="clearAll()">ลบข่าวทั้งหมด</button>
+</div>
+
+</section>
+
+</div>
+</main>
+
+</section>
 
 <script>
+const USER="THANWA";
+const PASS="1234";
+const KEY="thaiNews";
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+function login(){
+const u=document.getElementById("user").value.trim();
+const p=document.getElementById("pass").value;
 
-const SUPABASE_URL =
-"https://vkzqqykkuvsbjzhnauxe.supabase.co";
-
-
-const SUPABASE_KEY =
-"sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
-
-
-const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-
-/* =====================================================
-   ELEMENT
-===================================================== */
-
-const $ =
-id =>
-document.getElementById(id);
-
-
-const form =
-$("newsForm");
-
-
-const statusBox =
-$("status");
-
-
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-function showStatus(
-    text,
-    type
-){
-
-    statusBox.textContent =
-        text;
-
-    statusBox.className =
-        "status " + type;
-
+if(u===USER&&p===PASS){
+sessionStorage.setItem("thaiAdmin","1");
+document.getElementById("login").style.display="none";
+document.getElementById("admin").style.display="block";
+load();
+}else{
+document.getElementById("error").textContent="ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+}
 }
 
-
-
-/* =====================================================
-   ESCAPE
-===================================================== */
-
-function escapeHTML(
-    text
-){
-
-    return String(
-        text || ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
+function logout(){
+sessionStorage.removeItem("thaiAdmin");
+location.reload();
 }
 
+function page(id,btn){
+document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 
+document.querySelectorAll(".menu button").forEach(x=>x.classList.remove("active"));
+if(btn)btn.classList.add("active");
 
-/* =====================================================
-   RESIZE IMAGE
-===================================================== */
-
-function resizeImage(
-    file,
-    maxWidth = 1200,
-    maxHeight = 900,
-    quality = 0.65
-){
-
-    return new Promise(
-        (
-            resolve,
-            reject
-        ) => {
-
-            const reader =
-                new FileReader();
-
-
-            reader.onerror =
-                () =>
-                reject(
-                    new Error(
-                        "อ่านรูปไม่ได้"
-                    )
-                );
-
-
-            reader.onload =
-                () => {
-
-                    const img =
-                        new Image();
-
-
-                    img.onerror =
-                        () =>
-                        reject(
-                            new Error(
-                                "รูปภาพไม่ถูกต้อง"
-                            )
-                        );
-
-
-                    img.onload =
-                        () => {
-
-                            let width =
-                                img.width;
-
-                            let height =
-                                img.height;
-
-
-                            const ratio =
-                                Math.min(
-                                    maxWidth / width,
-                                    maxHeight / height,
-                                    1
-                                );
-
-
-                            width =
-                                Math.round(
-                                    width * ratio
-                                );
-
-
-                            height =
-                                Math.round(
-                                    height * ratio
-                                );
-
-
-                            const canvas =
-                                document.createElement(
-                                    "canvas"
-                                );
-
-
-                            canvas.width =
-                                width;
-
-                            canvas.height =
-                                height;
-
-
-                            const ctx =
-                                canvas.getContext(
-                                    "2d"
-                                );
-
-
-                            ctx.drawImage(
-                                img,
-                                0,
-                                0,
-                                width,
-                                height
-                            );
-
-
-                            resolve(
-                                canvas.toDataURL(
-                                    "image/jpeg",
-                                    quality
-                                )
-                            );
-
-                        };
-
-
-                    img.src =
-                        reader.result;
-
-                };
-
-
-            reader.readAsDataURL(
-                file
-            );
-
-        }
-    );
-
+if(id==="dashboard")load();
+if(id==="manage")manage();
 }
 
-
-
-/* =====================================================
-   COVER PREVIEW
-===================================================== */
-
-$("cover")
-.addEventListener(
-    "change",
-    async function(){
-
-        const file =
-            this.files[0];
-
-
-        if(!file){
-
-            $("coverPreview")
-                .style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        try{
-
-            const image =
-                await resizeImage(
-                    file,
-                    900,
-                    600,
-                    0.65
-                );
-
-
-            $("coverPreview")
-                .src =
-                image;
-
-
-            $("coverPreview")
-                .style.display =
-                "block";
-
-        }
-        catch(error){
-
-            showStatus(
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   CONTENT IMAGE PREVIEW
-===================================================== */
-
-$("contentImages")
-.addEventListener(
-    "change",
-    function(){
-
-        const box =
-            $("contentPreview");
-
-
-        box.innerHTML =
-            "";
-
-
-        Array.from(
-            this.files
-        )
-        .slice(
-            0,
-            10
-        )
-        .forEach(
-            file => {
-
-                const reader =
-                    new FileReader();
-
-
-                const img =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                reader.onload =
-                    event => {
-
-                        img.src =
-                            event.target.result;
-
-                    };
-
-
-                reader.readAsDataURL(
-                    file
-                );
-
-
-                box.appendChild(
-                    img
-                );
-
-            }
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   PUBLISH
-===================================================== */
-
-form.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-
-        try{
-
-            showStatus(
-                "กำลังย่อภาพและเผยแพร่ข่าว...",
-                "success"
-            );
-
-
-            const title =
-                $("title")
-                .value
-                .trim();
-
-
-            const category =
-                $("category")
-                .value;
-
-
-            const summary =
-                $("summary")
-                .value
-                .trim();
-
-
-            const content =
-                $("content")
-                .value
-                .trim();
-
-
-            const coverFile =
-                $("cover")
-                .files[0];
-
-
-            const contentFiles =
-                Array.from(
-                    $("contentImages")
-                    .files
-                )
-                .slice(
-                    0,
-                    10
-                );
-
-
-            if(!title){
-
-                throw new Error(
-                    "กรุณาใส่หัวข่าว"
-                );
-
-            }
-
-
-            if(!content){
-
-                throw new Error(
-                    "กรุณาใส่เนื้อข่าว"
-                );
-
-            }
-
-
-            if(!coverFile){
-
-                throw new Error(
-                    "กรุณาเลือกภาพปกข่าว"
-                );
-
-            }
-
-
-
-            /* =========================================
-               COVER
-            ========================================= */
-
-            const coverImage =
-                await resizeImage(
-                    coverFile,
-                    1400,
-                    900,
-                    0.70
-                );
-
-
-
-            /* =========================================
-               CONTENT IMAGES
-            ========================================= */
-
-            const contentImages =
-                [];
-
-
-            for(
-                const file
-                of contentFiles
-            ){
-
-                const image =
-                    await resizeImage(
-                        file,
-                        1200,
-                        1000,
-                        0.65
-                    );
-
-
-                contentImages.push(
-                    image
-                );
-
-            }
-
-
-
-            /* =========================================
-               INSERT
-               
-               ใช้ชื่อ field ให้ตรงกับ
-               public.news_articles
-            ========================================= */
-
-            const {
-                data,
-                error
-            } =
-            await supabaseClient
-            .from(
-                "news_articles"
-            )
-            .insert({
-
-                category:
-                    category,
-
-                title:
-                    title,
-
-                summary:
-                    summary,
-
-                content:
-                    content,
-
-                cover_image:
-                    coverImage,
-
-                content_images:
-                    contentImages,
-
-                published:
-                    true
-
-            })
-            .select();
-
-
-            if(error){
-
-                console.error(
-                    error
-                );
-
-                throw new Error(
-                    error.message
-                );
-
-            }
-
-
-
-            /* =========================================
-               SUCCESS
-            ========================================= */
-
-            showStatus(
-                "เผยแพร่ข่าวสำเร็จ! ข่าวและภาพทั้งหมดถูกบันทึกใน Supabase แล้ว",
-                "success"
-            );
-
-
-            form.reset();
-
-
-            $("coverPreview")
-                .src =
-                "";
-
-
-            $("coverPreview")
-                .style.display =
-                "none";
-
-
-            $("contentPreview")
-                .innerHTML =
-                "";
-
-
-            await loadNews();
-
-        }
-        catch(error){
-
-            console.error(
-                error
-            );
-
-
-            showStatus(
-                "เผยแพร่ไม่สำเร็จ: " +
-                error.message,
-                "error"
-            );
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   LOAD NEWS
-===================================================== */
-
-async function loadNews(){
-
-    const box =
-        $("newsList");
-
-
-    box.innerHTML =
-        "กำลังโหลดข่าว...";
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-        .from(
-            "news_articles"
-        )
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending:false
-            }
-        );
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        if(
-            !data ||
-            !data.length
-        ){
-
-            box.innerHTML =
-                `
-                <div class="empty">
-                    ยังไม่มีข่าวที่เผยแพร่
-                </div>
-                `;
-
-            return;
-
-        }
-
-
-        box.innerHTML =
-            "";
-
-
-        data.forEach(
-            item => {
-
-                const row =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                row.className =
-                    "news-row";
-
-
-                const left =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                left.className =
-                    "news-left";
-
-
-                const image =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                image.className =
-                    "news-thumb";
-
-
-                image.src =
-                    item.cover_image ||
-                    "assets/banner.jpg";
-
-
-                image.alt =
-                    item.title ||
-                    "";
-
-
-                const info =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                const title =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                title.className =
-                    "news-title";
-
-
-                title.textContent =
-                    item.title ||
-                    "ไม่มีหัวข่าว";
-
-
-                const meta =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                meta.className =
-                    "news-meta";
-
-
-                meta.textContent =
-                    `${
-                        item.category ||
-                        "ข่าว"
-                    } · ${
-                        item.created_at
-                        ?
-                        new Date(
-                            item.created_at
-                        ).toLocaleString(
-                            "th-TH"
-                        )
-                        :
-                        ""
-                    }`;
-
-
-                info.append(
-                    title,
-                    meta
-                );
-
-
-                left.append(
-                    image,
-                    info
-                );
-
-
-                const deleteButton =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                deleteButton.className =
-                    "delete";
-
-
-                deleteButton.textContent =
-                    "ลบ";
-
-
-                deleteButton.onclick =
-                    () =>
-                    deleteNews(
-                        item.id
-                    );
-
-
-                row.append(
-                    left,
-                    deleteButton
-                );
-
-
-                box.appendChild(
-                    row
-                );
-
-            }
-        );
-
-    }
-    catch(error){
-
-        console.error(
-            error
-        );
-
-
-        box.innerHTML =
-            `
-            <div class="empty">
-
-                โหลดข่าวไม่สำเร็จ
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message
-                )}
-
-            </div>
-            `;
-
-    }
-
+function get(){
+return JSON.parse(localStorage.getItem(KEY)||"[]");
 }
 
-
-
-/* =====================================================
-   DELETE NEWS
-===================================================== */
-
-async function deleteNews(
-    id
-){
-
-    if(
-        !confirm(
-            "ต้องการลบข่าวนี้ใช่หรือไม่?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-        const {
-            error
-        } =
-        await supabaseClient
-        .from(
-            "news_articles"
-        )
-        .delete()
-        .eq(
-            "id",
-            id
-        );
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        showStatus(
-            "ลบข่าวเรียบร้อยแล้ว",
-            "success"
-        );
-
-
-        await loadNews();
-
-    }
-    catch(error){
-
-        console.error(
-            error
-        );
-
-
-        showStatus(
-            "ลบไม่สำเร็จ: " +
-            error.message,
-            "error"
-        );
-
-    }
-
+function save(data){
+localStorage.setItem(KEY,JSON.stringify(data));
 }
 
+function cmd(c){
+document.execCommand(c,false,null);
+document.getElementById("editor").focus();
+}
 
+function coverPreview(e){
+const file=e.target.files[0];
+if(!file)return;
 
-/* =====================================================
-   REALTIME
-===================================================== */
+const r=new FileReader();
+r.onload=()=>{
+document.getElementById("preview").src=r.result;
+document.getElementById("preview").style.display="block";
+};
+r.readAsDataURL(file);
+}
 
-supabaseClient
-.channel(
-    "admin-news-live"
-)
-.on(
-    "postgres_changes",
-    {
-        event:"*",
-        schema:"public",
-        table:"news_articles"
-    },
-    function(){
+function insertImage(){
 
-        loadNews();
+const input=document.createElement("input");
+input.type="file";
+input.accept="image/*";
 
-    }
-)
-.subscribe();
+input.onchange=()=>{
 
+const file=input.files[0];
+if(!file)return;
 
+const r=new FileReader();
 
-/* =====================================================
-   START
-===================================================== */
+r.onload=()=>{
+document.execCommand("insertImage",false,r.result);
+};
 
-loadNews();
+r.readAsDataURL(file);
+};
 
+input.click();
+}
+
+function readFile(file){
+return new Promise((resolve,reject)=>{
+const r=new FileReader();
+r.onload=()=>resolve(r.result);
+r.onerror=reject;
+r.readAsDataURL(file);
+});
+}
+
+async function publish(){
+
+const title=document.getElementById("title").value.trim();
+const category=document.getElementById("category").value;
+const content=document.getElementById("editor").innerHTML.trim();
+
+if(!title){
+alert("กรุณาใส่พาดหัวข่าว");
+return;
+}
+
+if(!content){
+alert("กรุณาใส่เนื้อข่าว");
+return;
+}
+
+let cover="";
+
+const file=document.getElementById("cover").files[0];
+
+if(file){
+cover=await readFile(file);
+}
+
+const news={
+id:Date.now(),
+title,
+category,
+cover,
+content,
+date:new Date().toLocaleString("th-TH")
+};
+
+let data=get();
+
+data.unshift(news);
+
+/*
+หน้าเว็บไซต์แสดง 3 ข่าวล่าสุด
+*/
+data=data.slice(0,3);
+
+save(data);
+
+alert("เผยแพร่ข่าวเรียบร้อยแล้ว");
+
+clearForm();
+load();
+page("dashboard");
+}
+
+function clearForm(){
+
+document.getElementById("title").value="";
+document.getElementById("category").value="ข่าวล่าสุด";
+document.getElementById("cover").value="";
+document.getElementById("preview").style.display="none";
+document.getElementById("preview").src="";
+document.getElementById("editor").innerHTML="";
+}
+
+function load(){
+
+const data=get();
+
+document.getElementById("total").textContent=data.length;
+document.getElementById("latest").textContent=data.length;
+
+const box=document.getElementById("dashList");
+box.innerHTML="";
+
+if(!data.length){
+box.innerHTML="<p>ยังไม่มีข่าว</p>";
+return;
+}
+
+data.forEach(n=>{
+
+const row=document.createElement("div");
+row.className="news-row";
+
+row.innerHTML=`
+<div>
+<h3>${esc(n.title)}</h3>
+<small>${esc(n.category)} · ${esc(n.date)}</small>
+</div>
+<button class="danger" onclick="removeNews(${n.id})">ลบ</button>
+`;
+
+box.appendChild(row);
+});
+
+manage();
+}
+
+function manage(){
+
+const box=document.getElementById("manageList");
+if(!box)return;
+
+const data=get();
+
+box.innerHTML="";
+
+if(!data.length){
+box.innerHTML="<p>ยังไม่มีข่าว</p>";
+return;
+}
+
+data.forEach(n=>{
+
+const row=document.createElement("div");
+row.className="news-row";
+
+row.innerHTML=`
+<div>
+<h3>${esc(n.title)}</h3>
+<small>${esc(n.category)} · ${esc(n.date)}</small>
+</div>
+<button class="danger" onclick="removeNews(${n.id})">ลบข่าว</button>
+`;
+
+box.appendChild(row);
+});
+}
+
+function removeNews(id){
+
+if(!confirm("ต้องการลบข่าวนี้หรือไม่?"))return;
+
+let data=get().filter(n=>n.id!=id);
+save(data);
+
+load();
+}
+
+function clearAll(){
+
+if(!confirm("ต้องการลบข่าวทั้งหมดหรือไม่?"))return;
+
+localStorage.removeItem(KEY);
+load();
+}
+
+function esc(t){
+const d=document.createElement("div");
+d.textContent=t||"";
+return d.innerHTML;
+}
+
+if(sessionStorage.getItem("thaiAdmin")==="1"){
+document.getElementById("login").style.display="none";
+document.getElementById("admin").style.display="block";
+load();
+}
 </script>
 
 </body>
