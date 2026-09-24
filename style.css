@@ -1547,3 +1547,61 @@ updateHero("latest");
 
 </body>
 </html>
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.site-logo {
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+}
+
+.site-logo svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.site-name h1 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 900;
+    color: #111827;
+    letter-spacing: -1.5px;
+}
+
+.site-name h1 span {
+    color: #e51f35;
+}
+
+.site-name p {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 17px;
+}
+
+/* มือถือ */
+@media (max-width: 600px) {
+    .site-brand {
+        gap: 12px;
+    }
+
+    .site-logo {
+        width: 62px;
+        height: 62px;
+    }
+
+    .site-name h1 {
+        font-size: 29px;
+        letter-spacing: -1px;
+    }
+
+    .site-name p {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+}
