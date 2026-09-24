@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THAI NEWS | Admin</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#0d0f11;color:#f5f5f5;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif}
+body{min-height:100vh}
+a{text-decoration:none;color:inherit}
+.header{border-bottom:2px solid #ff4b45;background:#111417}
+.header-inner{max-width:1050px;margin:auto;padding:24px}
+.logo{font-size:32px;font-weight:900}.logo span{color:#ff4b45}
+.nav{margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}
+.nav a{color:#bbb;font-size:14px}.nav a:hover{color:#ff625c}
+.container{max-width:1050px;margin:auto;padding:35px 20px 70px}
+.box{background:#121518;border:1px solid #30353a;border-radius:14px;padding:28px}
+h1{margin:0 0 8px;font-size:30px}
+h2{font-size:21px;margin:30px 0 15px}
+.sub{margin:0 0 25px;color:#969da4}
+.field{margin:18px 0}
+label{display:block;margin-bottom:8px;font-weight:700}
+input,select,textarea{
+ width:100%;padding:12px 13px;background:#0c0f11;color:#fff;
+ border:1px solid #3b4147;border-radius:8px;font:inherit;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:#ff4b45}
+textarea{min-height:180px;resize:vertical}
+small{display:block;color:#7f878e;margin-top:6px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:12px 18px}
+.publish{background:#ff4b45;color:#fff;font-weight:800}
+.clear{background:#292e33;color:#fff}
+.status{display:none;margin:18px 0;padding:13px 15px;border-radius:8px}
+.success{display:block;background:#12351f;border:1px solid #267a45;color:#b9f0ca}
+.error{display:block;background:#3b1717;border:1px solid #ff4b45;color:#ffc1bd}
+.news-list{border-top:1px solid #2d3237;margin-top:25px}
+.news-row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 0;border-bottom:1px solid #292e33}
+.news-info{min-width:0}
+.news-title{font-weight:800;margin-bottom:5px}
+.news-meta{font-size:12px;color:#7f878e}
+.delete{background:#292e33;color:#fff;padding:8px 12px}
+.empty{color:#7f878e;padding:20px 0}
+.note{background:#181c20;border:1px solid #292e33;border-radius:8px;padding:12px;color:#9ea5ab;font-size:13px;line-height:1.7}
+@media(max-width:650px){
+ .box{padding:20px}.logo{font-size:28px}.container{padding:25px 12px 50px}
+ .news-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">THAI <span>NEWS</span></div>
+    <nav class="nav">
+      <a href="index.html">← กลับเว็บไซต์ข่าว</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="box">
+    <h1>ระบบจัดการข่าว</h1>
+    <p class="sub">เพิ่มข่าวจากหน้านี้ แล้วข่าวจะซิงค์ไปหน้าเว็บไซต์หลักอัตโนมัติ</p>
+
+    <div id="status" class="status"></div>
+
+    <div class="note">
+      ระบบนี้ใช้พื้นที่ของเบราว์เซอร์โดยตรง และจะย่อภาพให้อัตโนมัติก่อนบันทึก
+      เพื่อป้องกันปัญหา <b>Storage quota exceeded</b>
+    </div>
+
+    <form id="newsForm">
+      <div class="field">
+        <label for="category">หมวดข่าว *</label>
+        <select id="category" required>
+          <option value="บันเทิง">บันเทิง</option>
+          <option value="ข่าวล่าสุด">ข่าวล่าสุด</option>
+          <option value="การเมือง">การเมือง</option>
+          <option value="อุบัติเหตุ">อุบัติเหตุ</option>
+          <option value="เศรษฐกิจ">เศรษฐกิจ</option>
+          <option value="สังคม">สังคม</option>
+          <option value="ข่าวทั่วไป">ข่าวทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="title">หัวข่าว *</label>
+        <input id="title" type="text" required placeholder="ใส่หัวข่าว">
+      </div>
+
+      <div class="field">
+        <label for="summary">คำโปรยข่าว *</label>
+        <input id="summary" type="text" required placeholder="คำโปรยสั้น ๆ ใต้หัวข่าว">
+      </div>
+
+      <div class="field">
+        <label for="content">เนื้อข่าว *</label>
+        <textarea id="content" required placeholder="เขียนเนื้อข่าวที่นี่"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="cover">ภาพปกข่าว *</label>
+        <input id="cover" type="file" accept="image/*" required>
+        <small>ภาพจะถูกย่อให้พอดีกับเว็บไซต์อัตโนมัติ</small>
+      </div>
+
+      <div class="field">
+        <label for="contentImages">ภาพเนื้อข่าว</label>
+        <input id="contentImages" type="file" accept="image/*" multiple>
+        <small>เลือกได้หลายภาพ แนะนำไม่เกิน 6 ภาพต่อข่าว</small>
+      </div>
+
+      <div class="btns">
+        <button class="publish" type="submit">เผยแพร่ข่าว</button>
+        <button class="clear" type="button" id="clearAll">ล้างข่าวทั้งหมด</button>
+      </div>
+    </form>
+
+    <h2>ข่าวที่เผยแพร่แล้ว</h2>
+    <div id="newsList" class="news-list"></div>
+  </section>
+</main>
+
+<script>
+const SUPABASE_URL = "https://vkzqqykkuvsbjzhnauxe.supabase.co";
+const SUPABASE_KEY = "sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
+const API_URL = `${SUPABASE_URL}/rest/v1/news`;
+const $ = id => document.getElementById(id);
+
+const headers = {
+  "apikey": SUPABASE_KEY,
+  "Authorization": `Bearer ${SUPABASE_KEY}`,
+  "Content-Type": "application/json",
+  "Prefer": "return=representation"
+};
+
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+}
+
+async function getNews(){
+  const res = await fetch(`${API_URL}?select=*&order=created_at.desc`, {headers});
+  if(!res.ok) throw new Error(`โหลดข่าวไม่สำเร็จ (${res.status})`);
+  const rows = await res.json();
+  return rows.map(normalizeRow);
+}
+
+function normalizeRow(row){
+  return {
+    id: row.id,
+    category: row.category || "ข่าว",
+    title: row.title || "",
+    summary: row.summary || "",
+    content: row.content || "",
+    coverImage: row.image_url || row.cover_image || row.coverImage || "",
+    contentImages: Array.isArray(row.content_images) ? row.content_images : (typeof row.content_images === "string" ? (()=>{try{return JSON.parse(row.content_images)}catch{return []}})() : []),
+    createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now()
+  };
+}
+
+function showStatus(message, type){
+  const el = $("status");
+  el.textContent = message;
+  el.className = "status " + type;
+}
+
+function resizeImage(file, maxWidth, maxHeight, quality){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("อ่านภาพไม่ได้"));
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("ไฟล์ภาพไม่ถูกต้อง"));
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        const ratio = Math.min(maxWidth / w, maxHeight / h, 1);
+        w = Math.max(1, Math.round(w * ratio));
+        h = Math.max(1, Math.round(h * ratio));
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function renderList(){
+  try{
+    const list = await getNews();
+    if(!list.length){
+      $("newsList").innerHTML = '<div class="empty">ยังไม่มีข่าวที่เผยแพร่</div>';
+      return;
+    }
+    $("newsList").innerHTML = list.map(item => `
+      <div class="news-row">
+        <div class="news-info">
+          <div class="news-title">${escapeHTML(item.title)}</div>
+          <div class="news-meta">${escapeHTML(item.category)} · ${new Date(item.createdAt).toLocaleString("th-TH")}</div>
+        </div>
+        <button class="delete" data-id="${escapeHTML(item.id)}">ลบ</button>
+      </div>
+    `).join("");
+    document.querySelectorAll(".delete").forEach(btn=>{
+      btn.addEventListener("click", async ()=>{
+        const id = btn.dataset.id;
+        if(!confirm("ต้องการลบข่าวนี้ใช่หรือไม่?")) return;
+        try{
+          const res = await fetch(`${API_URL}?id=eq.${encodeURIComponent(id)}`, {method:"DELETE", headers});
+          if(!res.ok) throw new Error(await res.text());
+          await renderList();
+          showStatus("ลบข่าวเรียบร้อยแล้ว", "success");
+        }catch(e){ console.error(e); showStatus("ลบข่าวไม่สำเร็จ กรุณาตรวจสอบสิทธิ์ Supabase", "error"); }
+      });
+    });
+  }catch(e){ console.error(e); $("newsList").innerHTML='<div class="empty">เชื่อมต่อฐานข้อมูลไม่ได้</div>'; showStatus("เชื่อมต่อ Supabase ไม่สำเร็จ", "error"); }
+}
+
+$("newsForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const coverFile = $("cover").files[0];
+  const contentFiles = Array.from($("contentImages").files || []).slice(0,6);
+  if(!coverFile){ showStatus("กรุณาเลือกภาพปกข่าว", "error"); return; }
+  try{
+    showStatus("กำลังย่อภาพและเผยแพร่ข่าว...", "success");
+    const coverImage = await resizeImage(coverFile, 1200, 700, 0.68);
+    const contentImages = [];
+    for(const file of contentFiles) contentImages.push(await resizeImage(file, 900, 650, 0.62));
+    const item = {
+      title: $("title").value.trim(),
+      category: $("category").value,
+      summary: $("summary").value.trim(),
+      content: $("content").value.trim(),
+      image_url: coverImage,
+      content_images: JSON.stringify(contentImages),
+      author: "THAI NEWS",
+      published: true
+    };
+    if(!item.title || !item.summary || !item.content){ showStatus("กรุณากรอกข้อมูลข่าวให้ครบ", "error"); return; }
+    const res = await fetch(API_URL, {method:"POST", headers, body:JSON.stringify(item)});
+    if(!res.ok) throw new Error(await res.text());
+    $("newsForm").reset();
+    await renderList();
+    showStatus("เผยแพร่ข่าวสำเร็จ ทุกมือถือและคอมจะเห็นข่าวเดียวกัน", "success");
+  }catch(err){
+    console.error(err);
+    showStatus("เผยแพร่ไม่สำเร็จ: " + (err.message || "ตรวจสอบ Supabase และสิทธิ์ตาราง news"), "error");
+  }
+});
+
+$("clearAll").addEventListener("click", async ()=>{
+  if(!confirm("ลบข่าวทั้งหมดออกจากฐานข้อมูลจริงหรือไม่?")) return;
+  try{
+    const res = await fetch(`${API_URL}?id=not.is.null`, {method:"DELETE", headers});
+    if(!res.ok) throw new Error(await res.text());
+    await renderList();
+    showStatus("ล้างข่าวทั้งหมดแล้ว", "success");
+  }catch(e){ console.error(e); showStatus("ล้างข่าวไม่สำเร็จ", "error"); }
+});
+
+renderList();
+</script>
+</body>
+</html>
