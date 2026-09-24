@@ -210,3 +210,329 @@
     line-height: 1.65 !important;
   }
 }
+/* =========================================================
+   THAI NEWS - MOBILE HERO FIX
+   แก้ปกข่าวมือถือให้พอดีหน้าจอ
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    /* ปกข่าวหลัก */
+    .hero,
+    .hero-section,
+    .hero-banner,
+    .hero-card,
+    .featured,
+    .featured-news,
+    .featured-card,
+    .main-news,
+    .main-news-card,
+    .headline,
+    main > section:first-of-type {
+        width: calc(100% - 32px) !important;
+        max-width: none !important;
+
+        height: 430px !important;
+        min-height: 430px !important;
+        max-height: 430px !important;
+
+        margin: 20px 16px !important;
+        padding: 0 !important;
+
+        border-radius: 22px !important;
+        overflow: hidden !important;
+
+        box-sizing: border-box !important;
+
+        position: relative !important;
+    }
+
+
+    /* รูปภาพปก */
+    .hero img,
+    .hero-section img,
+    .hero-banner img,
+    .hero-card img,
+    .featured img,
+    .featured-news img,
+    .featured-card img,
+    .main-news img,
+    .main-news-card img,
+    .headline img,
+    main > section:first-of-type img {
+        width: 100% !important;
+        height: 100% !important;
+
+        min-width: 100% !important;
+        min-height: 100% !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        display: block !important;
+    }
+
+
+    /* ชั้นมืดทับรูป */
+    .hero::before,
+    .hero-section::before,
+    .hero-banner::before,
+    .hero-card::before,
+    .featured::before,
+    .featured-news::before,
+    .featured-card::before,
+    .main-news::before,
+    .main-news-card::before {
+        content: "" !important;
+
+        position: absolute !important;
+        inset: 0 !important;
+
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.72)
+        ) !important;
+
+        z-index: 1 !important;
+
+        pointer-events: none !important;
+    }
+
+
+    /* กล่องข้อความบนปก */
+    .hero-content,
+    .hero-section .content,
+    .hero-banner .content,
+    .hero-card-content,
+    .featured-content,
+    .featured-news-content,
+    .featured-card-content,
+    .main-news-content,
+    .main-news-card-content {
+        position: absolute !important;
+
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+
+        width: 100% !important;
+
+        padding: 25px !important;
+
+        box-sizing: border-box !important;
+
+        z-index: 2 !important;
+    }
+
+
+    /* ป้ายข่าว */
+    .hero .category,
+    .hero .tag,
+    .hero .badge,
+    .hero-section .category,
+    .hero-banner .category,
+    .hero-card .category,
+    .featured .category,
+    .featured-news .category,
+    .featured-card .category,
+    .main-news .category {
+        font-size: 14px !important;
+
+        padding: 8px 17px !important;
+
+        margin-bottom: 12px !important;
+
+        display: inline-block !important;
+
+        border-radius: 10px !important;
+    }
+
+
+    /* หัวข่าว */
+    .hero h1,
+    .hero-section h1,
+    .hero-banner h1,
+    .hero-card h1,
+    .featured h1,
+    .featured-news h1,
+    .featured-card h1,
+    .main-news h1,
+    .main-news-card h1 {
+        font-size: 30px !important;
+
+        line-height: 1.25 !important;
+
+        margin: 0 0 12px 0 !important;
+
+        padding: 0 !important;
+
+        max-height: 150px !important;
+
+        overflow: hidden !important;
+
+        display: -webkit-box !important;
+        -webkit-line-clamp: 4 !important;
+        -webkit-box-orient: vertical !important;
+    }
+
+
+    /* คำโปรย */
+    .hero p,
+    .hero-section p,
+    .hero-banner p,
+    .hero-card p,
+    .featured p,
+    .featured-news p,
+    .featured-card p,
+    .main-news p,
+    .main-news-card p {
+        font-size: 15px !important;
+
+        line-height: 1.5 !important;
+
+        margin: 0 0 15px 0 !important;
+
+        max-height: 48px !important;
+
+        overflow: hidden !important;
+
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+    }
+
+
+    /* ปุ่มอ่านข่าว */
+    .hero a,
+    .hero button,
+    .hero-section a,
+    .hero-banner a,
+    .hero-card a,
+    .featured a,
+    .featured-news a,
+    .featured-card a,
+    .main-news a,
+    .main-news-card a {
+        display: inline-flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: auto !important;
+
+        min-width: 150px !important;
+
+        height: 50px !important;
+
+        padding: 0 20px !important;
+
+        font-size: 16px !important;
+
+        box-sizing: border-box !important;
+
+        white-space: nowrap !important;
+    }
+}
+
+
+/* =========================================================
+   จอมือถือเล็ก
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    .hero,
+    .hero-section,
+    .hero-banner,
+    .hero-card,
+    .featured,
+    .featured-news,
+    .featured-card,
+    .main-news,
+    .main-news-card,
+    .headline,
+    main > section:first-of-type {
+
+        width: calc(100% - 24px) !important;
+
+        height: 390px !important;
+        min-height: 390px !important;
+        max-height: 390px !important;
+
+        margin: 12px !important;
+
+        border-radius: 20px !important;
+    }
+
+
+    .hero-content,
+    .hero-section .content,
+    .hero-banner .content,
+    .hero-card-content,
+    .featured-content,
+    .featured-news-content,
+    .featured-card-content,
+    .main-news-content,
+    .main-news-card-content {
+
+        padding: 20px !important;
+    }
+
+
+    .hero h1,
+    .hero-section h1,
+    .hero-banner h1,
+    .hero-card h1,
+    .featured h1,
+    .featured-news h1,
+    .featured-card h1,
+    .main-news h1,
+    .main-news-card h1 {
+
+        font-size: 25px !important;
+
+        line-height: 1.25 !important;
+
+        max-height: 125px !important;
+
+        -webkit-line-clamp: 4 !important;
+    }
+
+
+    .hero p,
+    .hero-section p,
+    .hero-banner p,
+    .hero-card p,
+    .featured p,
+    .featured-news p,
+    .featured-card p,
+    .main-news p,
+    .main-news-card p {
+
+        font-size: 14px !important;
+
+        line-height: 1.45 !important;
+
+        max-height: 42px !important;
+    }
+
+
+    .hero a,
+    .hero button,
+    .hero-section a,
+    .hero-banner a,
+    .hero-card a,
+    .featured a,
+    .featured-news a,
+    .featured-card a,
+    .main-news a,
+    .main-news-card a {
+
+        min-width: 140px !important;
+
+        height: 46px !important;
+
+        font-size: 15px !important;
+    }
+}
