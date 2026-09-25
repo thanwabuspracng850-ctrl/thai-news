@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>THAI NEWS - ข่าวไทย ข่าวล่าสุด</title>
-<meta name="description" content="THAI NEWS ข่าวไทย ข่าวล่าสุด ข่าวการเมือง ข่าวบันเทิง ข่าวเศรษฐกิจ ข่าวสังคม ข่าวอุบัติเหตุ ข่าวกีฬา ข่าวดารา ข่าวดราม่า ข่าวอาชญากรรม ข่าวเทคโนโลยี ข่าวท่องเที่ยว ข่าวไลฟ์สไตล์ ข่าวสุขภาพ และข่าวต่างประเทศ อัปเดตข่าวสารล่าสุด">
+<meta name="description" content="THAI NEWS ข่าวไทย ข่าวล่าสุด ข่าวการเมือง ข่าวบันเทิง ข่าวเศรษฐกิจ ข่าวสังคม ข่าวอุบัติเหตุ ข่าวกีฬา และข่าวต่างประเทศ อัปเดตข่าวสารล่าสุด">
 <meta name="keywords" content="THAI NEWS, ข่าวไทย, ข่าวล่าสุด, ข่าวการเมือง, ข่าวบันเทิง, ข่าวเศรษฐกิจ, ข่าวสังคม, ข่าวอุบัติเหตุ, ข่าวกีฬา, ข่าวต่างประเทศ">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="THAI NEWS">
@@ -80,7 +80,7 @@ button,input{font:inherit}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.78) 38%,rgba(0,0,0,.18) 100%)}
 .hero-content{position:absolute;z-index:2;left:48px;right:35px;top:50%;transform:translateY(-50%);max-width:700px;color:#fff}
 .tag{display:inline-block;background:var(--red);padding:10px 18px;font-size:14px;font-weight:900;margin-bottom:20px}
-.hero h1{font-size:clamp(34px,4vw,52px);line-height:1.14;margin:0 0 18px;font-weight:900;letter-spacing:-1px}
+.hero h1{font-size:clamp(30px,3.8vw,50px);line-height:1.16;margin:0 0 18px;font-weight:900;letter-spacing:-1px;max-width:780px}
 .hero p{font-size:17px;line-height:1.75;color:#e7e7e7;max-width:650px;margin:0}
 .btn{display:inline-block;margin-top:22px;background:var(--red);color:#fff;padding:12px 22px;font-weight:900;cursor:pointer;border:0}
 .btn:hover{background:var(--red2)}
@@ -136,7 +136,7 @@ footer{margin-top:55px;background:var(--navy);color:#fff;padding:38px 20px}
   .search{width:150px;height:38px;padding:0 12px;font-size:12px}
   .nav-inner{padding:0 4px}.nav a{padding:13px 14px 11px;font-size:14px}
   .hero{height:420px;margin-top:12px}
-  .hero-content{left:24px;right:20px}.tag{font-size:12px;padding:8px 12px;margin-bottom:16px}.hero h1{font-size:31px;line-height:1.18}.hero p{font-size:14px;line-height:1.65}.btn{padding:11px 17px;font-size:13px}
+  .hero-content{left:24px;right:20px}.tag{font-size:12px;padding:8px 12px;margin-bottom:16px}.hero h1{font-size:clamp(26px,7vw,31px);line-height:1.2}.hero p{font-size:14px;line-height:1.65}.btn{padding:11px 17px;font-size:13px}
   .section-head{margin:25px 0 14px}.section-head h2{font-size:25px}.section-head p{font-size:12px}.news-grid{grid-template-columns:1fr;gap:14px}
   .card-img{height:205px}.card-body{padding:15px}.card h3{font-size:19px}
   .article-wrapper{margin:12px 0;padding:17px}.article-header h1{font-size:27px}.article-text{font-size:16px;line-height:1.85}.article-cover{margin:15px 0 22px}.share-box{padding:14px}
@@ -177,25 +177,18 @@ footer{margin-top:55px;background:var(--navy);color:#fff;padding:38px 20px}
     <a class="nav-item" data-category="กีฬา" onclick="filterCategory('กีฬา')">กีฬา</a>
     <a class="nav-item" data-category="ต่างประเทศ" onclick="filterCategory('ต่างประเทศ')">ต่างประเทศ</a>
     <a class="nav-item" data-category="ข่าวทั่วไป" onclick="filterCategory('ข่าวทั่วไป')">ข่าวทั่วไป</a>
-    <a class="nav-item" data-category="ดารา" onclick="filterCategory('ดารา')">ดารา</a>
-    <a class="nav-item" data-category="ดราม่า" onclick="filterCategory('ดราม่า')">ดราม่า</a>
-    <a class="nav-item" data-category="อาชญากรรม" onclick="filterCategory('อาชญากรรม')">อาชญากรรม</a>
-    <a class="nav-item" data-category="เทคโนโลยี" onclick="filterCategory('เทคโนโลยี')">เทคโนโลยี</a>
-    <a class="nav-item" data-category="ท่องเที่ยว" onclick="filterCategory('ท่องเที่ยว')">ท่องเที่ยว</a>
-    <a class="nav-item" data-category="ไลฟ์สไตล์" onclick="filterCategory('ไลฟ์สไตล์')">ไลฟ์สไตล์</a>
-    <a class="nav-item" data-category="สุขภาพ" onclick="filterCategory('สุขภาพ')">สุขภาพ</a>
   </div>
 </nav>
 
 <main class="container">
   <div id="mainView">
     <section class="hero" id="heroBanner">
-      <img src="assets/banner.jpg" alt="THAI NEWS" onerror="this.style.display='none'">
+      <img id="heroImage" src="assets/banner.jpg" alt="THAI NEWS" onerror="this.src='assets/banner.jpg'">
       <div class="hero-content">
-        <div class="tag">THAI NEWS</div>
-        <h1>เกาะติดทุกประเด็นสำคัญ<br>อัปเดตข่าวสดรอบวัน</h1>
-        <p>เกาะติดข่าวสารสำคัญจากหลากหลายหมวดข่าว อัปเดตความเคลื่อนไหวล่าสุดให้คุณไม่พลาดทุกประเด็น</p>
-        <a class="btn" onclick="scrollToNews()">ดูข่าวล่าสุด →</a>
+        <div class="tag" id="heroTag">THAI NEWS</div>
+        <h1 id="heroTitle">เกาะติดทุกประเด็นสำคัญ<br>อัปเดตข่าวสดรอบวัน</h1>
+        <p id="heroDescription">เกาะติดข่าวสารสำคัญจากหลากหลายหมวดข่าว อัปเดตความเคลื่อนไหวล่าสุดให้คุณไม่พลาดทุกประเด็น</p>
+        <button class="btn" id="heroButton" type="button" onclick="scrollToNews()">ดูข่าวล่าสุด →</button>
       </div>
     </section>
 
@@ -298,7 +291,33 @@ window.scrollToNews = function(){
   document.getElementById("latest").scrollIntoView({behavior:"smooth"});
 };
 
+function updateHero(){
+  if(!allNewsList.length) return;
+
+  // ดึงข่าว "พจน์ อานนท์" ที่มีอยู่จริงในระบบขึ้นเป็นข่าวใหญ่
+  const pojNews = allNewsList.find(n =>
+    String(n.title || "").includes("พจน์ อานนท์") ||
+    String(n.description || "").includes("พจน์ อานนท์")
+  );
+
+  // ถ้ายังไม่พบ ให้ใช้ข่าวล่าสุดเป็นตัวสำรอง
+  const heroNews = pojNews || [...allNewsList].sort((a,b)=>b.publishedAt-a.publishedAt)[0];
+  if(!heroNews) return;
+
+  document.getElementById("heroImage").src = heroNews.cover || "assets/banner.jpg";
+  document.getElementById("heroImage").alt = heroNews.title || "THAI NEWS";
+  document.getElementById("heroTag").textContent = heroNews.category || "THAI NEWS";
+  document.getElementById("heroTitle").textContent = heroNews.title || "ข่าวล่าสุด";
+  document.getElementById("heroDescription").textContent =
+    heroNews.description || "ติดตามข่าวสารและรายละเอียดล่าสุดจาก THAI NEWS";
+
+  const btn = document.getElementById("heroButton");
+  btn.textContent = "อ่านข่าวนี้ →";
+  btn.onclick = function(){ openArticle(heroNews.id); };
+}
+
 function render(){
+  updateHero();
   const news = getFilteredNews();
   document.getElementById("count").innerText = news.length + " ข่าว";
   if(!news.length){
@@ -321,18 +340,9 @@ function render(){
     </article>`).join("");
 }
 
-window.openArticle = async function(id, updateUrl = true){
+window.openArticle = async function(id){
   const news = allNewsList.find(n => String(n.id) === String(id));
   if(!news) return;
-
-  const directUrl = new URL(window.location.href);
-  directUrl.search = "";
-  directUrl.hash = "";
-  directUrl.searchParams.set("article", String(news.id));
-
-  if(updateUrl){
-    history.pushState({articleId: String(news.id)}, "", directUrl.href);
-  }
 
   const viewedKey = "viewed_" + id;
   if(!sessionStorage.getItem(viewedKey)){
@@ -362,7 +372,7 @@ window.openArticle = async function(id, updateUrl = true){
       </div>
     </article>`).join("");
 
-  const pageUrl = encodeURIComponent(directUrl.href);
+  const pageUrl = encodeURIComponent(window.location.href);
 
   articleView.innerHTML = `
   <div class="article-wrapper">
@@ -396,12 +406,6 @@ window.openArticle = async function(id, updateUrl = true){
 window.closeArticle = function(){
   document.getElementById("articleView").style.display = "none";
   document.getElementById("mainView").style.display = "block";
-
-  const homeUrl = new URL(window.location.href);
-  homeUrl.search = "";
-  homeUrl.hash = "";
-  history.pushState({}, "", homeUrl.href);
-
   render();
 };
 
@@ -411,18 +415,6 @@ window.copyLink = function(){
   }).catch(()=>{ alert(window.location.href); });
 };
 
-window.addEventListener("popstate", function(){
-  const articleId = new URLSearchParams(window.location.search).get("article");
-  if(articleId){
-    openArticle(articleId, false);
-  }else{
-    document.getElementById("articleView").style.display = "none";
-    document.getElementById("mainView").style.display = "block";
-    render();
-    window.scrollTo({top:0, behavior:"smooth"});
-  }
-});
-
 document.getElementById("searchInput").addEventListener("input", function(){
   currentSearch = this.value.trim();
   document.getElementById("articleView").style.display = "none";
@@ -430,12 +422,7 @@ document.getElementById("searchInput").addEventListener("input", function(){
   render();
 });
 
-loadNews().then(()=>{
-  const articleId = new URLSearchParams(window.location.search).get("article");
-  if(articleId){
-    openArticle(articleId, false);
-  }
-});
+loadNews();
 setInterval(loadNews, 20000); // ดึงข่าวใหม่อัตโนมัติทุก 20 วินาที
 </script>
 </body>
