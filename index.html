@@ -6,6 +6,8 @@
 <meta name="description" content="THAI NEWS ข่าวไทย ข่าวจริง เพื่อคนไทย">
 <meta name="theme-color" content="#071a3b">
 <title>THAI NEWS</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="shortcut icon" href="assets/logo.png">
 
 <style>
 *{box-sizing:border-box}
@@ -137,11 +139,11 @@ nav a.active:after{
   position:relative;
   display:flex;
   align-items:flex-end;
-  background:
-    linear-gradient(90deg,rgba(2,20,52,.92) 0%,rgba(3,31,73,.65) 47%,rgba(2,20,52,.12) 100%),
-    url("assets/banner.jpg") center/cover no-repeat;
+  background:#021434;
   box-shadow:var(--shadow);
 }
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(2,20,52,.94) 0%,rgba(3,31,73,.68) 47%,rgba(2,20,52,.16) 100%)}
 .hero-content{
   max-width:680px;
   color:#fff;
@@ -176,46 +178,6 @@ nav a.active:after{
   padding:11px 17px;
   border-radius:8px;
 }
-
-/* FEATURED NEWS */
-.featured-news{
-  margin:28px 0 38px;
-  min-height:430px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  background:#071a3b center/cover no-repeat;
-  box-shadow:var(--shadow);
-  cursor:pointer;
-}
-.featured-news::after{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(2,15,35,.96) 0%,rgba(2,20,52,.76) 45%,rgba(2,20,52,.12) 100%);
-}
-.featured-content{
-  position:relative;z-index:1;
-  max-width:760px;color:#fff;padding:48px;
-}
-.featured-label{
-  display:inline-flex;padding:8px 15px;border-radius:5px;
-  background:var(--red);font-size:13px;font-weight:900;margin-bottom:16px;
-}
-.featured-title{
-  margin:0 0 13px;font-size:clamp(30px,4.2vw,52px);line-height:1.16;
-  letter-spacing:-1px;text-shadow:0 2px 12px rgba(0,0,0,.35);
-}
-.featured-summary{
-  margin:0 0 22px;color:#eef3fb;line-height:1.7;font-size:16px;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-}
-.featured-btn{
-  display:inline-block;background:var(--red);color:#fff;font-weight:900;
-  padding:13px 20px;border-radius:7px;
-}
-.featured-date{font-size:12px;color:#d8e1ef;margin-top:14px}
 
 /* SECTION */
 .section-head{
@@ -402,17 +364,13 @@ footer strong{color:#fff}
   .container{width:92%}
   .header-main{align-items:flex-start}
   .search{display:none}
-  .brand img{width:46px;height:46px}
+  .brand img{width:40px;height:40px}
   .brand-text strong{font-size:24px}
   nav{gap:19px}
   nav a{font-size:14px}
   .hero{min-height:330px;border-radius:15px}
   .hero-content{padding:28px 25px}
   .hero h1{font-size:31px}
-  .featured-news{min-height:430px;border-radius:15px;margin:20px 0 30px}
-  .featured-content{padding:30px 25px}
-  .featured-title{font-size:31px}
-  .featured-summary{font-size:14px}
   .news-list{grid-template-columns:1fr}
   .section-head h1{font-size:27px}
   .article-head{padding:25px 20px 0}
@@ -458,17 +416,447 @@ footer strong{color:#fff}
 <main class="container">
 
   <section id="homePage">
-    <div id="featuredNews" class="featured-news" style="display:none;">
-      <div class="featured-content">
-        <div id="featuredLabel" class="featured-label">THAI NEWS</div>
-        <h1 id="featuredTitle" class="featured-title"></h1>
-        <p id="featuredSummary" class="featured-summary"></p>
-        <div id="featuredDate" class="featured-date"></div>
-        <div class="featured-btn">อ่านข่าวเด่น →</div>
+    <div class="hero">
+      <img id="heroImage" class="hero-bg" src="assets/banner.jpg" alt="THAI NEWS">
+      <div class="hero-content">
+        <div class="hero-label" id="heroLabel">THAI NEWS</div>
+        <h1 id="heroTitle">เกาะติดทุกประเด็นสำคัญ<br>อัปเดตข่าวสดรอบวัน</h1>
+        <p id="heroSummary">ติดตามข่าวสารและเรื่องราวที่น่าสนใจจากหลากหลายหมวดข่าว พร้อมอัปเดตเรื่องเด่นให้คุณไม่พลาดทุกความเคลื่อนไหว</p>
+        <a class="hero-btn" href="#latest" id="heroButton" onclick="showLatest();return false;">ดูข่าวล่าสุด →</a>
       </div>
     </div>
 
     <div class="section-head" id="latest">
+      <div>
+        <h1 id="pageTitle">ข่าวล่าสุด</h1>
+        <p id="pageSub">ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS</p>
+      </div>
+      <div class="count" id="newsCount"></div>
+    </div>
+
+    <div id="newsList" class="news-list"></div>
+    <div id="errorBox" style="display:none" class="error-box"></div>
+  </section>
+
+  <section id="articlePage" style="display:none"></section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><strong>THAI NEWS</strong><br>ข่าวไทย ข่าวจริง เพื่อคนไทย</div>
+    <div>© <span id="year"></span> THAI NEWS</div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   THAI NEWS - SUPABASE FRONTEND
+   รองรับข้อมูลจาก Admin รุ่นเดิม:
+   cover / content_image
+   และรุ่นใหม่:
+   cover_image / content_images
+===================================================== */
+
+const SUPABASE_URL = "https://vkzqqykkuvsbjzhnauxe.supabase.co";
+const SUPABASE_KEY = "sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
+const TABLE = "news_articles";
+const SITE_URL = "https://thanwabuspracng850-ctrl.github.io/thai-news/";
+
+const CATEGORIES = [
+  "ข่าวล่าสุด",
+  "การเมือง",
+  "บันเทิง",
+  "อุบัติเหตุ",
+  "เศรษฐกิจ",
+  "สังคม",
+  "กีฬา",
+  "ต่างประเทศ",
+  "ข่าวทั่วไป"
+];
+
+let cachedNews = [];
+let currentCategory = "ข่าวล่าสุด";
+let searchTerm = "";
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[c]));
+}
+
+function normalize(value){
+  return String(value || "").trim().replace(/\s+/g,"");
+}
+
+function formatDate(value){
+  if(!value) return "";
+  const d = new Date(value);
+  if(Number.isNaN(d.getTime())) return "";
+  return d.toLocaleString("th-TH",{
+    year:"numeric",
+    month:"short",
+    day:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+}
+
+function getCover(item){
+  return item?.cover_image || item?.cover || item?.image || item?.thumbnail || "";
+}
+
+function getContentImages(item){
+  let value = item?.content_images ?? item?.content_image ?? item?.images ?? [];
+
+  if(!value) return [];
+
+  if(Array.isArray(value)) return value.filter(Boolean);
+
+  if(typeof value === "string"){
+    try{
+      const parsed = JSON.parse(value);
+      if(Array.isArray(parsed)) return parsed.filter(Boolean);
+      if(parsed) return [parsed];
+    }catch(e){
+      if(value.startsWith("data:image/") || value.startsWith("http")){
+        return [value];
+      }
+    }
+  }
+
+  return [];
+}
+
+async function supabase(path, options = {}){
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/${path}`,
+    {
+      ...options,
+      headers:{
+        apikey:SUPABASE_KEY,
+        Authorization:`Bearer ${SUPABASE_KEY}`,
+        ...(options.headers || {})
+      }
+    }
+  );
+
+  const text = await response.text();
+  let data = null;
+
+  try{
+    data = text ? JSON.parse(text) : null;
+  }catch(e){}
+
+  if(!response.ok){
+    throw new Error(
+      data?.message ||
+      data?.hint ||
+      data?.details ||
+      data?.error_description ||
+      text ||
+      `HTTP ${response.status}`
+    );
+  }
+
+  return data;
+}
+
+function getLocalNews(){
+  try{
+    const raw = localStorage.getItem("thaiNewsData");
+    if(!raw) return [];
+
+    const parsed = JSON.parse(raw);
+
+    if(Array.isArray(parsed)) return parsed;
+    if(parsed && Array.isArray(parsed.news)) return parsed.news;
+
+    return [];
+  }catch(error){
+    console.warn("อ่านข่าวเก่าจาก localStorage ไม่สำเร็จ", error);
+    return [];
+  }
+}
+
+function normalizeLocalNews(item,index){
+  return {
+    ...item,
+    id: item.id || item.uuid || item.newsId || `local-${index}`,
+    title: item.title || item.headline || item.newsTitle || "ไม่มีหัวข่าว",
+    category: item.category || item.type || item["หมวดหมู่"] || item["หมวดข่าว"] || "ข่าว",
+    summary: item.summary || item.description || item.subtitle || item.excerpt || "",
+    content: item.content || item.body || item.article || item.newsContent || "",
+    cover_image:
+      item.cover_image ||
+      item.cover ||
+      item.coverImage ||
+      item.image ||
+      item.imageUrl ||
+      item.thumbnail ||
+      "",
+    content_images:
+      item.content_images ||
+      item.contentImage ||
+      item.articleImage ||
+      item.detailImage ||
+      item.bodyImage ||
+      [],
+    created_at:
+      item.created_at ||
+      item.createdAt ||
+      item.publishedAt ||
+      item.date ||
+      ""
+  };
+}
+
+async function loadNews(){
+  let remote = [];
+
+  try{
+    const data = await supabase(
+      `${TABLE}?select=*&published=eq.true&order=created_at.desc`
+    );
+    remote = Array.isArray(data) ? data : [];
+  }catch(error){
+    console.warn("โหลดข่าวจาก Supabase ไม่สำเร็จ", error);
+  }
+
+  const local = getLocalNews().map(normalizeLocalNews);
+
+  // รวมข่าวเก่ากับข่าวจากฐานข้อมูล โดยไม่สร้างข่าวซ้ำ
+  const merged = [...remote];
+  const keys = new Set(
+    merged.map(item =>
+      String(item.id || item.title || "").trim()
+    )
+  );
+
+  for(const item of local){
+    const key = String(item.id || item.title || "").trim();
+    if(!keys.has(key)){
+      merged.push(item);
+      keys.add(key);
+    }
+  }
+
+  merged.sort((a,b) => {
+    const da = new Date(a.created_at || 0).getTime() || 0;
+    const db = new Date(b.created_at || 0).getTime() || 0;
+    return db - da;
+  });
+
+  cachedNews = merged;
+  updateHero();
+  return cachedNews;
+}
+
+function buildNavigation(){
+  $("nav").innerHTML = CATEGORIES.map(category => {
+    const isLatest = category === "ข่าวล่าสุด";
+
+    return `
+      <a
+        href="${isLatest ? "./index.html" : `./index.html?category=${encodeURIComponent(category)}`}"
+        data-category="${escapeHTML(category)}"
+        onclick="navigateCategory('${encodeURIComponent(category)}');return false;"
+      >${escapeHTML(category)}</a>
+    `;
+  }).join("");
+}
+
+function setActiveNav(category){
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.classList.toggle(
+      "active",
+      normalize(a.dataset.category) === normalize(category)
+    );
+  });
+}
+
+function filterNews(news){
+  let result = [...news];
+
+  if(currentCategory && currentCategory !== "ข่าวล่าสุด"){
+    result = result.filter(
+      item => normalize(item.category) === normalize(currentCategory)
+    );
+  }
+
+  if(searchTerm){
+    const q = searchTerm.toLowerCase();
+    result = result.filter(item =>
+      `${item.title || ""} ${item.summary || ""} ${item.content || ""} ${item.category || ""}`
+      .toLowerCase()
+      .includes(q)
+    );
+  }
+
+  return result;
+}
+
+function updateHero(){
+  const item = cachedNews[0];
+  const image = $("heroImage");
+  const label = $("heroLabel");
+  const title = $("heroTitle");
+  const summary = $("heroSummary");
+  const button = $("heroButton");
+
+  if(!item){
+    image.src = "assets/banner.jpg";
+    label.textContent = "THAI NEWS";
+    title.innerHTML = "เกาะติดทุกประเด็นสำคัญ<br>อัปเดตข่าวสดรอบวัน";
+    summary.textContent = "ติดตามข่าวสารและเรื่องราวที่น่าสนใจจากหลากหลายหมวดข่าว พร้อมอัปเดตเรื่องเด่นให้คุณไม่พลาดทุกความเคลื่อนไหว";
+    button.textContent = "ดูข่าวล่าสุด →";
+    button.onclick = () => { showLatest(); return false; };
+    return;
+  }
+
+  image.src = getCover(item) || "assets/banner.jpg";
+  image.onerror = () => { image.src = "assets/banner.jpg"; };
+  label.textContent = item.category || "THAI NEWS";
+  title.textContent = item.title || "ข่าวล่าสุด";
+  summary.textContent = item.summary || item.content || "ติดตามรายละเอียดข่าวล่าสุดจาก THAI NEWS";
+  button.textContent = "อ่านข่าวนี้ →";
+  button.onclick = () => { openArticle(item.id); return false; };
+}
+
+function renderNews(){
+  const list = filterNews(cachedNews);
+  const box = $("newsList");
+
+  /* ถ้าไม่มีข่าว ให้เป็นพื้นที่โล่งจริง */
+  box.innerHTML = "";
+  $("errorBox").style.display = "none";
+  $("newsCount").textContent = list.length ? `${list.length} ข่าว` : "";
+
+  if(currentCategory === "ข่าวล่าสุด"){
+    $("pageTitle").textContent = "ข่าวล่าสุด";
+    $("pageSub").textContent = searchTerm
+      ? `ผลการค้นหา "${searchTerm}"`
+      : "ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS";
+  }else{
+    $("pageTitle").textContent = currentCategory;
+    $("pageSub").textContent = searchTerm
+      ? `ผลการค้นหา "${searchTerm}" ในหมวด ${currentCategory}`
+      : `ข่าวในหมวด ${currentCategory}`;
+  }
+
+  list.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "news-card";
+
+    const cover = getCover(item);
+
+    const image = document.createElement("img");
+    image.className = "news-cover";
+    image.alt = item.title || "THAI NEWS";
+    image.loading = "lazy";
+    image.src = cover || "assets/banner.jpg";
+    image.onerror = () => { image.src = "assets/banner.jpg"; };
+
+    const body = document.createElement("div");
+    body.className = "news-body";
+
+    const category = document.createElement("div");
+    category.className = "category";
+    category.textContent = item.category || "ข่าว";
+
+    const title = document.createElement("h2");
+    title.className = "news-title";
+    title.textContent = item.title || "ไม่มีหัวข่าว";
+
+    const summary = document.createElement("div");
+    summary.className = "news-summary";
+    summary.textContent = item.summary || "";
+
+    const meta = document.createElement("div");
+    meta.className = "news-meta";
+    meta.textContent = formatDate(item.created_at);
+
+    const button = document.createElement("button");
+    button.className = "read-btn";
+    button.textContent = "อ่านข่าวต่อ →";
+    button.onclick = () => openArticle(item.id);
+
+    body.append(category,title,summary,meta,button);
+    card.append(image,body);
+    box.appendChild(card);
+  });
+}
+
+function setURL(params = {}){
+  const url = new URL(location.href);
+
+  url.search = "";
+
+  Object.entries(params).forEach(([key,value]) => {
+    if(value !== null && value !== undefined && value !== ""){
+      url.searchParams.set(key,value);
+    }
+  });
+
+  history.pushState({}, "", url);
+}
+
+async function navigateCategory(encodedCategory){
+  const category = decodeURIComponent(encodedCategory);
+
+  if(category === "ข่าวล่าสุด"){
+    setURL({});
+  }else{
+    setURL({category});
+  }
+
+  currentCategory = category;
+  searchTerm = "";
+  $("searchInput").value = "";
+
+  $("homePage").style.display = "block";
+  $("articlePage").style.display = "none";
+  setActiveNav(category);
+  renderNews();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showLatest(){
+  setURL({});
+  currentCategory = "ข่าวล่าสุด";
+  searchTerm = "";
+  $("searchInput").value = "";
+  $("homePage").style.display = "block";
+  $("articlePage").style.display = "none";
+  setActiveNav("ข่าวล่าสุด");
+  renderNews();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function goHome(){
+  showLatest();
+}
+
+async function findArticle(id){
+  const local = cachedNews.find(
+    item => String(item.id) === String(id)
+  );
+
+  if(local) return local;
+
+  const rows = await supabase(
+    `${TABLE}?select=*&id=eq.${encodeURIComponent(id)}&published=eq.true&limit=1`
+  );
+
+  return Array.isArray(rows) ? rows[0] : null;
+}
+
+async function opehead" id="latest">
       <div>
         <h1 id="pageTitle">ข่าวล่าสุด</h1>
         <p id="pageSub">ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS</p>
