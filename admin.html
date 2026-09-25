@@ -9,35 +9,68 @@
 body{margin:0;font-family:Arial,"Noto Sans Thai",Tahoma,sans-serif;background:#eef2f7;color:#172033}
 button,input,textarea,select{font:inherit}
 .login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 20% 20%,#193f77,transparent 35%),linear-gradient(135deg,#06142e,#0c2b57)}
-.login-box{width:430px;max-width:92%;background:#fff;padding:42px;border-radius:25px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-.login-brand{text-align:center}.login-brand h1{font-size:30px;margin:10px 0 3px}.login-brand h1 span{color:#e52b3b}.login-brand p{color:#777;margin-bottom:30px}
+.login-box{width:430px;max-width:92%;background:rgba(255,255,255,.97);padding:42px;border-radius:25px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.login-brand{text-align:center}
+.login-brand h1{font-size:30px;margin:10px 0 3px}
+.login-brand h1 span{color:#e52b3b}
+.login-brand p{color:#777;margin-bottom:30px}
 label{display:block;font-weight:bold;margin:18px 0 8px}
 input,textarea,select{width:100%;padding:14px 15px;border:1px solid #dce1e8;border-radius:11px;outline:none;background:#fff}
 input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3px rgba(229,43,59,.1)}
 .login-btn,.primary{border:0;background:linear-gradient(135deg,#e52b3b,#bd1729);color:#fff;font-weight:bold;padding:14px 20px;border-radius:11px;cursor:pointer}
 .login-btn{width:100%;margin-top:25px;font-size:16px}
-.error{color:#e52b3b;text-align:center;margin-top:15px;font-size:14px;min-height:20px}
+.error{color:#e52b3b;text-align:center;margin-top:15px;font-size:14px}
 .admin{display:none;min-height:100vh}
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:270px;background:linear-gradient(180deg,#071b3a,#092a55);color:#fff;padding:22px 16px;z-index:10}
-.logo{display:flex;align-items:center;padding:10px;margin-bottom:30px}.logo strong{font-size:21px}.logo span{color:#ef3340}
+.logo{display:flex;align-items:center;gap:12px;padding:10px;margin-bottom:30px}
+.logo strong{font-size:21px}
+.logo span{color:#ef3340}
 .menu-title{font-size:11px;color:#8da5c5;padding:0 12px;margin:20px 0 8px}
-.menu{display:block;padding:13px 15px;border-radius:10px;margin:4px 0;cursor:pointer;color:#dce8f7}.menu:hover,.menu.active{background:linear-gradient(90deg,#e52b3b,#bc1729);color:#fff}
-.main{margin-left:270px}.top{height:80px;background:#fff;border-bottom:1px solid #e5e8ed;display:flex;align-items:center;justify-content:space-between;padding:0 35px}
-.top-right{display:flex;align-items:center;gap:15px}.admin-name{font-weight:bold;color:#e52b3b}.logout{border:0;background:#f2f3f5;padding:9px 14px;border-radius:8px;cursor:pointer}
-.page{padding:35px;max-width:1500px}.page-title{margin-bottom:25px}.page-title h1{margin:0;font-size:32px}.page-title p{color:#77808e}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:25px}.stat{background:#fff;padding:23px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.05)}.stat small{color:#7d8795}.stat strong{display:block;font-size:31px;margin-top:8px}
-.panel{background:#fff;border-radius:18px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.05);margin-bottom:25px}.panel h2{margin-top:0}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.full{grid-column:1/-1}textarea{min-height:180px;resize:vertical}
+.menu{display:block;padding:13px 15px;border-radius:10px;margin:4px 0;cursor:pointer;color:#dce8f7}
+.menu:hover,.menu.active{background:linear-gradient(90deg,#e52b3b,#bc1729);color:#fff}
+.main{margin-left:270px}
+.top{height:80px;background:#fff;border-bottom:1px solid #e5e8ed;display:flex;align-items:center;justify-content:space-between;padding:0 35px}
+.top-right{display:flex;align-items:center;gap:15px}
+.admin-name{font-weight:bold;color:#e52b3b}
+.logout{border:0;background:#f2f3f5;padding:9px 14px;border-radius:8px;cursor:pointer}
+.page{padding:35px;max-width:1500px}
+.page-title{margin-bottom:25px}
+.page-title h1{margin:0;font-size:32px}
+.page-title p{color:#77808e}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:25px}
+.stat{background:#fff;padding:23px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.stat small{color:#7d8795}
+.stat strong{display:block;font-size:31px;margin-top:8px}
+.panel{background:#fff;border-radius:18px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.05);margin-bottom:25px}
+.panel h2{margin-top:0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.full{grid-column:1/-1}
+textarea{min-height:180px;resize:vertical}
 .preview{max-width:300px;max-height:200px;object-fit:cover;border-radius:12px;margin-top:10px;display:none}
-.content-block{border:1px solid #e1e5eb;border-radius:14px;padding:18px;margin:15px 0;background:#fafbfc}.block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:bold}
+.content-block{border:1px solid #e1e5eb;border-radius:14px;padding:18px;margin:15px 0;background:#fafbfc}
+.block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:bold}
 .remove{border:0;background:#ffe5e8;color:#d82035;padding:7px 10px;border-radius:7px;cursor:pointer}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.toolbar button{border:1px solid #ddd;background:#fff;padding:10px 14px;border-radius:9px;cursor:pointer}
-.news-table{width:100%;border-collapse:collapse}.news-table th,.news-table td{padding:14px;border-bottom:1px solid #eee;text-align:left}.news-table img{width:90px;height:55px;object-fit:cover;border-radius:8px}
-.badge{background:#e9f8ef;color:#168347;padding:5px 10px;border-radius:20px;font-size:12px}.empty{text-align:center;padding:40px;color:#7d8795}
-.status{padding:12px 15px;border-radius:10px;margin-bottom:20px;display:none}.status.ok{display:block;background:#e9f8ef;color:#168347}.status.error{display:block;background:#ffe5e8;color:#d82035}
-.connection{font-size:12px;color:#6b7280;margin-top:12px;text-align:center}.connection.ok{color:#168347}.connection.bad{color:#d82035}
-.small-btn{border:0;background:#eef2f7;padding:8px 12px;border-radius:8px;cursor:pointer}
-@media(max-width:900px){.sidebar{width:75px}.sidebar .logo strong,.sidebar .menu-title,.sidebar .menu span{display:none}.main{margin-left:75px}.stats{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.page{padding:20px}.top{padding:0 18px}.admin-name{display:none}.news-table{font-size:13px}}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.toolbar button{border:1px solid #ddd;background:#fff;padding:10px 14px;border-radius:9px;cursor:pointer}.link-help{background:#f6f8fb;border:1px solid #e1e5eb;padding:12px 14px;border-radius:10px;color:#586174;font-size:13px;line-height:1.6;margin:10px 0 15px}.link-insert{border:1px solid #e52b3b!important;color:#e52b3b!important;background:#fff!important}
+.news-table{width:100%;border-collapse:collapse}
+.news-table th,.news-table td{padding:14px;border-bottom:1px solid #eee;text-align:left}
+.news-table img{width:90px;height:55px;object-fit:cover;border-radius:8px}
+.badge{background:#e9f8ef;color:#168347;padding:5px 10px;border-radius:20px;font-size:12px}
+.empty{text-align:center;padding:40px;color:#7d8795}
+.status{padding:12px 15px;border-radius:10px;margin-bottom:20px;display:none}
+.status.ok{display:block;background:#e9f8ef;color:#168347}
+.status.error{display:block;background:#ffe5e8;color:#d82035}
+@media(max-width:900px){
+.sidebar{width:75px}
+.sidebar .logo strong,.sidebar .menu-title,.sidebar .menu span{display:none}
+.main{margin-left:75px}
+.stats{grid-template-columns:1fr 1fr}
+.form-grid{grid-template-columns:1fr}
+.page{padding:20px}
+.top{padding:0 18px}
+.admin-name{display:none}
+.news-table{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -46,12 +79,11 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
   <div class="login-box">
     <div class="login-brand"><h1>THAI <span>NEWS</span></h1><p>ADMIN PANEL</p></div>
     <label>อีเมลแอดมิน</label>
-    <input id="username" type="email" autocomplete="username" placeholder="อีเมลที่สร้างใน Supabase">
+    <input id="username" type="email" autocomplete="username" placeholder="you@example.com">
     <label>รหัสผ่าน</label>
-    <input id="password" type="password" autocomplete="current-password" placeholder="รหัสผ่าน">
-    <button id="loginBtn" class="login-btn" type="button">เข้าสู่ระบบผู้ดูแล</button>
+    <input id="password" type="password" autocomplete="current-password">
+    <button class="login-btn" onclick="login()">เข้าสู่ระบบผู้ดูแล</button>
     <div id="error" class="error"></div>
-    <div id="connection" class="connection">กำลังตรวจสอบการเชื่อมต่อ...</div>
   </div>
 </div>
 
@@ -59,12 +91,12 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
 <aside class="sidebar">
   <div class="logo"><strong>THAI <span>NEWS</span></strong></div>
   <div class="menu-title">ADMIN MENU</div>
-  <div class="menu active" data-page="dashboard">📊 <span>แดชบอร์ด</span></div>
-  <div class="menu" data-page="write">✍️ <span>โพสต์ข่าวลงเว็บไซต์</span></div>
-  <div class="menu" data-page="views">👁️ <span>รายงานยอดคนดู</span></div>
-  <div class="menu" data-page="manage">📰 <span>จัดการข่าวสาร</span></div>
-  <div class="menu" data-page="categories">📂 <span>หมวดข่าว</span></div>
-  <div class="menu" data-page="settings">⚙️ <span>ตั้งค่าเว็บไซต์</span></div>
+  <div class="menu active" onclick="showPage('dashboard',this)">📊 <span>แดชบอร์ด</span></div>
+  <div class="menu" onclick="showPage('write',this)">✍️ <span>โพสต์ข่าวลงเว็บไซต์</span></div>
+  <div class="menu" onclick="showPage('views',this)">👁️ <span>รายงานยอดคนดู</span></div>
+  <div class="menu" onclick="showPage('manage',this)">📰 <span>จัดการข่าวสาร</span></div>
+  <div class="menu" onclick="showPage('categories',this)">📂 <span>หมวดข่าว</span></div>
+  <div class="menu" onclick="showPage('settings',this)">⚙️ <span>ตั้งค่าเว็บไซต์</span></div>
 </aside>
 
 <main class="main">
@@ -72,7 +104,7 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
   <strong>THAI NEWS ADMIN</strong>
   <div class="top-right">
     <span class="admin-name" id="adminNameLabel">ADMIN</span>
-    <button id="logoutBtn" class="logout" type="button">ออกจากระบบ</button>
+    <button class="logout" onclick="logout()">ออกจากระบบ</button>
   </div>
 </header>
 
@@ -83,18 +115,15 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
   <div class="stats">
     <div class="stat"><small>ข่าวทั้งหมด</small><strong id="totalNews">0</strong></div>
     <div class="stat"><small>ยอดอ่านรวมทั้งหมด</small><strong id="totalViews">0</strong></div>
-    <div class="stat"><small>หมวดข่าว</small><strong>16</strong></div>
+    <div class="stat"><small>หมวดข่าว</small><strong>9</strong></div>
     <div class="stat"><small>ผู้ดูแลระบบ</small><strong>1</strong></div>
   </div>
-  <div id="dashboardStatus"></div>
   <div class="panel">
     <h2>ข่าวล่าสุดและยอดเข้าชม</h2>
-    <div style="overflow:auto">
-      <table class="news-table">
-        <thead><tr><th>ภาพ</th><th>หัวข้อ</th><th>หมวด</th><th>👁️ ยอดคนดู</th><th>สถานะ</th></tr></thead>
-        <tbody id="dashboardNews"></tbody>
-      </table>
-    </div>
+    <table class="news-table">
+      <thead><tr><th>ภาพ</th><th>หัวข้อ</th><th>หมวด</th><th>👁️ ยอดคนดู</th><th>สถานะ</th></tr></thead>
+      <tbody id="dashboardNews"></tbody>
+    </table>
   </div>
 </div>
 
@@ -107,49 +136,52 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
       <div>
         <label>หมวดข่าว</label>
         <select id="category">
-          <option>ข่าวล่าสุด</option><option>การเมือง</option><option>บันเทิง</option><option>ดารา</option>
-          <option>ดราม่า</option><option>อุบัติเหตุ</option><option>อาชญากรรม</option><option>เศรษฐกิจ</option>
-          <option>สังคม</option><option>กีฬา</option><option>ต่างประเทศ</option><option>ข่าวทั่วไป</option>
-          <option>เทคโนโลยี</option><option>ท่องเที่ยว</option><option>ไลฟ์สไตล์</option><option>สุขภาพ</option>
+          <option>ข่าวล่าสุด</option><option>การเมือง</option><option>บันเทิง</option>
+          <option>อุบัติเหตุ</option><option>เศรษฐกิจ</option><option>สังคม</option>
+          <option>กีฬา</option><option>ต่างประเทศ</option><option>ข่าวทั่วไป</option>
         </select>
       </div>
       <div><label>คำโปรย</label><input id="description" placeholder="คำโปรยข่าว..."></div>
       <div class="full">
         <label>รูปภาพหน้าปก</label>
-        <input id="cover" type="file" accept="image/*">
+        <input id="cover" type="file" accept="image/*" onchange="previewCover(event)">
         <img id="coverPreview" class="preview">
       </div>
     </div>
     <hr style="border:0;border-top:1px solid #eee;margin:30px 0">
     <h2>เนื้อหาข่าว</h2>
     <div class="toolbar">
-      <button id="addTextBtn" type="button">➕ เพิ่มข้อความ</button>
-      <button id="addImageBtn" type="button">🖼️ แทรกรูปภาพ</button>
+      <button type="button" onclick="addText()">➕ เพิ่มข้อความ</button>
+      <button type="button" onclick="addImage()">🖼️ แทรกรูปภาพ</button>
     </div>
     <div id="contentBlocks"></div>
-    <button id="publishBtn" class="primary" type="button" style="width:100%;font-size:18px;margin-top:20px">🚀 เผยแพร่ข่าวลงเว็บไซต์ทันที</button>
+    <button class="primary" type="button" onclick="publishNews()" style="width:100%;font-size:18px;margin-top:20px;">🚀 เผยแพร่ข่าวลงเว็บไซต์ทันที</button>
   </div>
 </div>
 
 <div id="viewsPage" style="display:none">
   <div class="page-title"><h1>รายงานยอดคนดูข่าว</h1><p>สรุปอันดับข่าวที่มีผู้อ่านสูงสุด</p></div>
-  <div class="panel"><div style="overflow:auto"><table class="news-table">
-    <thead><tr><th>อันดับ</th><th>ภาพ</th><th>หัวข้อข่าว</th><th>หมวดหมู่</th><th>👁️ ยอดคนดู</th></tr></thead>
-    <tbody id="viewsReportNews"></tbody>
-  </table></div></div>
+  <div class="panel">
+    <table class="news-table">
+      <thead><tr><th>อันดับ</th><th>ภาพ</th><th>หัวข้อข่าว</th><th>หมวดหมู่</th><th>👁️ ยอดคนดู (ครั้ง)</th></tr></thead>
+      <tbody id="viewsReportNews"></tbody>
+    </table>
+  </div>
 </div>
 
 <div id="managePage" style="display:none">
   <div class="page-title"><h1>จัดการข่าวสาร</h1><p>จัดการและลบข่าวที่แสดงบนเว็บไซต์ THAI NEWS</p></div>
-  <div class="panel"><div style="overflow:auto"><table class="news-table">
-    <thead><tr><th>ภาพ</th><th>หัวข้อ</th><th>หมวด</th><th>ยอดคนดู</th><th>จัดการ</th></tr></thead>
-    <tbody id="manageNews"></tbody>
-  </table></div></div>
+  <div class="panel">
+    <table class="news-table">
+      <thead><tr><th>ภาพ</th><th>หัวข้อ</th><th>หมวด</th><th>ยอดคนดู</th><th>จัดการ</th></tr></thead>
+      <tbody id="manageNews"></tbody>
+    </table>
+  </div>
 </div>
 
 <div id="categoriesPage" style="display:none">
   <div class="page-title"><h1>หมวดข่าว</h1><p>หมวดหมู่เว็บไซต์ THAI NEWS</p></div>
-  <div class="panel"><h2>หมวดข่าวทั้งหมด</h2><p>ข่าวล่าสุด · การเมือง · บันเทิง · ดารา · ดราม่า · อุบัติเหตุ · อาชญากรรม · เศรษฐกิจ · สังคม · กีฬา · ต่างประเทศ · ข่าวทั่วไป · เทคโนโลยี · ท่องเที่ยว · ไลฟ์สไตล์ · สุขภาพ</p></div>
+  <div class="panel"><h2>หมวดข่าวทั้งหมด</h2><p>ข่าวล่าสุด · การเมือง · บันเทิง · อุบัติเหตุ · เศรษฐกิจ · สังคม · กีฬา · ต่างประเทศ · ข่าวทั่วไป</p></div>
 </div>
 
 <div id="settingsPage" style="display:none">
@@ -167,330 +199,260 @@ input:focus,textarea:focus,select:focus{border-color:#e52b3b;box-shadow:0 0 0 3p
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
+/* ===== ตั้งค่าแล้วให้คุณเลย ต้องเหมือนกับใน index.html ทุกตัวอักษร ===== */
 const SUPABASE_URL = "https://vkzqqykkuvsbjzhnauxe.supabase.co";
 const SUPABASE_KEY = "sb_publishable_PClUbzNwuPKhvZ0QfHBn6g_Dhkm5Tos";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const $ = id => document.getElementById(id);
+/* =====================================================
+   ล็อกอินด้วย Supabase Authentication จริง
+   ตั้งค่าก่อนใช้งาน (ทำครั้งเดียวใน Supabase Dashboard):
+   1) Authentication > Providers > เปิด Email ให้เป็น Enabled (ปกติเปิดอยู่แล้วโดย default)
+   2) Authentication > Users > Add user > ใส่อีเมล+รหัสผ่านของตัวเอง
+===================================================== */
+window.login = async function(){
+  const u = document.getElementById("username").value.trim();
+  const p = document.getElementById("password").value;
+  const errorBox = document.getElementById("error");
+  errorBox.innerText = "";
 
-function escapeHTML(value){
-  return String(value ?? "").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[c]));
-}
-
-function setConnection(text, ok){
-  const el = $("connection");
-  el.textContent = text;
-  el.className = "connection " + (ok ? "ok" : "bad");
-}
-
-function showStatus(msg, ok=false){
-  const st = $("status");
-  if(!st) return;
-  st.textContent = msg;
-  st.className = "status " + (ok ? "ok" : "error");
-  setTimeout(()=>st.className="status",5000);
-}
-
-function showDashboardError(msg){
-  $("dashboardStatus").innerHTML =
-    `<div class="status error" style="display:block">${escapeHTML(msg)}</div>`;
-}
-
-async function testConnection(){
-  try{
-    const { error } = await supabase.from("news").select("id").limit(1);
-    if(error) throw error;
-    setConnection("● เชื่อมต่อ Supabase สำเร็จ",true);
-    return true;
-  }catch(e){
-    setConnection("● เชื่อมต่อ Supabase ไม่สำเร็จ",false);
-    return false;
-  }
-}
-
-async function login(){
-  const email = $("username").value.trim();
-  const password = $("password").value;
-  $("error").textContent = "";
-
-  if(!email || !password){
-    $("error").textContent = "กรุณากรอกอีเมลและรหัสผ่าน";
+  const { data, error } = await supabase.auth.signInWithPassword({ email: u, password: p });
+  if(error){
+    errorBox.innerText = "อีเมลหรือรหัสผ่านไม่ถูกต้อง";
     return;
   }
+  enterAdmin(data.user);
+};
 
-  $("loginBtn").disabled = true;
-  $("loginBtn").textContent = "กำลังเข้าสู่ระบบ...";
+window.logout = async function(){
+  await supabase.auth.signOut();
+  document.getElementById("admin").style.display = "none";
+  document.getElementById("login").style.display = "flex";
+};
 
-  try{
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,password
-    });
-    if(error) throw error;
-    await enterAdmin(data.user);
-  }catch(e){
-    console.error(e);
-    $("error").textContent = e.message || "เข้าสู่ระบบไม่สำเร็จ";
-  }finally{
-    $("loginBtn").disabled = false;
-    $("loginBtn").textContent = "เข้าสู่ระบบผู้ดูแล";
-  }
+function enterAdmin(user){
+  document.getElementById("login").style.display = "none";
+  document.getElementById("admin").style.display = "block";
+  document.getElementById("adminNameLabel").innerText = "ADMIN · " + (user?.email || "");
+  loadAdmin();
 }
 
-async function enterAdmin(user){
-  $("login").style.display = "none";
-  $("admin").style.display = "block";
-  $("adminNameLabel").textContent = "ADMIN · " + (user?.email || "");
+// ถ้าเคยล็อกอินค้างไว้ (เปิดหน้าใหม่/รีเฟรช) ให้เข้าระบบอัตโนมัติ
+const { data: { session } } = await supabase.auth.getSession();
+if(session?.user){ enterAdmin(session.user); }
+
+window.showPage = function(page, el){
+  document.querySelectorAll("[id$='Page']").forEach(x=>{ x.style.display = "none"; });
+  document.getElementById(page + "Page").style.display = "block";
+  document.querySelectorAll(".menu").forEach(x=>{ x.classList.remove("active"); });
+  if(el) el.classList.add("active");
+  if(page === "manage" || page === "views" || page === "dashboard") refreshAdminData();
+};
+
+function showStatus(msg, isOk){
+  const st = document.getElementById("status");
+  st.innerText = msg;
+  st.className = "status " + (isOk ? "ok" : "error");
+  setTimeout(()=>{ st.className = "status"; }, 4000);
+}
+
+function escapeHTML(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+async function loadAdmin(){
   await refreshAdminData();
 }
 
-async function logout(){
-  await supabase.auth.signOut();
-  $("admin").style.display = "none";
-  $("login").style.display = "flex";
-  $("password").value = "";
-}
-
-function showPage(page, el){
-  document.querySelectorAll("[id$='Page']").forEach(x=>x.style.display="none");
-  const target = $(page+"Page");
-  if(target) target.style.display="block";
-  document.querySelectorAll(".menu").forEach(x=>x.classList.remove("active"));
-  if(el) el.classList.add("active");
-  if(["manage","views","dashboard"].includes(page)) refreshAdminData();
-}
-
 async function refreshAdminData(){
-  $("dashboardNews").innerHTML = `<tr><td colspan="5" class="empty">กำลังโหลด...</td></tr>`;
-  try{
-    const { data, error } = await supabase
-      .from("news")
-      .select("id,title,category,description,cover,content,views,created_at")
-      .order("created_at",{ascending:false});
+  const { data, error } = await supabase
+    .from("news")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-    if(error) throw error;
-
-    const news = data || [];
-    const totalViews = news.reduce((s,n)=>s+Number(n.views||0),0);
-
-    $("totalNews").textContent = news.length;
-    $("totalViews").textContent = totalViews.toLocaleString("th-TH");
-
-    if(!news.length){
-      $("dashboardNews").innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
-      $("manageNews").innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
-      $("viewsReportNews").innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
-      return;
-    }
-
-    $("dashboardNews").innerHTML = news.map(n=>`
-      <tr>
-        <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}" onerror="this.src='assets/banner.jpg'"></td>
-        <td>${escapeHTML(n.title)}</td>
-        <td>${escapeHTML(n.category)}</td>
-        <td><b>👁️ ${Number(n.views||0).toLocaleString("th-TH")}</b></td>
-        <td><span class="badge">เผยแพร่</span></td>
-      </tr>`).join("");
-
-    $("manageNews").innerHTML = news.map(n=>`
-      <tr>
-        <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}" onerror="this.src='assets/banner.jpg'"></td>
-        <td>${escapeHTML(n.title)}</td>
-        <td>${escapeHTML(n.category)}</td>
-        <td>👁️ ${Number(n.views||0).toLocaleString("th-TH")}</td>
-        <td><button class="remove" type="button" data-delete="${escapeHTML(n.id)}">ลบ</button></td>
-      </tr>`).join("");
-
-    const byViews = [...news].sort((a,b)=>Number(b.views||0)-Number(a.views||0));
-    $("viewsReportNews").innerHTML = byViews.map((n,i)=>`
-      <tr>
-        <td><b>#${i+1}</b></td>
-        <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}" onerror="this.src='assets/banner.jpg'"></td>
-        <td>${escapeHTML(n.title)}</td>
-        <td>${escapeHTML(n.category)}</td>
-        <td><b style="color:#e52b3b">👁️ ${Number(n.views||0).toLocaleString("th-TH")}</b></td>
-      </tr>`).join("");
-
-  }catch(e){
-    console.error(e);
-    showDashboardError("เชื่อมต่อฐานข้อมูลไม่ได้: " + (e.message || "Unknown error"));
-    $("dashboardNews").innerHTML =
-      `<tr><td colspan="5" class="empty">ไม่สามารถโหลดข่าวได้</td></tr>`;
+  if(error){
+    showStatus("เชื่อมต่อฐานข้อมูลไม่ได้: " + error.message, false);
+    return;
   }
+
+  const news = data || [];
+  const sumViews = news.reduce((sum, n) => sum + Number(n.views || 0), 0);
+
+  document.getElementById("totalNews").innerText = news.length;
+  document.getElementById("totalViews").innerText = sumViews.toLocaleString("th-TH");
+
+  const dashboard = document.getElementById("dashboardNews");
+  const manage = document.getElementById("manageNews");
+  const viewsReport = document.getElementById("viewsReportNews");
+
+  if(!news.length){
+    dashboard.innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
+    manage.innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
+    viewsReport.innerHTML = `<tr><td colspan="5" class="empty">ยังไม่มีข่าว</td></tr>`;
+    return;
+  }
+
+  dashboard.innerHTML = news.map(n=>`
+    <tr>
+      <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}"></td>
+      <td>${escapeHTML(n.title||"")}</td>
+      <td>${escapeHTML(n.category||"")}</td>
+      <td><b>👁️ ${n.views||0}</b></td>
+      <td><span class="badge">เผยแพร่</span></td>
+    </tr>`).join("");
+
+  manage.innerHTML = news.map(n=>`
+    <tr>
+      <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}"></td>
+      <td>${escapeHTML(n.title||"")}</td>
+      <td>${escapeHTML(n.category||"")}</td>
+      <td>👁️ ${n.views||0}</td>
+      <td><button class="primary" style="padding:7px 10px;margin-right:6px" type="button" onclick="copyNewsLink('${n.id}')">🔗 ลิงก์</button><button class="remove" type="button" onclick="deleteNews('${n.id}')">ลบ</button></td>
+    </tr>`).join("");
+
+  const byViews = [...news].sort((a,b)=> (b.views||0) - (a.views||0));
+  viewsReport.innerHTML = byViews.map((n,i)=>`
+    <tr>
+      <td><b>#${i+1}</b></td>
+      <td><img src="${escapeHTML(n.cover||"assets/banner.jpg")}"></td>
+      <td>${escapeHTML(n.title||"")}</td>
+      <td>${escapeHTML(n.category||"")}</td>
+      <td><b style="color:#e52b3b;font-size:16px">👁️ ${Number(n.views||0).toLocaleString("th-TH")}</b></td>
+    </tr>`).join("");
 }
 
-async function deleteNews(id){
+window.copyNewsLink = async function(id){
+  const url = new URL('index.html', window.location.href);
+  url.searchParams.set('article', String(id));
+  try{
+    await navigator.clipboard.writeText(url.href);
+    showStatus('คัดลอกลิงก์ข่าวเฉพาะบทความแล้ว', true);
+  }catch(e){
+    prompt('คัดลอกลิงก์ข่าวนี้:', url.href);
+  }
+};
+
+window.deleteNews = async function(id){
   if(!confirm("ต้องการลบข่าวนี้หรือไม่?")) return;
-  try{
-    const { error } = await supabase.from("news").delete().eq("id",id);
-    if(error) throw error;
-    alert("ลบข่าวเรียบร้อยแล้ว");
-    await refreshAdminData();
-  }catch(e){
-    alert("ลบข่าวไม่สำเร็จ: " + (e.message || "Unknown error"));
-  }
-}
+  const { error } = await supabase.from("news").delete().eq("id", id);
+  if(error){ showStatus("ไม่สามารถลบข่าวได้: " + error.message, false); return; }
+  showStatus("ลบข่าวเรียบร้อยแล้ว", true);
+  refreshAdminData();
+};
 
-function previewCover(e){
-  const file = e.target.files?.[0];
+window.previewCover = function(e){
+  const file = e.target.files[0];
   if(!file) return;
   const reader = new FileReader();
-  reader.onload=()=>{
-    $("coverPreview").src=reader.result;
-    $("coverPreview").style.display="block";
+  reader.onload = ()=>{
+    const img = document.getElementById("coverPreview");
+    img.src = reader.result;
+    img.style.display = "block";
   };
   reader.readAsDataURL(file);
-}
+};
 
-function compressImage(file,maxWidth=1400,quality=.78){
-  return new Promise((resolve,reject)=>{
-    if(!file){resolve("");return;}
-    const img = new Image();
+window.addText = function(){
+  const wrap = document.createElement("div");
+  wrap.className = "content-block";
+  wrap.innerHTML = `<div class="block-head"><span>📝 ข้อความ</span><button type="button" class="remove" onclick="this.closest('.content-block').remove()">ลบ</button></div><div class="toolbar" style="margin:8px 0"><button type="button" class="link-insert" onclick="insertLink(this)">🔗 แทรกลิงก์</button></div><textarea class="textBlock" placeholder="พิมพ์เนื้อข่าว... เช่น อ่านรายละเอียดเพิ่มเติมที่นี่"></textarea>`;
+  document.getElementById("contentBlocks").appendChild(wrap);
+};
+
+window.insertLink = function(button){
+  const wrap = button.closest('.content-block');
+  const textarea = wrap.querySelector('.textBlock');
+  const start = textarea.selectionStart ?? 0;
+  const end = textarea.selectionEnd ?? 0;
+  const selected = textarea.value.slice(start,end).trim();
+  let label = selected;
+  if(!label){
+    label = prompt('ข้อความที่ต้องการให้กดลิงก์:', 'อ่านรายละเอียดเพิ่มเติม');
+    if(!label) return;
+  }
+  const url = prompt('วาง URL ของลิงก์ เช่น https://example.com');
+  if(!url) return;
+  if(!/^https?:\/\//i.test(url) && !/^mailto:/i.test(url)){
+    alert('กรุณาใช้ลิงก์ที่ขึ้นต้นด้วย https://, http:// หรือ mailto:');
+    return;
+  }
+  const markdown = '[' + label.replace(/\]/g,'') + '](' + url.replace(/[\s\)]+$/g,'') + ')';
+  const value = textarea.value;
+  textarea.value = value.slice(0,start) + markdown + value.slice(end);
+  textarea.focus();
+  const pos = start + markdown.length;
+  textarea.setSelectionRange(pos,pos);
+};
+
+window.addImage = function(){
+  const wrap = document.createElement("div");
+  wrap.className = "content-block";
+  wrap.innerHTML = `<div class="block-head"><span>🖼️ รูปภาพ</span><button type="button" class="remove" onclick="this.closest('.content-block').remove()">ลบ</button></div><input class="imageBlock" type="file" accept="image/*">`;
+  document.getElementById("contentBlocks").appendChild(wrap);
+};
+
+function readFile(file){
+  return new Promise(resolve=>{
+    if(!file){ resolve(""); return; }
     const reader = new FileReader();
-    reader.onload=()=>{
-      img.onload=()=>{
-        const scale=Math.min(1,maxWidth/img.width);
-        const canvas=document.createElement("canvas");
-        canvas.width=Math.max(1,Math.round(img.width*scale));
-        canvas.height=Math.max(1,Math.round(img.height*scale));
-        const ctx=canvas.getContext("2d");
-        ctx.drawImage(img,0,0,canvas.width,canvas.height);
-        resolve(canvas.toDataURL("image/jpeg",quality));
-      };
-      img.onerror=()=>reject(new Error("อ่านรูปภาพไม่สำเร็จ"));
-      img.src=reader.result;
-    };
-    reader.onerror=()=>reject(new Error("อ่านไฟล์ไม่สำเร็จ"));
+    reader.onload = ()=>{ resolve(reader.result); };
     reader.readAsDataURL(file);
   });
 }
 
-function addText(){
-  const wrap=document.createElement("div");
-  wrap.className="content-block";
-  wrap.innerHTML=`
-    <div class="block-head">
-      <span>📝 ข้อความ</span>
-      <button type="button" class="remove">ลบ</button>
-    </div>
-    <textarea class="textBlock" placeholder="พิมพ์เนื้อข่าว..."></textarea>`;
-  wrap.querySelector(".remove").onclick=()=>wrap.remove();
-  $("contentBlocks").appendChild(wrap);
-}
+window.publishNews = async function(){
+  const title = document.getElementById("title").value.trim();
+  if(!title){ alert("กรุณาใส่พาดหัวข่าว"); return; }
 
-function addImage(){
-  const wrap=document.createElement("div");
-  wrap.className="content-block";
-  wrap.innerHTML=`
-    <div class="block-head">
-      <span>🖼️ รูปภาพ</span>
-      <button type="button" class="remove">ลบ</button>
-    </div>
-    <input class="imageBlock" type="file" accept="image/*">`;
-  wrap.querySelector(".remove").onclick=()=>wrap.remove();
-  $("contentBlocks").appendChild(wrap);
-}
+  const category = document.getElementById("category").value;
+  const description = document.getElementById("description").value.trim();
+  const coverInput = document.getElementById("cover");
 
-async function publishNews(){
-  const title=$("title").value.trim();
-  const category=$("category").value;
-  const description=$("description").value.trim();
-  const coverFile=$("cover").files?.[0];
-
-  if(!title){
-    alert("กรุณาใส่พาดหัวข่าว");
-    return;
-  }
-
-  $("publishBtn").disabled=true;
-  $("publishBtn").textContent="⏳ กำลังเผยแพร่...";
-  showStatus("กำลังเผยแพร่ข่าว...",true);
+  showStatus("กำลังเผยแพร่ข่าว...", true);
 
   try{
-    const cover=await compressImage(coverFile);
-    const blocks=[];
+    const cover = await readFile(coverInput.files[0]);
+    const blocks = [];
+    const elements = document.querySelectorAll("#contentBlocks .content-block");
 
-    for(const el of document.querySelectorAll("#contentBlocks .content-block")){
-      const text=el.querySelector(".textBlock");
-      const image=el.querySelector(".imageBlock");
-
-      if(text && text.value.trim()){
-        blocks.push({type:"text",text:text.value.trim()});
+    for(const el of elements){
+      const text = el.querySelector(".textBlock");
+      const image = el.querySelector(".imageBlock");
+      if(text){
+        const value = text.value.trim();
+        if(value) blocks.push({ type:"text", text:value });
       }
-
-      if(image?.files?.[0]){
-        blocks.push({
-          type:"image",
-          image:await compressImage(image.files[0],1200,.76)
-        });
+      if(image && image.files[0]){
+        const data = await readFile(image.files[0]);
+        blocks.push({ type:"image", image:data });
       }
     }
-
     if(!blocks.length){
-      blocks.push({type:"text",text:description || "เนื้อหาข่าวใหม่จาก THAI NEWS"});
-    }
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    if(!sessionData.session){
-      throw new Error("เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่");
+      blocks.push({ type:"text", text: description || "เนื้อหาข่าวใหม่จาก THAI NEWS" });
     }
 
     const { error } = await supabase.from("news").insert({
-      title,
-      category,
-      description,
-      cover,
-      content:blocks,
-      views:0
+      title, category, description, cover,
+      content: blocks,
+      views: 0
     });
-
     if(error) throw error;
 
-    showStatus("เผยแพร่ข่าวสำเร็จ ข่าวจะขึ้นเว็บไซต์ทันที",true);
-    $("title").value="";
-    $("description").value="";
-    $("cover").value="";
-    $("coverPreview").src="";
-    $("coverPreview").style.display="none";
-    $("contentBlocks").innerHTML="";
-    await refreshAdminData();
-
-  }catch(e){
-    console.error(e);
-    showStatus("เผยแพร่ข่าวไม่สำเร็จ: " + (e.message || "Unknown error"),false);
-  }finally{
-    $("publishBtn").disabled=false;
-    $("publishBtn").textContent="🚀 เผยแพร่ข่าวลงเว็บไซต์ทันที";
+    showStatus("เผยแพร่ข่าวสำเร็จ ข่าวจะขึ้นเว็บไซต์ทันที", true);
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("cover").value = "";
+    const preview = document.getElementById("coverPreview");
+    preview.src = ""; preview.style.display = "none";
+    document.getElementById("contentBlocks").innerHTML = "";
+    refreshAdminData();
+  }catch(err){
+    console.error(err);
+    showStatus("เผยแพร่ข่าวไม่สำเร็จ: " + err.message, false);
   }
-}
-
-$("loginBtn").addEventListener("click",login);
-$("logoutBtn").addEventListener("click",logout);
-$("cover").addEventListener("change",previewCover);
-$("addTextBtn").addEventListener("click",addText);
-$("addImageBtn").addEventListener("click",addImage);
-$("publishBtn").addEventListener("click",publishNews);
-
-document.querySelectorAll(".menu").forEach(el=>{
-  el.addEventListener("click",()=>showPage(el.dataset.page,el));
-});
-
-document.addEventListener("click",e=>{
-  const btn=e.target.closest("[data-delete]");
-  if(btn) deleteNews(btn.dataset.delete);
-});
-
-$("password").addEventListener("keydown",e=>{
-  if(e.key==="Enter") login();
-});
-
-await testConnection();
-
-const {data:{session}}=await supabase.auth.getSession();
-if(session?.user){
-  await enterAdmin(session.user);
-}
+};
 </script>
 </body>
 </html>
