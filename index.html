@@ -80,6 +80,488 @@
 @media(max-width:1050px){.portal-layout{grid-template-columns:1fr}.portal-side{position:static}.portal-grid-4{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.portal-ad{min-height:70px;margin-top:10px}.portal-ad-inner{min-height:68px}.portal-layout{display:block;margin-top:12px}.portal-side{display:none}.portal-section{margin-top:24px}.portal-section-head{margin-bottom:11px}.portal-section-head h2{font-size:21px}.portal-grid-4{display:flex;overflow-x:auto;gap:10px;scrollbar-width:none}.portal-grid-4::-webkit-scrollbar{display:none}.mini-card{flex:0 0 175px}.mini-card img{height:105px}.mini-card h3{font-size:12px}.feature-row{grid-template-columns:1fr 1fr;gap:8px}.feature-card.large{grid-column:1/-1;min-height:245px}.feature-card{min-height:165px}.feature-card img{min-height:165px}.feature-card.large img{min-height:245px}.feature-copy h3,.feature-card.large .feature-copy h3{font-size:15px}.feature-card.large .feature-copy h3{font-size:20px}.service-grid{grid-template-columns:1fr;gap:10px}.service-card{min-height:145px}.topic{font-size:10px;padding:6px 10px}}
 
+
+/* =========================================================
+   THAI NEWS — FINAL MOBILE RESPONSIVE PATCH
+   แก้หน้าเว็บมือถือให้เต็มจอ ไม่บีบ ไม่ล้น ไม่ตัด
+   ========================================================= */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video, iframe {
+  max-width: 100%;
+}
+
+.header-inner,
+.nav-inner,
+.container,
+.footer-inner {
+  width: 100%;
+  max-width: 1320px;
+}
+
+@media (max-width: 700px) {
+
+  /* พื้นหลังและระยะขอบ */
+  body {
+    background: #f3f5f8;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px !important;
+    margin: 0 !important;
+  }
+
+  /* แถบ THAI NEWS LIVE */
+  .topbar {
+    height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 10px !important;
+  }
+
+  /* Header */
+  .header-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+    gap: 10px !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    align-items: center !important;
+  }
+
+  .brand {
+    min-width: 0 !important;
+    gap: 9px !important;
+  }
+
+  .brand img {
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+  }
+
+  .brand-title {
+    font-size: 22px !important;
+    letter-spacing: -0.8px !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-sub {
+    font-size: 8px !important;
+    margin-top: 4px !important;
+    white-space: nowrap !important;
+  }
+
+  .search {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    padding: 0 11px !important;
+    font-size: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  /* เมนูหลัก — เลื่อนซ้ายขวาได้ แต่ไม่ทำให้ทั้งเว็บกว้าง */
+  .nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .nav-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 8px !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav a {
+    flex: 0 0 auto !important;
+    padding: 12px 13px 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* ซ่อนช่องโฆษณาที่ไม่โหลดบนมือถือ
+     ป้องกันกล่องเทา/พื้นที่ว่างขนาดใหญ่ด้านบน */
+  .portal-ad {
+    display: none !important;
+  }
+
+  /* ป้ายหมวดข่าว */
+  .topic-strip {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 7px !important;
+    padding: 10px 0 4px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .topic {
+    flex: 0 0 auto !important;
+    padding: 7px 12px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+  }
+
+  /* Layout หลัก */
+  .portal-layout {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 10px !important;
+  }
+
+  .portal-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .portal-side {
+    display: none !important;
+  }
+
+  /* Hero ข่าวเด่น */
+  .hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 390px !important;
+    aspect-ratio: 4 / 5 !important;
+    margin: 8px 0 0 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .hero img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .hero:before {
+    right: 14px !important;
+    top: 14px !important;
+    font-size: 8px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .hero:after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.08) 0%,
+        rgba(0,0,0,.12) 30%,
+        rgba(0,0,0,.86) 100%
+      ) !important;
+  }
+
+  .hero-content {
+    left: 18px !important;
+    right: 18px !important;
+    top: auto !important;
+    bottom: 38px !important;
+    transform: none !important;
+    max-width: none !important;
+  }
+
+  .tag {
+    padding: 7px 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 10px !important;
+    border-radius: 4px !important;
+  }
+
+  .hero h1 {
+    margin: 0 0 9px !important;
+    font-size: clamp(25px, 7.4vw, 32px) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -.6px !important;
+    max-width: 100% !important;
+  }
+
+  .hero p {
+    max-width: 100% !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+  }
+
+  .btn {
+    margin-top: 13px !important;
+    padding: 10px 15px !important;
+    font-size: 12px !important;
+    border-radius: 7px !important;
+  }
+
+  .hero-dots {
+    bottom: 13px !important;
+    gap: 7px !important;
+  }
+
+  .hero-dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  /* หัวข้อข่าวล่าสุด */
+  .section-head {
+    width: 100% !important;
+    margin: 24px 0 13px !important;
+    padding-bottom: 10px !important;
+    align-items: end !important;
+  }
+
+  .section-head h2 {
+    font-size: 24px !important;
+    padding-left: 12px !important;
+  }
+
+  .section-head h2:before {
+    width: 4px !important;
+  }
+
+  .section-head p {
+    font-size: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  #count {
+    font-size: 11px !important;
+  }
+
+  /* ข่าวล่าสุด — การ์ดแนวมือถือ */
+  .news-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .card {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+
+  .card-img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+  }
+
+  .card-body {
+    padding: 13px !important;
+  }
+
+  .card h3 {
+    font-size: 17px !important;
+    line-height: 1.42 !important;
+    margin: 9px 0 7px !important;
+  }
+
+  .card p {
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+  }
+
+  .card-meta {
+    font-size: 10px !important;
+  }
+
+  .read-btn {
+    width: 100% !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+  }
+
+  /* ส่วนบันเทิง / กีฬา / ส่วนเสริม */
+  .portal-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 26px !important;
+  }
+
+  .portal-section-head {
+    width: 100% !important;
+    margin-bottom: 11px !important;
+  }
+
+  .portal-section-head h2 {
+    font-size: 21px !important;
+  }
+
+  .portal-grid-4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding-bottom: 4px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mini-card {
+    flex: 0 0 165px !important;
+    width: 165px !important;
+    border-radius: 10px !important;
+  }
+
+  .mini-card img {
+    width: 100% !important;
+    height: 102px !important;
+    object-fit: cover !important;
+  }
+
+  .mini-card h3 {
+    font-size: 12px !important;
+  }
+
+  .feature-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .feature-card,
+  .feature-card.large {
+    min-height: 165px !important;
+    border-radius: 10px !important;
+  }
+
+  .feature-card.large {
+    grid-column: 1 / -1 !important;
+    min-height: 235px !important;
+  }
+
+  .feature-card img,
+  .feature-card.large img {
+    min-height: 165px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .feature-card.large img {
+    min-height: 235px !important;
+  }
+
+  .feature-copy {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+  }
+
+  .feature-copy h3 {
+    font-size: 14px !important;
+  }
+
+  .feature-card.large .feature-copy h3 {
+    font-size: 19px !important;
+  }
+
+  .service-grid {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* บทความ */
+  .article-wrapper {
+    width: 100% !important;
+    margin: 12px 0 !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+
+  .article-header h1 {
+    font-size: 26px !important;
+    line-height: 1.35 !important;
+  }
+
+  .article-text {
+    font-size: 16px !important;
+    line-height: 1.85 !important;
+  }
+
+  .article-cover,
+  .article-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .share-box {
+    padding: 13px !important;
+    border-radius: 10px !important;
+  }
+
+  .share-btn {
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 35px !important;
+    padding: 28px 15px !important;
+  }
+
+  .footer-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+}
+
+/* โทรศัพท์เล็ก */
+@media (max-width: 380px) {
+  .header-inner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .search {
+    width: 100% !important;
+  }
+
+  .brand {
+    justify-content: flex-start;
+  }
+
+  .hero {
+    min-height: 370px !important;
+  }
+
+  .hero h1 {
+    font-size: 24px !important;
+  }
+
+  .hero p {
+    font-size: 11px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -116,6 +598,11 @@
 </nav>
 
 <main class="container">
+  <div class="portal-ad" aria-label="พื้นที่โฆษณา">
+    <div class="portal-ad-inner">
+      <ins class="adsbygoogle" style="display:block;width:100%;min-height:70px" data-ad-client="ca-pub-1326368101893541" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
   <div id="mainView">
     <div class="topic-strip" id="topicStrip">
       <span class="topic">ข่าววันนี้</span><span class="topic">ข่าวด่วน</span><span class="topic">ข่าวบันเทิง</span><span class="topic">การเมือง</span><span class="topic">กีฬา</span><span class="topic">เศรษฐกิจ</span><span class="topic">สังคม</span><span class="topic">ต่างประเทศ</span>
@@ -666,7 +1153,7 @@ document.getElementById("searchInput").addEventListener("input", function(){
 // First paint: cache -> then server.
 // Refresh much less often, and only when the tab is visible.
 loadNews().then(openArticleFromUrl);
-setTimeout(()=>{ try{ (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){} },1200);
+setTimeout(()=>{ try{ (adsbygoogle = window.adsbygoogle || []).push({}); (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){} },1200);
 
 setInterval(()=>{
   if(document.visibilityState === "visible") loadNews();
