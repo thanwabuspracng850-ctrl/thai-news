@@ -314,9 +314,18 @@ function render(){
     </article>`).join("");
 }
 
-window.openArticle = async function(id){
+window.openArticle = async function(id, updateUrl = true){
   const news = allNewsList.find(n => String(n.id) === String(id));
   if(!news) return;
+
+  const directUrl = new URL(window.location.href);
+  directUrl.search = "";
+  directUrl.hash = "";
+  directUrl.searchParams.set("article", String(news.id));
+
+  if(updateUrl){
+    history.pushState({articleId: String(news.id)}, "", directUrl.href);
+  }
 
   const viewedKey = "viewed_" + id;
   if(!sessionStorage.getItem(viewedKey)){
@@ -346,7 +355,7 @@ window.openArticle = async function(id){
       </div>
     </article>`).join("");
 
-  const pageUrl = encodeURIComponent(window.location.href);
+  const pageUrl = encodeURIComponent(directUrl.href);
 
   articleView.innerHTML = `
   <div class="article-wrapper">
@@ -380,6 +389,12 @@ window.openArticle = async function(id){
 window.closeArticle = function(){
   document.getElementById("articleView").style.display = "none";
   document.getElementById("mainView").style.display = "block";
+
+  const homeUrl = new URL(window.location.href);
+  homeUrl.search = "";
+  homeUrl.hash = "";
+  history.pushState({}, "", homeUrl.href);
+
   render();
 };
 
@@ -389,6 +404,18 @@ window.copyLink = function(){
   }).catch(()=>{ alert(window.location.href); });
 };
 
+window.addEventListener("popstate", function(){
+  const articleId = new URLSearchParams(window.location.search).get("article");
+  if(articleId){
+    openArticle(articleId, false);
+  }else{
+    document.getElementById("articleView").style.display = "none";
+    document.getElementById("mainView").style.display = "block";
+    render();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+});
+
 document.getElementById("searchInput").addEventListener("input", function(){
   currentSearch = this.value.trim();
   document.getElementById("articleView").style.display = "none";
@@ -396,7 +423,12 @@ document.getElementById("searchInput").addEventListener("input", function(){
   render();
 });
 
-loadNews();
+loadNews().then(()=>{
+  const articleId = new URLSearchParams(window.location.search).get("article");
+  if(articleId){
+    openArticle(articleId, false);
+  }
+});
 setInterval(loadNews, 20000); // ดึงข่าวใหม่อัตโนมัติทุก 20 วินาที
 </script>
 </body>
