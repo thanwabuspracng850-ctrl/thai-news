@@ -35,6 +35,7 @@ MAX_AGE_HOURS = 72
 MAX_NEW_PER_CATEGORY = 2
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 15
+JINA_TIMEOUT = 25
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 
 CATEGORY_NAMES = {
@@ -249,54 +250,117 @@ def extract_jsonld_article_body(html_text: str) -> str:
 
 
 def extract_article_page(url: str) -> dict:
-    """Find cover + a detailed publisher summary without copying the whole page."""
-    try:
-        request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(request, timeout=ARTICLE_TIMEOUT) as response:
-            final_url = response.geturl() or url
-            raw = response.read()
+    """Extract a useful summary + real cover image.
 
-        text = raw.decode("utf-8", errors="ignore")
+    Strategy:
+    1) Fetch the publisher directly and inspect JSON-LD/meta/article paragraphs.
+    2) If the page blocks normal scraping, use the free Jina Reader endpoint as a fallback.
+    """
+    result = {"image": "", "description": "", "articleText": "", "sourceName": "", "resolvedUrl": url}
+
+    def parse_page(text: str, final_url: str) -> dict:
         text_head = text[:3_000_000]
-
         image = extract_meta(text_head, (
             "og:image", "og:image:url", "twitter:image", "twitter:image:src"
         ))
         description = extract_meta(text_head, (
             "og:description", "twitter:description", "description"
         ))
-        site_name = extract_meta(text_head, ("og:site_name",))
+        site_name = extract_meta(text_head, ("og:site_name", "application-name"))
+        canonical = extract_meta(text_head, ("og:url",)) or final_url
         article_body = extract_jsonld_article_body(text_head)
 
-        # Remove scripts/styles and collect readable paragraphs.
-        body = re.sub(r"<script[\s\S]*?</script>", " ", text_head, flags=re.I)
-        body = re.sub(r"<style[\s\S]*?</style>", " ", body, flags=re.I)
-        paragraphs = re.findall(r"<p[^>]*>(.*?)</p>", body, flags=re.I | re.S)
+        article_match = re.search(r'<article[^>]*>([\s\S]*?)</article>', text_head, flags=re.I)
+        readable_html = article_match.group(1) if article_match else text_head
+        readable_html = re.sub(r'<script[\s\S]*?</script>', ' ', readable_html, flags=re.I)
+        readable_html = re.sub(r'<style[\s\S]*?</style>', ' ', readable_html, flags=re.I)
+        paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', readable_html, flags=re.I | re.S)
         paragraph_text = [clean_text(p) for p in paragraphs]
-        paragraph_text = [p for p in paragraph_text if 50 <= len(p) <= 1800]
+        bad = ("cookie", "สมัครสมาชิก", "เข้าสู่ระบบ", "โฆษณา", "ติดตามเรา", "share")
+        paragraph_text = [p for p in paragraph_text if 70 <= len(p) <= 1800 and not any(b in p.lower() for b in bad)]
 
-        if article_body:
+        if article_body and len(article_body) >= 500:
             detailed = article_body
         else:
-            detailed = "\n\n".join(paragraph_text[:8])[:8000]
+            detailed = "\n\n".join(paragraph_text[:10])
 
-        if not description and detailed:
+        description = clean_text(description)
+        if len(description) < 120 and detailed:
             description = detailed[:700]
-        if detailed and len(detailed) < 1200 and paragraph_text:
-            extra = "\n\n".join(paragraph_text[:8])
-            if len(extra) > len(detailed):
-                detailed = extra[:8000]
 
         return {
             "image": absolute_url(image, final_url),
-            "description": clean_text(description)[:900],
+            "description": description[:900],
             "articleText": clean_text(detailed)[:8000],
             "sourceName": clean_text(site_name),
-            "resolvedUrl": final_url,
+            "resolvedUrl": canonical or final_url,
         }
+
+    try:
+        request = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": USER_AGENT,
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Accept-Language": "th-TH,th;q=0.9,en;q=0.7",
+            },
+        )
+        with urllib.request.urlopen(request, timeout=ARTICLE_TIMEOUT) as response:
+            final_url = response.geturl() or url
+            raw = response.read()
+        direct = parse_page(raw.decode("utf-8", errors="ignore"), final_url)
+        if direct.get("image") or len(direct.get("articleText", "")) >= 300:
+            return direct
+        result.update(direct)
     except Exception as exc:
-        print(f"[WARN] article page failed: {url} -> {exc}")
-        return {"image": "", "description": "", "articleText": "", "sourceName": "", "resolvedUrl": url}
+        print(f"[WARN] direct article fetch failed: {url} -> {exc}")
+
+    try:
+        stripped = url.replace("https://", "").replace("http://", "", 1)
+        jina_url = "https://r.jina.ai/http://" + stripped
+        request = urllib.request.Request(
+            jina_url,
+            headers={"User-Agent": USER_AGENT, "Accept": "text/plain,text/markdown,*/*"},
+        )
+        with urllib.request.urlopen(request, timeout=JINA_TIMEOUT) as response:
+            markdown = response.read(2_000_000).decode("utf-8", errors="ignore")
+
+        image = ""
+        for match in re.finditer(r'!\[[^\]]*\]\((https?://[^)\s]+)', markdown, flags=re.I):
+            candidate = match.group(1)
+            if not any(x in candidate.lower() for x in ("logo", "icon", "avatar", "favicon")):
+                image = candidate
+                break
+
+        lines = []
+        for raw_line in markdown.splitlines():
+            line = clean_text(re.sub(r'!\[[^\]]*\]\([^)]*\)', '', raw_line))
+            line = re.sub(r'^#{1,6}\s*', '', line)
+            if 70 <= len(line) <= 1800:
+                low = line.lower()
+                if not any(b in low for b in ("cookie", "privacy policy", "สมัครสมาชิก", "เข้าสู่ระบบ", "advertisement")):
+                    lines.append(line)
+
+        unique_lines = []
+        seen = set()
+        for line in lines:
+            key = normalize_key(line)
+            if key and key not in seen:
+                seen.add(key)
+                unique_lines.append(line)
+        detailed = "\n\n".join(unique_lines[:8])[:8000]
+
+        if detailed or image:
+            result.update({
+                "image": image or result.get("image", ""),
+                "description": (result.get("description") or (detailed[:700] if detailed else ""))[:900],
+                "articleText": detailed,
+            })
+            return result
+    except Exception as exc:
+        print(f"[WARN] Jina Reader failed: {url} -> {exc}")
+
+    return result
 
 
 def safe_extension(content_type: str, url: str) -> str:
@@ -470,6 +534,25 @@ def collect() -> list[dict]:
     return enriched
 
 
+def create_fallback_cover(item_id: str, title: str, category: str) -> str:
+    """Create an article-specific SVG cover when the publisher gives no image."""
+    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    path = IMAGE_DIR / f"{item_id}.svg"
+    if not path.exists():
+        safe_title = html.escape(clean_text(title)[:90])
+        safe_cat = html.escape(CATEGORY_NAMES.get(category, category))
+        svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071b36"/><stop offset="1" stop-color="#0a4f8d"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#g)"/><circle cx="1320" cy="120" r="330" fill="#ffffff" opacity=".05"/><circle cx="1420" cy="760" r="420" fill="#e51f3a" opacity=".08"/>
+<rect x="90" y="95" width="190" height="52" rx="6" fill="#e51f3a"/><text x="185" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="white">{safe_cat}</text>
+<text x="90" y="260" font-family="Arial,sans-serif" font-size="72" font-weight="900" fill="white">THAI NEWS</text>
+<rect x="90" y="290" width="420" height="8" fill="#e51f3a"/>
+<foreignObject x="90" y="370" width="1420" height="300"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:54px;font-weight:900;line-height:1.25;color:#fff">{safe_title}</div></foreignObject>
+<text x="90" y="815" font-family="Arial,sans-serif" font-size="24" fill="#dce8f5">ภาพประกอบข่าว - THAI NEWS</text></svg>"""
+        path.write_text(svg, encoding="utf-8")
+    return path.relative_to(ROOT).as_posix()
+
+
 def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
     cutoff = now_utc() - timedelta(hours=MAX_AGE_HOURS)
     fresh = []
@@ -492,7 +575,7 @@ def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
         # GitHub Pages can still display the remote cover when a publisher blocks download.
         cover_url = item.get("image", "")
         local_cover = download_cover(cover_url, record_id)
-        cover = local_cover or cover_url or "assets/banner.jpg"
+        cover = local_cover or cover_url or create_fallback_cover(record_id, item.get("title", "ข่าวล่าสุด"), category)
 
         content_blocks = []
         source_text = article_text or description
@@ -503,9 +586,10 @@ def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
                 content_blocks.append({"text": paragraph[:1800]})
         if cover_url:
             content_blocks.insert(1 if content_blocks else 0, {"image": local_cover or cover_url})
-        content_blocks.append({
-            "text": "เรียบเรียงจากข้อมูลสาธารณะที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดและบริบทจากลิงก์ต้นทางก่อนนำไปใช้อ้างอิง"
-        })
+        if not content_blocks:
+            content_blocks.append({
+                "text": "ยังไม่สามารถดึงเนื้อหารายละเอียดจากแหล่งข่าวต้นทางได้ โปรดเปิดลิงก์ต้นทางเพื่ออ่านรายละเอียดเพิ่มเติม"
+            })
 
         record = {
             "id": record_id,

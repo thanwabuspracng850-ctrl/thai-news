@@ -766,20 +766,29 @@ function saveHomeCache(list){
 }
 
 function normalizeNews(list){
-  return (Array.isArray(list) ? list : []).map(item => ({
-    id: item.id,
-    category: normalizeCategory(item.category),
-    title: item.title || "ไม่มีหัวข้อข่าว",
-    description: item.description || item.excerpt || "",
-    cover: item.cover || item.coverImage || item.image || item.imageUrl || item.thumbnail || item.coverSourceUrl || "assets/banner.jpg",
-    coverSourceUrl: item.coverSourceUrl || item.image || item.imageUrl || item.thumbnail || "",
-    content: Array.isArray(item.content) ? item.content : (item.content ? [{text:String(item.content)}] : []),
-    publishedAt: item.created_at ? new Date(item.created_at).getTime() :
-      (item.publishedAt ? new Date(item.publishedAt).getTime() : 0),
-    views: Number(item.views || 0),
-    sourceUrl: item.sourceUrl || item.source_url || "",
-    sourceName: item.sourceName || item.source_name || ""
-  }));
+  return (Array.isArray(list) ? list : []).map(item => {
+    const remoteCover = item.coverSourceUrl || item.image || item.imageUrl || item.thumbnail || "";
+    let cover = item.cover || item.coverImage || remoteCover || "assets/banner.jpg";
+    // Older bot records sometimes saved the generic banner even though a real
+    // publisher image exists in coverSourceUrl. Prefer the real image.
+    if((cover === "assets/banner.jpg" || /(^|\/)banner\.(jpg|jpeg|png|webp)$/i.test(cover)) && remoteCover){
+      cover = remoteCover;
+    }
+    return {
+      id: item.id,
+      category: normalizeCategory(item.category),
+      title: item.title || "ไม่มีหัวข้อข่าว",
+      description: item.description || item.excerpt || "",
+      cover,
+      coverSourceUrl: remoteCover,
+      content: Array.isArray(item.content) ? item.content : (item.content ? [{text:String(item.content)}] : []),
+      publishedAt: item.created_at ? new Date(item.created_at).getTime() :
+        (item.publishedAt ? new Date(item.publishedAt).getTime() : 0),
+      views: Number(item.views || 0),
+      sourceUrl: item.sourceUrl || item.source_url || "",
+      sourceName: item.sourceName || item.source_name || ""
+    };
+  });
 }
 
 async function fetchHomeNews(){
@@ -1113,10 +1122,12 @@ window.openArticle = async function(id){
           src="${escapeHTML(item.image)}" alt="ภาพประกอบข่าว"
           onerror="this.style.display='none'">`;
       }
-      return `<p>${escapeHTML(item?.text || item?.content || "")}</p>`;
+      const text = item?.text || item?.content || "";
+      if(!text || /ยังไม่สามารถดึงเนื้อหา|เรียบเรียงจากข้อมูลสาธารณะ/.test(text)) return "";
+      return `<p>${escapeHTML(text)}</p>`;
     }).join("");
 
-    if(!contentHTML) contentHTML = `<p>${escapeHTML(news.description)}</p>`;
+    if(!contentHTML) contentHTML = `<p>${escapeHTML(news.description || "โปรดเปิดลิงก์ต้นทางเพื่ออ่านรายละเอียดเพิ่มเติม")}</p>`;
 
     const viralNews = allNewsList
       .filter(n => String(n.id) !== String(id))
