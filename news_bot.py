@@ -6,7 +6,7 @@ Changes in this version:
 - Reads Google News RSS feeds.
 - Opens the original article page to find og:image / twitter:image when RSS has no image.
 - Downloads the cover image into assets/news/ so GitHub Pages can display it reliably.
-- Builds a useful Thai news summary from the RSS description / article metadata.
+- Extracts a substantially longer article body from JSON-LD/article paragraphs when available.
 - Keeps the existing JSON structure used by the THAI NEWS website.
 - Keeps manual records untouched.
 """
@@ -35,7 +35,6 @@ MAX_AGE_HOURS = 72
 MAX_NEW_PER_CATEGORY = 2
 REQUEST_TIMEOUT = 20
 ARTICLE_TIMEOUT = 15
-JINA_TIMEOUT = 25
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
 
 CATEGORY_NAMES = {
@@ -175,18 +174,25 @@ def parse_feed(xml_bytes: bytes, fallback_category: str) -> list[dict]:
 
         title = clean_text(first_text(item, ("title",)))
         link = clean_text(first_text(item, ("link",)))
-        description = clean_text(first_text(item, ("description",)))
+        raw_description = first_text(item, ("description",))
+        description = clean_text(raw_description)
         pub_date = clean_text(first_text(item, ("pubDate", "published", "updated")))
 
         if not title or not link:
             continue
 
+        # Google News RSS sometimes puts the real thumbnail inside the
+        # description as <img src="...">. Keep it before clean_text() strips HTML.
         image = ""
+        img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', raw_description or "", flags=re.I)
+        if img_match:
+            image = html.unescape(img_match.group(1)).strip()
+
         source_name = ""
         for child in list(item):
             tag = child.tag.split("}")[-1]
             if tag in ("content", "thumbnail", "enclosure"):
-                image = child.attrib.get("url", "") or child.attrib.get("href", "")
+                image = child.attrib.get("url", "") or child.attrib.get("href", "") or image
                 if image:
                     break
             if tag == "source" and child.text:
@@ -226,141 +232,145 @@ def extract_meta(html_text: str, names: tuple[str, ...]) -> str:
 
 
 def extract_jsonld_article_body(html_text: str) -> str:
-    """Extract articleBody from JSON-LD when a publisher exposes it."""
-    blocks = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>([\s\S]*?)</script>', html_text, flags=re.I)
-    best = ""
-    for raw in blocks:
+    """Extract articleBody/description from JSON-LD without depending on a site-specific parser."""
+    bodies = []
+    for match in re.finditer(
+        r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
+        html_text,
+        flags=re.I | re.S,
+    ):
+        raw = html.unescape(match.group(1)).strip()
+        if not raw:
+            continue
         try:
-            data = json.loads(html.unescape(raw).strip())
+            data = json.loads(raw)
         except Exception:
             continue
+
         stack = data if isinstance(data, list) else [data]
         while stack:
             obj = stack.pop()
             if isinstance(obj, list):
                 stack.extend(obj)
-            elif isinstance(obj, dict):
-                body = obj.get("articleBody")
-                if isinstance(body, str) and len(body.strip()) > len(best):
-                    best = body.strip()
-                for value in obj.values():
-                    if isinstance(value, (dict, list)):
-                        stack.append(value)
-    return clean_text(best)[:8000]
+                continue
+            if not isinstance(obj, dict):
+                continue
+            if isinstance(obj.get("@graph"), list):
+                stack.extend(obj["@graph"])
+            body = obj.get("articleBody")
+            if isinstance(body, str) and len(clean_text(body)) >= 200:
+                bodies.append(clean_text(body))
+            desc = obj.get("description")
+            if isinstance(desc, str) and len(clean_text(desc)) >= 120:
+                bodies.append(clean_text(desc))
+    # Longest body is usually the actual articleBody.
+    if not bodies:
+        return ""
+    return max(bodies, key=len)
+
+
+def extract_article_paragraphs(html_text: str) -> list[str]:
+    """Extract readable paragraphs from common article containers."""
+    body = re.sub(r'<script[\s\S]*?</script>', ' ', html_text, flags=re.I)
+    body = re.sub(r'<style[\s\S]*?</style>', ' ', body, flags=re.I)
+    body = re.sub(r'<noscript[\s\S]*?</noscript>', ' ', body, flags=re.I)
+
+    candidates = []
+    # Prefer article/main containers if present.
+    containers = re.findall(
+        r'<(?:article|main)[^>]*>(.*?)</(?:article|main)>',
+        body,
+        flags=re.I | re.S,
+    )
+    search_area = "\n".join(containers) if containers else body
+
+    for raw in re.findall(r'<p[^>]*>(.*?)</p>', search_area, flags=re.I | re.S):
+        value = clean_text(raw)
+        value = re.sub(r'\s+', ' ', value).strip()
+        if 70 <= len(value) <= 2500:
+            candidates.append(value)
+
+    # Remove obvious UI/navigation noise.
+    bad_terms = (
+        "สมัครสมาชิก", "เข้าสู่ระบบ", "ติดตามเรา", "โฆษณา",
+        "อ่านเพิ่มเติม", "ข่าวที่เกี่ยวข้อง", "เมนู", "ค้นหา",
+        "copyright", "privacy policy",
+    )
+    filtered = []
+    seen = set()
+    for item in candidates:
+        key = normalize_key(item)
+        if not key or key in seen:
+            continue
+        if any(term in item.lower() for term in bad_terms):
+            continue
+        seen.add(key)
+        filtered.append(item)
+    return filtered
+
+
+def split_long_text(text: str, max_chars: int = 900) -> list[str]:
+    """Split articleBody into readable paragraphs while preserving source wording."""
+    text = clean_text(text)
+    if not text:
+        return []
+    # Prefer sentence boundaries in Thai/English.
+    sentences = re.split(r'(?<=[.!?。！？])\s+|(?<=\u0e2f)\s+', text)
+    sentences = [s.strip() for s in sentences if s.strip()]
+    chunks, current = [], ""
+    for sentence in sentences:
+        if not current:
+            current = sentence
+        elif len(current) + 1 + len(sentence) <= max_chars:
+            current += " " + sentence
+        else:
+            chunks.append(current.strip())
+            current = sentence
+    if current:
+        chunks.append(current.strip())
+    return [c for c in chunks if len(c) >= 60]
 
 
 def extract_article_page(url: str) -> dict:
-    """Extract a useful summary + real cover image.
+    """Find cover + substantial source paragraphs for a long article page."""
+    try:
+        raw = fetch_bytes(url, ARTICLE_TIMEOUT)
+        text = raw.decode("utf-8", errors="ignore")
+        text_head = text[:4_000_000]
 
-    Strategy:
-    1) Fetch the publisher directly and inspect JSON-LD/meta/article paragraphs.
-    2) If the page blocks normal scraping, use the free Jina Reader endpoint as a fallback.
-    """
-    result = {"image": "", "description": "", "articleText": "", "sourceName": "", "resolvedUrl": url}
-
-    def parse_page(text: str, final_url: str) -> dict:
-        text_head = text[:3_000_000]
-        image = extract_meta(text_head, (
-            "og:image", "og:image:url", "twitter:image", "twitter:image:src"
-        ))
-        description = extract_meta(text_head, (
-            "og:description", "twitter:description", "description"
-        ))
-        site_name = extract_meta(text_head, ("og:site_name", "application-name"))
-        canonical = extract_meta(text_head, ("og:url",)) or final_url
+        image = extract_meta(text_head, ("og:image", "twitter:image", "twitter:image:src"))
+        description = extract_meta(text_head, ("og:description", "twitter:description", "description"))
+        site_name = extract_meta(text_head, ("og:site_name",))
         article_body = extract_jsonld_article_body(text_head)
 
-        article_match = re.search(r'<article[^>]*>([\s\S]*?)</article>', text_head, flags=re.I)
-        readable_html = article_match.group(1) if article_match else text_head
-        readable_html = re.sub(r'<script[\s\S]*?</script>', ' ', readable_html, flags=re.I)
-        readable_html = re.sub(r'<style[\s\S]*?</style>', ' ', readable_html, flags=re.I)
-        paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', readable_html, flags=re.I | re.S)
-        paragraph_text = [clean_text(p) for p in paragraphs]
-        bad = ("cookie", "สมัครสมาชิก", "เข้าสู่ระบบ", "โฆษณา", "ติดตามเรา", "share")
-        paragraph_text = [p for p in paragraph_text if 70 <= len(p) <= 1800 and not any(b in p.lower() for b in bad)]
+        paragraphs = []
+        if article_body:
+            paragraphs.extend(split_long_text(article_body, 900))
+        if len(paragraphs) < 5:
+            paragraphs.extend(extract_article_paragraphs(text_head))
 
-        if article_body and len(article_body) >= 500:
-            detailed = article_body
-        else:
-            detailed = "\n\n".join(paragraph_text[:10])
-
-        description = clean_text(description)
-        if len(description) < 120 and detailed:
-            description = detailed[:700]
-
-        return {
-            "image": absolute_url(image, final_url),
-            "description": description[:900],
-            "articleText": clean_text(detailed)[:8000],
-            "sourceName": clean_text(site_name),
-            "resolvedUrl": canonical or final_url,
-        }
-
-    try:
-        request = urllib.request.Request(
-            url,
-            headers={
-                "User-Agent": USER_AGENT,
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                "Accept-Language": "th-TH,th;q=0.9,en;q=0.7",
-            },
-        )
-        with urllib.request.urlopen(request, timeout=ARTICLE_TIMEOUT) as response:
-            final_url = response.geturl() or url
-            raw = response.read()
-        direct = parse_page(raw.decode("utf-8", errors="ignore"), final_url)
-        if direct.get("image") or len(direct.get("articleText", "")) >= 300:
-            return direct
-        result.update(direct)
-    except Exception as exc:
-        print(f"[WARN] direct article fetch failed: {url} -> {exc}")
-
-    try:
-        stripped = url.replace("https://", "").replace("http://", "", 1)
-        jina_url = "https://r.jina.ai/http://" + stripped
-        request = urllib.request.Request(
-            jina_url,
-            headers={"User-Agent": USER_AGENT, "Accept": "text/plain,text/markdown,*/*"},
-        )
-        with urllib.request.urlopen(request, timeout=JINA_TIMEOUT) as response:
-            markdown = response.read(2_000_000).decode("utf-8", errors="ignore")
-
-        image = ""
-        for match in re.finditer(r'!\[[^\]]*\]\((https?://[^)\s]+)', markdown, flags=re.I):
-            candidate = match.group(1)
-            if not any(x in candidate.lower() for x in ("logo", "icon", "avatar", "favicon")):
-                image = candidate
-                break
-
-        lines = []
-        for raw_line in markdown.splitlines():
-            line = clean_text(re.sub(r'!\[[^\]]*\]\([^)]*\)', '', raw_line))
-            line = re.sub(r'^#{1,6}\s*', '', line)
-            if 70 <= len(line) <= 1800:
-                low = line.lower()
-                if not any(b in low for b in ("cookie", "privacy policy", "สมัครสมาชิก", "เข้าสู่ระบบ", "advertisement")):
-                    lines.append(line)
-
-        unique_lines = []
+        # De-duplicate while keeping order.
+        unique = []
         seen = set()
-        for line in lines:
-            key = normalize_key(line)
+        for para in paragraphs:
+            key = normalize_key(para)
             if key and key not in seen:
                 seen.add(key)
-                unique_lines.append(line)
-        detailed = "\n\n".join(unique_lines[:8])[:8000]
+                unique.append(para)
 
-        if detailed or image:
-            result.update({
-                "image": image or result.get("image", ""),
-                "description": (result.get("description") or (detailed[:700] if detailed else ""))[:900],
-                "articleText": detailed,
-            })
-            return result
+        # A useful description should be the first few source paragraphs.
+        if not description and unique:
+            description = " ".join(unique[:2])[:900]
+
+        return {
+            "image": absolute_url(image, url),
+            "description": clean_text(description)[:900],
+            "paragraphs": unique[:24],
+            "sourceName": clean_text(site_name),
+        }
     except Exception as exc:
-        print(f"[WARN] Jina Reader failed: {url} -> {exc}")
-
-    return result
+        print(f"[WARN] article page failed: {url} -> {exc}")
+        return {"image": "", "description": "", "paragraphs": [], "sourceName": ""}
 
 
 def safe_extension(content_type: str, url: str) -> str:
@@ -494,16 +504,14 @@ def dedupe(items: list[dict]) -> list[dict]:
 
 
 def enrich_candidate(item: dict) -> dict:
-    """Enrich RSS item with publisher metadata, detailed summary and cover image."""
+    """Get cover + substantial article paragraphs from the original page."""
     page = extract_article_page(item.get("url", ""))
-    if page.get("resolvedUrl"):
-        item["resolvedUrl"] = page["resolvedUrl"]
     if page.get("image"):
         item["image"] = page["image"]
     if page.get("description") and len(page["description"]) > len(item.get("description", "")):
         item["description"] = page["description"]
-    if page.get("articleText"):
-        item["articleText"] = page["articleText"]
+    if page.get("paragraphs"):
+        item["paragraphs"] = page["paragraphs"]
     if page.get("sourceName"):
         item["sourceName"] = page["sourceName"]
     return item
@@ -527,30 +535,11 @@ def collect() -> list[dict]:
 
     # Enrich enough candidates to fill the per-category quota.
     enriched = []
-    for item in unique[:45]:
+    for item in unique[:72]:
         enriched.append(enrich_candidate(item))
         time.sleep(0.15)
 
     return enriched
-
-
-def create_fallback_cover(item_id: str, title: str, category: str) -> str:
-    """Create an article-specific SVG cover when the publisher gives no image."""
-    IMAGE_DIR.mkdir(parents=True, exist_ok=True)
-    path = IMAGE_DIR / f"{item_id}.svg"
-    if not path.exists():
-        safe_title = html.escape(clean_text(title)[:90])
-        safe_cat = html.escape(CATEGORY_NAMES.get(category, category))
-        svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071b36"/><stop offset="1" stop-color="#0a4f8d"/></linearGradient></defs>
-<rect width="1600" height="900" fill="url(#g)"/><circle cx="1320" cy="120" r="330" fill="#ffffff" opacity=".05"/><circle cx="1420" cy="760" r="420" fill="#e51f3a" opacity=".08"/>
-<rect x="90" y="95" width="190" height="52" rx="6" fill="#e51f3a"/><text x="185" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="white">{safe_cat}</text>
-<text x="90" y="260" font-family="Arial,sans-serif" font-size="72" font-weight="900" fill="white">THAI NEWS</text>
-<rect x="90" y="290" width="420" height="8" fill="#e51f3a"/>
-<foreignObject x="90" y="370" width="1420" height="300"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:54px;font-weight:900;line-height:1.25;color:#fff">{safe_title}</div></foreignObject>
-<text x="90" y="815" font-family="Arial,sans-serif" font-size="24" fill="#dce8f5">ภาพประกอบข่าว - THAI NEWS</text></svg>"""
-        path.write_text(svg, encoding="utf-8")
-    return path.relative_to(ROOT).as_posix()
 
 
 def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
@@ -565,44 +554,43 @@ def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
         category = classify(item)
         record_id = make_id(item["url"], item["title"])
         description = clean_text(item.get("description", ""))
-        article_text = clean_text(item.get("articleText", ""))
 
         if not description:
-            description = (article_text[:900] if article_text else
-                           f"ติดตามรายละเอียดข่าวล่าสุดจาก {item.get('sourceName') or 'THAI NEWS'}")
+            description = f"ติดตามรายละเอียดข่าวล่าสุดจาก {item.get('sourceName') or 'THAI NEWS'}"
 
-        # Try local download first, but NEVER throw away the real remote image.
-        # GitHub Pages can still display the remote cover when a publisher blocks download.
+        # Prefer the downloaded local image. This prevents GitHub Pages from
+        # depending on hotlinking permissions of another news website.
         cover_url = item.get("image", "")
         local_cover = download_cover(cover_url, record_id)
-        cover = local_cover or cover_url or create_fallback_cover(record_id, item.get("title", "ข่าวล่าสุด"), category)
+        cover = local_cover or cover_url or "assets/banner.jpg"
 
-        content_blocks = []
-        source_text = article_text or description
-        if source_text:
-            # Keep readable paragraphs rather than one giant block.
-            paragraphs = [p.strip() for p in re.split(r"\n{2,}", source_text) if p.strip()]
-            for paragraph in paragraphs[:12]:
-                content_blocks.append({"text": paragraph[:1800]})
-        if cover_url:
-            content_blocks.insert(1 if content_blocks else 0, {"image": local_cover or cover_url})
-        if not content_blocks:
-            content_blocks.append({
-                "text": "ยังไม่สามารถดึงเนื้อหารายละเอียดจากแหล่งข่าวต้นทางได้ โปรดเปิดลิงก์ต้นทางเพื่ออ่านรายละเอียดเพิ่มเติม"
-            })
+        source_paragraphs = [
+            clean_text(p) for p in (item.get("paragraphs") or [])
+            if clean_text(p)
+        ]
+
+        # Prefer the real article text extracted from the source page.
+        # If a source exposes only a short description, keep that instead of
+        # inventing facts that were not present in the source.
+        if source_paragraphs:
+            content_blocks = [{"text": p} for p in source_paragraphs[:24]]
+        else:
+            content_blocks = [{"text": description[:900]}]
+
+        content_blocks.append({
+            "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+        })
 
         record = {
             "id": record_id,
             "category": category,
             "title": clean_text(item["title"]),
             "description": description[:900],
-            "excerpt": description[:900],
             "cover": cover,
-            "coverSourceUrl": cover_url,
             "content": content_blocks,
             "publishedAt": published.isoformat(),
             "views": 0,
-            "sourceUrl": item.get("resolvedUrl") or item["url"],
+            "sourceUrl": item["url"],
             "sourceName": item.get("sourceName") or "RSS / Google News",
             "automated": True,
         }
