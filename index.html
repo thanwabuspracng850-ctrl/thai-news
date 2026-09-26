@@ -770,9 +770,10 @@ function normalizeNews(list){
     id: item.id,
     category: normalizeCategory(item.category),
     title: item.title || "ไม่มีหัวข้อข่าว",
-    description: item.description || "",
-    cover: item.cover || "assets/banner.jpg",
-    content: Array.isArray(item.content) ? item.content : [],
+    description: item.description || item.excerpt || "",
+    cover: item.cover || item.coverImage || item.image || item.imageUrl || item.thumbnail || item.coverSourceUrl || "assets/banner.jpg",
+    coverSourceUrl: item.coverSourceUrl || item.image || item.imageUrl || item.thumbnail || "",
+    content: Array.isArray(item.content) ? item.content : (item.content ? [{text:String(item.content)}] : []),
     publishedAt: item.created_at ? new Date(item.created_at).getTime() :
       (item.publishedAt ? new Date(item.publishedAt).getTime() : 0),
     views: Number(item.views || 0),

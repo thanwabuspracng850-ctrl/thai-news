@@ -224,35 +224,79 @@ def extract_meta(html_text: str, names: tuple[str, ...]) -> str:
     return ""
 
 
+def extract_jsonld_article_body(html_text: str) -> str:
+    """Extract articleBody from JSON-LD when a publisher exposes it."""
+    blocks = re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>([\s\S]*?)</script>', html_text, flags=re.I)
+    best = ""
+    for raw in blocks:
+        try:
+            data = json.loads(html.unescape(raw).strip())
+        except Exception:
+            continue
+        stack = data if isinstance(data, list) else [data]
+        while stack:
+            obj = stack.pop()
+            if isinstance(obj, list):
+                stack.extend(obj)
+            elif isinstance(obj, dict):
+                body = obj.get("articleBody")
+                if isinstance(body, str) and len(body.strip()) > len(best):
+                    best = body.strip()
+                for value in obj.values():
+                    if isinstance(value, (dict, list)):
+                        stack.append(value)
+    return clean_text(best)[:8000]
+
+
 def extract_article_page(url: str) -> dict:
-    """Find a reliable cover image and a short description from the original page."""
+    """Find cover + a detailed publisher summary without copying the whole page."""
     try:
-        raw = fetch_bytes(url, ARTICLE_TIMEOUT)
-        # Most metadata is ASCII/UTF-8. Ignore malformed bytes rather than failing the run.
+        request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(request, timeout=ARTICLE_TIMEOUT) as response:
+            final_url = response.geturl() or url
+            raw = response.read()
+
         text = raw.decode("utf-8", errors="ignore")
-        text_head = text[:2_000_000]
+        text_head = text[:3_000_000]
 
-        image = extract_meta(text_head, ("og:image", "twitter:image", "twitter:image:src"))
-        description = extract_meta(text_head, ("og:description", "twitter:description", "description"))
+        image = extract_meta(text_head, (
+            "og:image", "og:image:url", "twitter:image", "twitter:image:src"
+        ))
+        description = extract_meta(text_head, (
+            "og:description", "twitter:description", "description"
+        ))
         site_name = extract_meta(text_head, ("og:site_name",))
+        article_body = extract_jsonld_article_body(text_head)
 
-        if not description:
-            # Small fallback: collect visible paragraph text, but never copy the whole article.
-            body = re.sub(r"<script[\s\S]*?</script>", " ", text_head, flags=re.I)
-            body = re.sub(r"<style[\s\S]*?</style>", " ", body, flags=re.I)
-            paragraphs = re.findall(r"<p[^>]*>(.*?)</p>", body, flags=re.I | re.S)
-            snippets = [clean_text(p) for p in paragraphs]
-            snippets = [p for p in snippets if len(p) >= 40]
-            description = " ".join(snippets[:2])[:700]
+        # Remove scripts/styles and collect readable paragraphs.
+        body = re.sub(r"<script[\s\S]*?</script>", " ", text_head, flags=re.I)
+        body = re.sub(r"<style[\s\S]*?</style>", " ", body, flags=re.I)
+        paragraphs = re.findall(r"<p[^>]*>(.*?)</p>", body, flags=re.I | re.S)
+        paragraph_text = [clean_text(p) for p in paragraphs]
+        paragraph_text = [p for p in paragraph_text if 50 <= len(p) <= 1800]
+
+        if article_body:
+            detailed = article_body
+        else:
+            detailed = "\n\n".join(paragraph_text[:8])[:8000]
+
+        if not description and detailed:
+            description = detailed[:700]
+        if detailed and len(detailed) < 1200 and paragraph_text:
+            extra = "\n\n".join(paragraph_text[:8])
+            if len(extra) > len(detailed):
+                detailed = extra[:8000]
 
         return {
-            "image": absolute_url(image, url),
-            "description": clean_text(description)[:700],
+            "image": absolute_url(image, final_url),
+            "description": clean_text(description)[:900],
+            "articleText": clean_text(detailed)[:8000],
             "sourceName": clean_text(site_name),
+            "resolvedUrl": final_url,
         }
     except Exception as exc:
         print(f"[WARN] article page failed: {url} -> {exc}")
-        return {"image": "", "description": "", "sourceName": ""}
+        return {"image": "", "description": "", "articleText": "", "sourceName": "", "resolvedUrl": url}
 
 
 def safe_extension(content_type: str, url: str) -> str:
@@ -386,12 +430,16 @@ def dedupe(items: list[dict]) -> list[dict]:
 
 
 def enrich_candidate(item: dict) -> dict:
-    """Get image/summary from the original article when RSS does not provide enough data."""
+    """Enrich RSS item with publisher metadata, detailed summary and cover image."""
     page = extract_article_page(item.get("url", ""))
+    if page.get("resolvedUrl"):
+        item["resolvedUrl"] = page["resolvedUrl"]
     if page.get("image"):
         item["image"] = page["image"]
     if page.get("description") and len(page["description"]) > len(item.get("description", "")):
         item["description"] = page["description"]
+    if page.get("articleText"):
+        item["articleText"] = page["articleText"]
     if page.get("sourceName"):
         item["sourceName"] = page["sourceName"]
     return item
@@ -434,29 +482,43 @@ def build_records(candidates: list[dict], old: list[dict]) -> list[dict]:
         category = classify(item)
         record_id = make_id(item["url"], item["title"])
         description = clean_text(item.get("description", ""))
+        article_text = clean_text(item.get("articleText", ""))
 
         if not description:
-            description = f"ติดตามรายละเอียดข่าวล่าสุดจาก {item.get('sourceName') or 'THAI NEWS'}"
+            description = (article_text[:900] if article_text else
+                           f"ติดตามรายละเอียดข่าวล่าสุดจาก {item.get('sourceName') or 'THAI NEWS'}")
 
-        # Prefer the downloaded local image. This prevents GitHub Pages from
-        # depending on hotlinking permissions of another news website.
+        # Try local download first, but NEVER throw away the real remote image.
+        # GitHub Pages can still display the remote cover when a publisher blocks download.
         cover_url = item.get("image", "")
         local_cover = download_cover(cover_url, record_id)
         cover = local_cover or cover_url or "assets/banner.jpg"
+
+        content_blocks = []
+        source_text = article_text or description
+        if source_text:
+            # Keep readable paragraphs rather than one giant block.
+            paragraphs = [p.strip() for p in re.split(r"\n{2,}", source_text) if p.strip()]
+            for paragraph in paragraphs[:12]:
+                content_blocks.append({"text": paragraph[:1800]})
+        if cover_url:
+            content_blocks.insert(1 if content_blocks else 0, {"image": local_cover or cover_url})
+        content_blocks.append({
+            "text": "เรียบเรียงจากข้อมูลสาธารณะที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดและบริบทจากลิงก์ต้นทางก่อนนำไปใช้อ้างอิง"
+        })
 
         record = {
             "id": record_id,
             "category": category,
             "title": clean_text(item["title"]),
             "description": description[:900],
+            "excerpt": description[:900],
             "cover": cover,
-            "content": [
-                {"text": description[:900]},
-                {"text": "ข่าวนี้รวบรวมจากข้อมูลสาธารณะที่เผยแพร่โดยแหล่งข่าวต้นทาง โปรดตรวจสอบรายละเอียดเพิ่มเติมจากลิงก์ต้นทางก่อนนำไปใช้อ้างอิง"},
-            ],
+            "coverSourceUrl": cover_url,
+            "content": content_blocks,
             "publishedAt": published.isoformat(),
             "views": 0,
-            "sourceUrl": item["url"],
+            "sourceUrl": item.get("resolvedUrl") or item["url"],
             "sourceName": item.get("sourceName") or "RSS / Google News",
             "automated": True,
         }
