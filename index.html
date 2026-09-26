@@ -585,15 +585,15 @@ img, video, iframe {
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="nav-item active" data-category="ข่าวล่าสุด" onclick="filterCategory('ข่าวล่าสุด')">ข่าวล่าสุด</a>
-    <a class="nav-item" data-category="การเมือง" onclick="filterCategory('การเมือง')">การเมือง</a>
-    <a class="nav-item" data-category="บันเทิง" onclick="filterCategory('บันเทิง')">บันเทิง</a>
-    <a class="nav-item" data-category="อุบัติเหตุ" onclick="filterCategory('อุบัติเหตุ')">อุบัติเหตุ</a>
-    <a class="nav-item" data-category="เศรษฐกิจ" onclick="filterCategory('เศรษฐกิจ')">เศรษฐกิจ</a>
-    <a class="nav-item" data-category="สังคม" onclick="filterCategory('สังคม')">สังคม</a>
-    <a class="nav-item" data-category="กีฬา" onclick="filterCategory('กีฬา')">กีฬา</a>
-    <a class="nav-item" data-category="ต่างประเทศ" onclick="filterCategory('ต่างประเทศ')">ต่างประเทศ</a>
-    <a class="nav-item" data-category="ข่าวทั่วไป" onclick="filterCategory('ข่าวทั่วไป')">ข่าวทั่วไป</a>
+    <a class="nav-item active" data-category="latest" onclick="filterCategory('latest')">ข่าวล่าสุด</a>
+    <a class="nav-item" data-category="politics" onclick="filterCategory('politics')">การเมือง</a>
+    <a class="nav-item" data-category="entertainment" onclick="filterCategory('entertainment')">บันเทิง</a>
+    <a class="nav-item" data-category="accident" onclick="filterCategory('accident')">อุบัติเหตุ</a>
+    <a class="nav-item" data-category="economy" onclick="filterCategory('economy')">เศรษฐกิจ</a>
+    <a class="nav-item" data-category="society" onclick="filterCategory('society')">สังคม</a>
+    <a class="nav-item" data-category="sports" onclick="filterCategory('sports')">กีฬา</a>
+    <a class="nav-item" data-category="international" onclick="filterCategory('international')">ต่างประเทศ</a>
+    <a class="nav-item" data-category="general" onclick="filterCategory('general')">ข่าวทั่วไป</a>
   </div>
 </nav>
 
@@ -682,8 +682,34 @@ const API_BASE = SUPABASE_URL + "/rest/v1/";
 const CACHE_KEY = "thaiNewsHomeCache_v2";
 
 let allNewsList = [];
-let currentCategory = "ข่าวล่าสุด";
+let currentCategory = "latest";
 let currentSearch = "";
+
+const CATEGORY_NAMES = {
+  latest:"ข่าวล่าสุด",
+  politics:"การเมือง",
+  entertainment:"บันเทิง",
+  accident:"อุบัติเหตุ",
+  economy:"เศรษฐกิจ",
+  society:"สังคม",
+  sports:"กีฬา",
+  international:"ต่างประเทศ",
+  general:"ข่าวทั่วไป"
+};
+
+const CATEGORY_ALIASES = {
+  "ข่าวล่าสุด":"latest","การเมือง":"politics","บันเทิง":"entertainment",
+  "อุบัติเหตุ":"accident","เศรษฐกิจ":"economy","สังคม":"society",
+  "กีฬา":"sports","ต่างประเทศ":"international","ข่าวทั่วไป":"general",
+  latest:"latest",politics:"politics",entertainment:"entertainment",
+  accident:"accident",economy:"economy",society:"society",sports:"sports",
+  international:"international",general:"general"
+};
+
+function normalizeCategory(value){
+  const key = String(value ?? "").trim();
+  return CATEGORY_ALIASES[key] || "general";
+}
 let heroSlides = [];
 let heroIndex = 0;
 let heroTimer = null;
@@ -742,25 +768,56 @@ function saveHomeCache(list){
 function normalizeNews(list){
   return (Array.isArray(list) ? list : []).map(item => ({
     id: item.id,
-    category: item.category || "ข่าวทั่วไป",
+    category: normalizeCategory(item.category),
     title: item.title || "ไม่มีหัวข้อข่าว",
     description: item.description || "",
     cover: item.cover || "assets/banner.jpg",
-    // Content is intentionally NOT loaded on the homepage.
     content: Array.isArray(item.content) ? item.content : [],
-    publishedAt: item.created_at ? new Date(item.created_at).getTime() : 0,
-    views: Number(item.views || 0)
+    publishedAt: item.created_at ? new Date(item.created_at).getTime() :
+      (item.publishedAt ? new Date(item.publishedAt).getTime() : 0),
+    views: Number(item.views || 0),
+    sourceUrl: item.sourceUrl || item.source_url || "",
+    sourceName: item.sourceName || item.source_name || ""
   }));
 }
 
 async function fetchHomeNews(){
-  // Only fetch lightweight columns. The old version used select("*"),
-  // which also downloaded every full article/body image on every refresh.
   return await restFetch(
     "news?select=id,category,title,description,cover,created_at,views&order=created_at.desc&limit=50",
     {},
     7000
   );
+}
+
+async function fetchCentralNews(){
+  const response = await fetch("data/news.json?ts=" + Date.now(), {
+    cache:"no-store"
+  });
+  if(!response.ok) throw new Error("central news HTTP " + response.status);
+  const data = await response.json();
+  return Array.isArray(data) ? data : [];
+}
+
+function mergeNewsLists(manualNews, centralNews){
+  const result = [];
+  const seenIds = new Set();
+  const seenTitles = new Set();
+
+  const add = item => {
+    const n = normalizeNews([item])[0];
+    if(!n || !n.id || !n.title) return;
+    const titleKey = n.title.toLowerCase().replace(/\\s+/g," ").trim();
+    const idKey = String(n.id);
+    if(seenIds.has(idKey) || seenTitles.has(titleKey)) return;
+    seenIds.add(idKey);
+    seenTitles.add(titleKey);
+    result.push(n);
+  };
+
+  // Manual/Admin posts stay first; automated central news fills the rest.
+  manualNews.forEach(add);
+  centralNews.forEach(add);
+  return result.sort((a,b)=>b.publishedAt-a.publishedAt).slice(0,100);
 }
 
 async function loadNews(){
@@ -769,17 +826,22 @@ async function loadNews(){
   loadingPromise = (async()=>{
     const cached = normalizeNews(readHomeCache());
 
-    // Render cached news immediately so the page is usable even on a slow connection.
     if(cached.length){
       allNewsList = cached;
       render();
     }
 
     try{
-      const data = await fetchHomeNews();
-      const fresh = normalizeNews(data);
-      allNewsList = fresh;
-      saveHomeCache(fresh);
+      const [manualResult, centralResult] = await Promise.allSettled([
+        fetchHomeNews(),
+        fetchCentralNews()
+      ]);
+
+      const manual = manualResult.status === "fulfilled" ? manualResult.value : [];
+      const central = centralResult.status === "fulfilled" ? centralResult.value : [];
+
+      allNewsList = mergeNewsLists(manual, central);
+      saveHomeCache(allNewsList);
       render();
     }catch(error){
       console.error("THAI NEWS load error:", error);
@@ -791,7 +853,6 @@ async function loadNews(){
              <p>ระบบจะแสดงข่าวอีกครั้งเมื่อเชื่อมต่อเซิร์ฟเวอร์ได้</p>
            </div>`;
       }
-      // Do not erase cached/previous news just because a refresh failed.
     }finally{
       loadingPromise = null;
     }
@@ -803,8 +864,8 @@ async function loadNews(){
 function getFilteredNews(){
   let news = [...allNewsList];
 
-  if(currentCategory !== "ข่าวล่าสุด"){
-    news = news.filter(item => String(item.category).trim() === currentCategory);
+  if(currentCategory !== "latest"){
+    news = news.filter(item => item.category === currentCategory);
   }
 
   if(currentSearch){
@@ -820,17 +881,17 @@ function getFilteredNews(){
 }
 
 window.filterCategory = function(category){
-  currentCategory = category;
+  currentCategory = normalizeCategory(category);
   currentSearch = "";
   document.getElementById("searchInput").value = "";
   document.getElementById("mainView").style.display = "block";
   document.getElementById("articleView").style.display = "none";
   document.querySelectorAll(".nav a").forEach(link =>
-    link.classList.toggle("active", link.dataset.category === category)
+    link.classList.toggle("active", link.dataset.category === currentCategory)
   );
-  document.getElementById("sectionTitle").innerText = category;
+  document.getElementById("sectionTitle").innerText = CATEGORY_NAMES[currentCategory];
   document.getElementById("sectionDescription").innerText =
-    category === "ข่าวล่าสุด" ? "ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS" : "ข่าวในหมวด " + category;
+    currentCategory === "latest" ? "ข่าวที่เผยแพร่ล่าสุดจาก THAI NEWS" : "ข่าวในหมวด " + CATEGORY_NAMES[currentCategory];
   render();
   scrollToNews();
 };
@@ -886,7 +947,7 @@ function applyHeroData(n){
   const img = document.getElementById("heroImage");
   img.src = n.cover || "assets/banner.jpg";
   img.alt = n.title || "THAI NEWS";
-  document.getElementById("heroTag").textContent = n.category || "THAI NEWS";
+  document.getElementById("heroTag").textContent = CATEGORY_NAMES[n.category] || "THAI NEWS";
   document.getElementById("heroTitle").textContent = n.title || "ข่าวล่าสุด";
   document.getElementById("heroDescription").textContent =
     n.description || "ติดตามข่าวสารและรายละเอียดล่าสุดจาก THAI NEWS";
@@ -928,18 +989,18 @@ function updateHero(){
 function miniCardHTML(n){
   return `<article class="mini-card" onclick="openArticle('${String(n.id).replace(/'/g,"\\'")}')">
     <img loading="lazy" decoding="async" src="${escapeHTML(n.cover)}" alt="${escapeHTML(n.title)}" onerror="this.src='assets/banner.jpg'">
-    <div class="mini-card-body"><div class="mini-cat">${escapeHTML(n.category)}</div><h3>${escapeHTML(n.title)}</h3></div>
+    <div class="mini-card-body"><div class="mini-cat">${escapeHTML(CATEGORY_NAMES[n.category] || n.category)}</div><h3>${escapeHTML(n.title)}</h3></div>
   </article>`;
 }
 function featureCardHTML(n, large=false){
   return `<article class="feature-card ${large?'large':''}" onclick="openArticle('${String(n.id).replace(/'/g,"\\'")}')">
     <img loading="lazy" decoding="async" src="${escapeHTML(n.cover)}" alt="${escapeHTML(n.title)}" onerror="this.src='assets/banner.jpg'">
-    <div class="feature-copy"><span>${escapeHTML(n.category)}</span><h3>${escapeHTML(n.title)}</h3></div>
+    <div class="feature-copy"><span>${escapeHTML(CATEGORY_NAMES[n.category] || n.category)}</span><h3>${escapeHTML(n.title)}</h3></div>
   </article>`;
 }
 function renderPortalSections(news){
-  const entertainment = allNewsList.filter(n=>n.category==='บันเทิง').slice(0,8);
-  const sport = allNewsList.filter(n=>n.category==='กีฬา').slice(0,3);
+  const entertainment = allNewsList.filter(n=>n.category==='entertainment').slice(0,8);
+  const sport = allNewsList.filter(n=>n.category==='sports').slice(0,3);
   const latest = [...allNewsList].sort((a,b)=>b.publishedAt-a.publishedAt).slice(0,8);
   const trending = [...allNewsList].sort((a,b)=>Number(b.views||0)-Number(a.views||0)).slice(0,5);
   const e = document.getElementById('entertainmentGrid');
@@ -975,7 +1036,7 @@ function render(){
         src="${escapeHTML(n.cover)}" alt="${escapeHTML(n.title)}"
         onerror="this.src='assets/banner.jpg'">
       <div class="card-body">
-        <div class="card-tag">${escapeHTML(n.category)}</div>
+        <div class="card-tag">${escapeHTML(CATEGORY_NAMES[n.category] || n.category)}</div>
         <h3>${escapeHTML(n.title)}</h3>
         <p>${escapeHTML(n.description)}</p>
         <div class="card-meta">
@@ -988,7 +1049,7 @@ function render(){
 }
 
 async function fetchFullArticle(id){
-  const safeId = String(id).replace(/"/g,'\\"');
+  if(String(id).startsWith("auto_")) return null;
   const data = await restFetch(
     `news?id=eq.${encodeURIComponent(id)}&select=*`,
     {},
@@ -996,7 +1057,6 @@ async function fetchFullArticle(id){
   );
   return Array.isArray(data) ? data[0] : null;
 }
-
 async function incrementViews(id){
   try{
     await restFetch("rpc/increment_news_views", {
@@ -1090,6 +1150,7 @@ window.openArticle = async function(id){
           src="${escapeHTML(news.cover)}" alt="${escapeHTML(news.title)}"
           onerror="this.src='assets/banner.jpg'">
         <div class="article-text">${contentHTML}</div>
+        ${news.sourceUrl ? `<div style="margin:18px 0;color:#6b7280;font-size:12px">แหล่งข่าว: ${escapeHTML(news.sourceName || "ข่าวอัตโนมัติ")}</div>` : ""}
         <div class="share-box">
           <span class="share-title">📢 แชร์ข่าวนี้ไปที่:</span>
           <button class="share-btn share-fb" type="button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${pageUrl}','_blank')">Facebook</button>
