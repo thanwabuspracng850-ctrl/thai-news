@@ -1,5 +1,25 @@
 [
   {
+    "id": "auto_605b5e3f282fbfb4e5",
+    "category": "sports",
+    "title": "โบว์–กัญญารัตน์ นางฟ้าบอลเร็วทีมชาติไทย ชวนเปิด “ข้อความใหม่” ในมหกรรมหนังสือระดับชาติ - LINE TODAY",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_605b5e3f282fbfb4e5.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-07T12:22:17+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9HSTVheV9wS0ZJbTRzLWt4SFpRTThvMEtqVXhYTW1fRXh2T2d1Mi1zQ1FpWHhCSm14VEZpT1R0UDN6QzVPVWxGUTBmOThZZHJ3VmJyOFFn?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
     "id": "auto_b3eae3133b2db2fa40",
     "category": "society",
     "title": "Rocket Media Lab: 'ชุมชนแออัด' เป็นของใคร ในเมืองหลวงแห่งความเหลื่อมล้ำ - ประชาไท Prachatai.com",
@@ -20,11 +40,31 @@
     "automated": true
   },
   {
-    "id": "auto_6dbe404ebcd4daab00",
+    "id": "auto_3afe8d595d37854871",
+    "category": "society",
+    "title": "\"สรส.-สสรท.\" และเครือข่ายแรงงาน ยื่นข้อเรียกร้อง “วันงานที่มีคุณค่าสากล” จี้รัฐบาลเร่งยกระดับคุณภาพชีวิตแรงงานไทยทุกระบบ - topnews.co.th",
+    "description": "\"สรส.-สสรท.\" และเครือข่ายแรงงาน ยื่นข้อเรียกร้อง “วันงานที่มีคุณค่าสากล” จี้รัฐบาลเร่งยกระดับคุณภาพชีวิตแรงงานไทยทุกระบบ topnews.co.th",
+    "cover": "assets/news/auto_3afe8d595d37854871.webp",
+    "content": [
+      {
+        "text": "\"สรส.-สสรท.\" และเครือข่ายแรงงาน ยื่นข้อเรียกร้อง “วันงานที่มีคุณค่าสากล” จี้รัฐบาลเร่งยกระดับคุณภาพชีวิตแรงงานไทยทุกระบบ topnews.co.th"
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-07T11:35:41+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE11MklMb2d6WGdubnhoRTdUWGI0UlQ4OHJ2RENtM0txZHRvOWZHTkRmeUlnYWluNWFSdmN5bHBwc045Z1U4aHJpSmV3aG50U1E?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_8bec8ac1dcce58a38d",
     "category": "sports",
-    "title": "ผู้ว่าฯ ไอจิ ฉุนนักกีฬาเทคบอลไทยบ่นอาหารน้อย ลั่นเหมือนมาเรียกยอดวิว - แนวหน้า",
+    "title": "ผู้ว่าฯ เมืองไอจิ ตำหนิทีมเทคบอลไทย ปมอาหารนักกีฬา ซัด “มาที่นี่เพื่อเรียกยอดวิว?” - CH3Plus.com",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_6dbe404ebcd4daab00.webp",
+    "cover": "assets/news/auto_8bec8ac1dcce58a38d.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -33,9 +73,9 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-10-07T11:05:53+00:00",
+    "publishedAt": "2026-10-07T10:04:57+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5SdmlVMTktV2VRZnBZVFJCUXVSVkNuaHk3aDgzNmNkT1NlMkJpX1NVcnJXZk5xa2RnbkgxN0p6aTFXT2pXZW5iWDY1ZVlldW82S3pDSHZRcGxOZw?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE93cEVhX3IwQTRmRUYyMmIyNzVJdFdKT09MWnhva2tLNGZRcGhldTFDMmpDd2UtNHQ1RFFGSUVWVExiWF9XYUZ4U3dvaWZTM2l6bTZCdDVuSmRtQXJ2ZXFCWg?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -120,26 +160,6 @@
     "automated": true
   },
   {
-    "id": "auto_22bfab4a960d88b58c",
-    "category": "sports",
-    "title": "“ผู้ว่าฯ ไอจิ” ตำหนิทีมเทคบอลไทย “มาที่นี่เพื่อเรียกยอดวิวหรือ” ปมรีวิวอาหารเอเชียนเกมส์ - CH3Plus.com",
-    "description": "“ผู้ว่าฯ ไอจิ” ตำหนิทีมเทคบอลไทย “มาที่นี่เพื่อเรียกยอดวิวหรือ” ปมรีวิวอาหารเอเชียนเกมส์ CH3Plus.com",
-    "cover": "assets/news/auto_22bfab4a960d88b58c.webp",
-    "content": [
-      {
-        "text": "“ผู้ว่าฯ ไอจิ” ตำหนิทีมเทคบอลไทย “มาที่นี่เพื่อเรียกยอดวิวหรือ” ปมรีวิวอาหารเอเชียนเกมส์ CH3Plus.com"
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-10-07T04:04:03+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1IcnkzQjZOeGszVDcxWllPbUpLQVNYTS1XMmNMSENmZ19MU216MVNKNGZneE85S05TRkZCanBSMmd0MHh1VUo5MFg2czVVTzFIMW5hZnJMMlF1amthejlib3JPMA?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
     "id": "auto_d669350ce56622a697",
     "category": "economy",
     "title": "ถอดรหัส..แผนรับเงินเฟ้อเอเชีย.!? | ข่าวหุ้นธุรกิจ - LINE TODAY",
@@ -216,26 +236,6 @@
     "publishedAt": "2026-10-05T22:48:38+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0ZDU3XzVjRHhlUlpnb0hCUmdBUlZMUWRaUzdOYjdyTTNtRE9MajE1eHphek9Icy0tNEJtcUJtSGlyemZyRW5CaFRlTlNPNFVKVXY5bzFn?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_9fc5ceceb3ab1264a2",
-    "category": "society",
-    "title": "สถานการณ์แรงงานประจำสัปดาห์ 28 ก.ย.-4 ต.ค. 2569 - ประชาไท Prachatai.com",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_9fc5ceceb3ab1264a2.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-10-04T12:12:05+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE82cVhoS0ZyV0liVGxyOWZLVUdQZWFPUlZWRTlnMW9TNk1JaERrQk1PYTdWLVphc01BZGI5aE8wMHJ3aXgyN25KeElwYVdMMEVpc3dsVHNWVQ?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
