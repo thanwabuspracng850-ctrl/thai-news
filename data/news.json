@@ -1,25 +1,5 @@
 [
   {
-    "id": "auto_605b5e3f282fbfb4e5",
-    "category": "sports",
-    "title": "โบว์–กัญญารัตน์ นางฟ้าบอลเร็วทีมชาติไทย ชวนเปิด “ข้อความใหม่” ในมหกรรมหนังสือระดับชาติ - LINE TODAY",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_605b5e3f282fbfb4e5.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-10-07T12:22:17+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9HSTVheV9wS0ZJbTRzLWt4SFpRTThvMEtqVXhYTW1fRXh2T2d1Mi1zQ1FpWHhCSm14VEZpT1R0UDN6QzVPVWxGUTBmOThZZHJ3VmJyOFFn?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
     "id": "auto_b3eae3133b2db2fa40",
     "category": "society",
     "title": "Rocket Media Lab: 'ชุมชนแออัด' เป็นของใคร ในเมืองหลวงแห่งความเหลื่อมล้ำ - ประชาไท Prachatai.com",
@@ -33,7 +13,7 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-10-07T11:36:01+00:00",
+    "publishedAt": "2026-10-07T11:47:38+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBYalRFZDdBQXJoUWhJOVdxN0tMVzdKSmJnUzVQbHlFZngzQ3liT1RUQWFSbERoNjNEWWNmVVNfeUllaE01VWluM2diWmVKcVd1cngzNkpqMA?oc=5",
     "sourceName": "Google News",
@@ -60,11 +40,11 @@
     "automated": true
   },
   {
-    "id": "auto_8bec8ac1dcce58a38d",
+    "id": "auto_6dbe404ebcd4daab00",
     "category": "sports",
-    "title": "ผู้ว่าฯ เมืองไอจิ ตำหนิทีมเทคบอลไทย ปมอาหารนักกีฬา ซัด “มาที่นี่เพื่อเรียกยอดวิว?” - CH3Plus.com",
+    "title": "ผู้ว่าฯ ไอจิ ฉุนนักกีฬาเทคบอลไทยบ่นอาหารน้อย ลั่นเหมือนมาเรียกยอดวิว - แนวหน้า",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_8bec8ac1dcce58a38d.webp",
+    "cover": "assets/news/auto_6dbe404ebcd4daab00.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -73,9 +53,9 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-10-07T10:04:57+00:00",
+    "publishedAt": "2026-10-07T11:06:45+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE93cEVhX3IwQTRmRUYyMmIyNzVJdFdKT09MWnhva2tLNGZRcGhldTFDMmpDd2UtNHQ1RFFGSUVWVExiWF9XYUZ4U3dvaWZTM2l6bTZCdDVuSmRtQXJ2ZXFCWg?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5SdmlVMTktV2VRZnBZVFJCUXVSVkNuaHk3aDgzNmNkT1NlMkJpX1NVcnJXZk5xa2RnbkgxN0p6aTFXT2pXZW5iWDY1ZVlldW82S3pDSHZRcGxOZw?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -156,6 +136,46 @@
     "publishedAt": "2026-10-07T04:22:33+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxORDJMbmdZTlMwcks4RWlEb05tbVprTGU4ZmpGM3JBTFp1dTJsR1hWQXFhbmU0cG1oX2h4V2hOVHhzY0d3MTdjR1NoVkxDWFVQTm0yM3BobTFkc3pWTzNILWJoOC1RU3lyYnRkdHBZa0pQQVpub0hYNFc3QWw5ZldQX0tzLWZ2RUliYVVYaExhblVOdk5fMTVzNEp6czMxT3RLSXk5NzNrTXpUbVVZbGZQYkE3WGk1eGFuLThVRW96RVZJN1NhN3dQZE12QkQ0WmFjYkZ2WXh4bkp2dGRrV3JoMDBQdFp5dC1GWXFNT29B?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_54ff73f3dd24188383",
+    "category": "sports",
+    "title": "“ผู้ว่าฯ ไอจิ” ตำหนิทีมเทคบอลไทย “มาที่นี่เพื่อเรียกยอดวิวหรือ” ปมรีวิวอาหารเอเชียนเกมส์ - ช่อง3",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_54ff73f3dd24188383.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-07T04:02:37+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1IcnkzQjZOeGszVDcxWllPbUpLQVNYTS1XMmNMSENmZ19MU216MVNKNGZneE85S05TRkZCanBSMmd0MHh1VUo5MFg2czVVTzFIMW5hZnJMMlF1amthejlib3JPMA?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_a258f3b3180b03efd9",
+    "category": "general",
+    "title": "กรุงไทยการไฟฟ้า ชวน 'ผู้ร่วมสร้าง' กลับมาตามรอยผืนป่า เติมไฟในใจ - ข่าวสด",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_a258f3b3180b03efd9.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-07T03:00:00+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFTXpJSVJuWV9PMXFtaF8wdzhCUGJEUHpBLW5JTFRReFB2Rzlja05rLXJuTlFZcjA2TTdydGJyTW9HRWdkYUVmMGRsOHhuRWZiUnBnd2EtQXl1bG8?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -256,26 +276,6 @@
     "publishedAt": "2026-10-02T06:38:05+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQRTlWMV9teDVFcWlWSktMcFlVVVdZWGJqZExWdHhUWkNmRzJfNVp1akxQcjZQZ1JiOVBpbzJpY1RYTTJBV242aEZlZnhRcFBJVEhIeTlyOS02VlR4SzQ0OC0tNnNpQmRwQUd0dDEwMGdSeXFtbjZKMl9JRm5sNm00N0lVTWhUUlJocFI5dGtCVQ?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_f11260f3250df60ed7",
-    "category": "general",
-    "title": "BEM รับมอบประกาศนียบัตร SIF จากสถาบันไทยพัฒน์ - ข่าวสด",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_f11260f3250df60ed7.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-10-02T03:48:00+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nRjE1WjdaMkRHZlNjU1lZTmY3WkJwS3BHSUVtSHpkVTZqWnl0MFNaTTZ2dXpOZldBM21GYkVSNzVhWEVyTGYzRlAyakp4TWpMdnpBWXUxN2NYQ00?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
