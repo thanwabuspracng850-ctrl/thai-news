@@ -1,5 +1,25 @@
 [
   {
+    "id": "auto_fc250ec17b130f7038",
+    "category": "international",
+    "title": "ทั่วโลกรุมประณาม ‘ฮูตี’ โจมตีสนามบินริยาด ดับ 12 ราย ‘แคนาดา’ ลั่น ‘น่ารังเกียจ’ - The Bangkok Insight",
+    "description": "ทั่วโลกรุมประณาม ‘ฮูตี’ โจมตีสนามบินริยาด ดับ 12 ราย ‘แคนาดา’ ลั่น ‘น่ารังเกียจ’ The Bangkok Insight",
+    "cover": "assets/news/auto_fc250ec17b130f7038.webp",
+    "content": [
+      {
+        "text": "ทั่วโลกรุมประณาม ‘ฮูตี’ โจมตีสนามบินริยาด ดับ 12 ราย ‘แคนาดา’ ลั่น ‘น่ารังเกียจ’ The Bangkok Insight"
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-11T05:19:39+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBlVnV0d2RpMHprVi1kd3hNX21hREFMc2ZLNEFWQ0V3S1pic2Y4czQzNzlLUGJMZTFMMzZybm9fNnd0a1BZYW1ZQWZNRDRHTDU3eVNTaGhjSGNra1hadFZPYjVzSmlSVjhuR2c?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
     "id": "auto_d20a48eff6e8ab2ca4",
     "category": "accident",
     "title": "24 ชั่วโมงข่าว 91 ประจำวันที่ 10 ตุลาคม 2569 | สวพ.FM91 - LINE TODAY",
@@ -60,22 +80,22 @@
     "automated": true
   },
   {
-    "id": "auto_cd31eafe733318a516",
+    "id": "auto_64efb6b47dd468059e",
     "category": "economy",
-    "title": "“อังกฤษ” เตรียมเผยเงินเฟ้อรายเดือนแบบสหรัฐ ต้นปี 2570 | การเงินธนาคาร - LINE TODAY",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_cd31eafe733318a516.webp",
+    "title": "หุ้นไทยปิดบวก 7.04 จุด โบรกเกอร์เตือนสัปดาห์หน้า กังวลน้ำท่วม-เศรษฐกิจชะลอ ชู Selective Buy จับตาเงินเฟ้อสหรัฐ - bangkokbiznews",
+    "description": "หุ้นไทยปิดบวก 7.04 จุด โบรกเกอร์เตือนสัปดาห์หน้า กังวลน้ำท่วม-เศรษฐกิจชะลอ ชู Selective Buy จับตาเงินเฟ้อสหรัฐ bangkokbiznews",
+    "cover": "assets/news/auto_64efb6b47dd468059e.webp",
     "content": [
       {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+        "text": "หุ้นไทยปิดบวก 7.04 จุด โบรกเกอร์เตือนสัปดาห์หน้า กังวลน้ำท่วม-เศรษฐกิจชะลอ ชู Selective Buy จับตาเงินเฟ้อสหรัฐ bangkokbiznews"
       },
       {
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-10-09T12:31:50+00:00",
+    "publishedAt": "2026-10-09T10:28:00+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1qa3NoUGNrM28wVkpzZXBFYTZxNDg0dlpGYUx0em1sYzA3TzNXak9jSjBKMEFyLWMtV2FhNFpkOUFBQy01YmRLQllQYzE3SWlOeWRTUGlB?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1nRmJMTDZhU0FxcWt5Q1lVWW1uN0MwbjBUSU5jcFdEOUZFTjVoWDJvYloxeW42YVVaVHNQRnhaRDN5bGNIV05POEZaNzZOUVppTzZoOXFEN3hKWXJCUU5MSDJR?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -276,26 +296,6 @@
     "publishedAt": "2026-10-02T06:38:05+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQRTlWMV9teDVFcWlWSktMcFlVVVdZWGJqZExWdHhUWkNmRzJfNVp1akxQcjZQZ1JiOVBpbzJpY1RYTTJBV242aEZlZnhRcFBJVEhIeTlyOS02VlR4SzQ0OC0tNnNpQmRwQUd0dDEwMGdSeXFtbjZKMl9JRm5sNm00N0lVTWhUUlJocFI5dGtCVQ?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_02064604278e491205",
-    "category": "international",
-    "title": "เทพีเสรีภาพที่แตกสลาย ภายใต้ทุนนิยม การเมือง และภัยธรรมชาติ - ประชาไท Prachatai.com",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_02064604278e491205.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-09-30T09:29:30+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9BTGVtVHpxUTlRUkZOVko1a3VzNUdYMnpEUmV1ZjU0UmZQSVZkbEF4T0I1SktZQTQyWG5iWl9fQlh5bTh3NzBTTVZWM2FVdnB1RFoxY1JlSQ?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
