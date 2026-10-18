@@ -40,26 +40,6 @@
     "automated": true
   },
   {
-    "id": "auto_66f0b53e76142427f9",
-    "category": "entertainment",
-    "title": "รีวิวซีรีส์ หวนกาลเคียงรัก Fatal Proximity to Him (2026) - TrueID InTrend",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_66f0b53e76142427f9.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-10-18T08:13:23+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5RYXJoTmtjT0Vjb29BYzRpTFZpQm5OQXdRVHJFd3BjVnVGLThaQjNKSHZFQmJ5T05rZVM5Nk02M1k5a2VZVF9SRlBVYXRsbGs?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
     "id": "auto_7cb05b034c4c51abd9",
     "category": "sports",
     "title": "จับตาดาวรุ่ง! “โค้ชเอ็กซ์” เตรียมส่องฟอร์มแข้ง PMYC เชื่อเป็นบันไดเด็กไทยก้าวสู่ทำเนียบทีมชาติ …………………………. “โค้ชเอ็กซ์” กุนซือทีมชาติไทย U17 เตรียมส่องฟอร์ม แข้งเยาวชนในศึก PMYC ชี้ช่วยสร้างโอกาสเด็กไทยทั่วประเทศ ก้าวสู่เส้นทางฟุตบอลอาชีพ และทีมชาติไทย ศึกฟุ - Facebook",
@@ -156,6 +136,26 @@
     "publishedAt": "2026-10-17T03:01:48+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5GX1VKUDZEMnJ2TkJTLXN2REZscU9GdDY0Y2ZOM0pXa3RtUWxLM2hVcER4eGpLX09NTWc0SXFUN1lTc1h3aFM1OExYZDcwXzV6cjlJN1l3?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_991e3d91f23564f6b0",
+    "category": "entertainment",
+    "title": "รีวิว Runner (2026) ภารกิจส่งของที่เดิมพันด้วยชีวิต - TrueID InTrend",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_991e3d91f23564f6b0.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-10-17T01:04:04+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5WSmE2bDJNSXpLMVpQU2ZNVDNoUEtRbmVHVHE2Nmtza0NEc0dMOGxKWG9tX1BMeUE0VXZaRFNmaUk2MVVyUDlQeFdzT0FPUTQ?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
