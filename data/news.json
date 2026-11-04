@@ -1,5 +1,25 @@
 [
   {
+    "id": "auto_b9cc644b8f6853ef92",
+    "category": "economy",
+    "title": "Reuters เตือนตลาดการเงินโลกเปราะบาง หวั่นลงทุน AI จุดชนวนวิกฤต - Businesstoday",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_b9cc644b8f6853ef92.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-03T12:41:51+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ONUs5VTVSbllUbnczU3R1ME44VUZ3SFZlZFdrTXY0MjVpSnQycTdKTXBPOUxVdmNJZ2dEbWUtcFQtZVJRWGNrYVF0a0pUX1o2VUp6aFdoakdlXzh1TXVoWU5LV2dsODA?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
     "id": "auto_a6a0860dd5aa0f5bf6",
     "category": "politics",
     "title": "ใช้ ครม.สัญจร-พืชสวนโลก 2569 สร้าง Demand ใหม่ ดันอุดรธานีสู่จุดหมายปลายทางท่องเที่ยว - Thairath.co.th",
@@ -20,31 +40,31 @@
     "automated": true
   },
   {
-    "id": "auto_502545a915f0c7136a",
-    "category": "politics",
-    "title": "รัฐบาลเผย ททท. พลิก “Mega Event” สู่ “Mega Opportunity” ใช้ ครม.สัญจร–พืชสวนโลกอุดรธานี 2569 - Thairath.co.th",
-    "description": "รัฐบาลเผย ททท. พลิก “Mega Event” สู่ “Mega Opportunity” ใช้ ครม.สัญจร–พืชสวนโลกอุดรธานี 2569 Thairath.co.th",
-    "cover": "assets/news/auto_502545a915f0c7136a.webp",
+    "id": "auto_29a6682e127bb0077b",
+    "category": "entertainment",
+    "title": "10 อนิเมะสืบสวน-ลึกลับปี 2026 พล็อตเดือดหักมุม! - TrueID InTrend",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_29a6682e127bb0077b.webp",
     "content": [
       {
-        "text": "รัฐบาลเผย ททท. พลิก “Mega Event” สู่ “Mega Opportunity” ใช้ ครม.สัญจร–พืชสวนโลกอุดรธานี 2569 Thairath.co.th"
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
       },
       {
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-03T09:59:43+00:00",
+    "publishedAt": "2026-11-03T07:07:39+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4xTHBYa0RHbFZJc2hjTi16TFVnM25RODZ6Q25NaUUwNHlySl93bFB6TXNXMm5WZTVmRjNQREVreW5odndOQk5WWU45S2hvT3Q1b1IxaFlKRW1kbTg?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9oUnhCbDhjd0tOajlHS0tKekJLT0hJUWVHWS1KQTZKUFhqa1ozNGdTTnpMb2ZjZzFmUjZ3TmRLdjNzeU40RG5VRVV5U19jdE0?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
   {
-    "id": "auto_da8eefe3a23b2cede6",
+    "id": "auto_48b22a8c63d7c6def2",
     "category": "entertainment",
-    "title": "แนะนำซีรีส์ Love Me To Hurt Me รัก = ร้าย 2026 - TrueID InTrend",
+    "title": "ชวนดูซีรีส์จีน When I Meet the Moon (2026) - TrueID InTrend",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_da8eefe3a23b2cede6.webp",
+    "cover": "assets/news/auto_48b22a8c63d7c6def2.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -55,27 +75,27 @@
     ],
     "publishedAt": "2026-11-03T07:07:38+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBYa0lkQklsQ0s4QXpmRkJnSVBpWVp0bG5icTVHc3dISWNLVWxtaldnQlFSRnE5TzI0eGZVUGMtb1FlZElNYXJVVXVpRWxjaHM?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFB0YmV4dFZUUi01ZWhJRzZUS3pMd2RWNVl3WFBrOXVKUnFRamFjYlFlcVhsWGljX0lvbGYxRmRWR1NIaG5fUU5tWWZZRWxzbGs?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
   {
-    "id": "auto_d0e9f3fd4a13d2ecce",
-    "category": "entertainment",
-    "title": "รีวิวซีรีส์ญี่ปุ่น มีใครพูดถึงผมรึเปล่า? (2026) #โคจิยาคุโช - TrueID InTrend",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_d0e9f3fd4a13d2ecce.webp",
+    "id": "auto_7667876f0cfda76094",
+    "category": "politics",
+    "title": "‘ททท.' ลงพื้นที่ครม.สัญจร บูมพืชสวนโลก หนุน ‘One Day Trip ‘Udon Thani : Bloom, Weave & Vibe’ - bangkokbiznews",
+    "description": "‘ททท.' ลงพื้นที่ครม.สัญจร บูมพืชสวนโลก หนุน ‘One Day Trip ‘Udon Thani : Bloom, Weave & Vibe’ bangkokbiznews",
+    "cover": "assets/news/auto_7667876f0cfda76094.webp",
     "content": [
       {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+        "text": "‘ททท.' ลงพื้นที่ครม.สัญจร บูมพืชสวนโลก หนุน ‘One Day Trip ‘Udon Thani : Bloom, Weave & Vibe’ bangkokbiznews"
       },
       {
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-03T07:07:37+00:00",
+    "publishedAt": "2026-11-03T06:52:51+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5lTWNRWEV6YXdwSi1ITDNsVko4WWpDZVhTUl8wWDRJeGJMLS1sS3pEcEZvZHlmYkdVQVEzYjkzNUl0ZGZyeVNhNzN2R2xqMnc?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBoM3RqT0RYalFWWkI0RGRmbndoYk5GcVFTQjdXblQxMWl6VEc1bXpYdy1fUUprVEg2YVlWXzQ2ZFViTk0zRktxSWRjTzluQ28yUTRpZ3RCWDlKS1Jn?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -120,26 +140,6 @@
     "automated": true
   },
   {
-    "id": "auto_b54192b2090a8837cc",
-    "category": "economy",
-    "title": "กรุงศรีชู KTB-PTTGC-INSET หุ้นเด่น รับแรงหนุนดอกเบี้ยทรงตัว-ดีมานด์ AI แกร่ง | ข่าวหุ้นธุรกิจ - LINE TODAY",
-    "description": "กรุงศรีชู KTB-PTTGC-INSET หุ้นเด่น รับแรงหนุนดอกเบี้ยทรงตัว-ดีมานด์ AI แกร่ง | ข่าวหุ้นธุรกิจ LINE TODAY",
-    "cover": "assets/news/auto_b54192b2090a8837cc.webp",
-    "content": [
-      {
-        "text": "กรุงศรีชู KTB-PTTGC-INSET หุ้นเด่น รับแรงหนุนดอกเบี้ยทรงตัว-ดีมานด์ AI แกร่ง | ข่าวหุ้นธุรกิจ LINE TODAY"
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-02T11:46:14+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE01Tk9DSndKNS04dl9tQjhfM2VwazZOVHhncGItdWtLZ3FSOUNTWmZzYm95dE9zeV81RE8yeWdiMUlxUjhJR1RDbk9vZHdUYS1ucXdrLWdB?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
     "id": "auto_15c9ba8f85bcc68ac7",
     "category": "sports",
     "title": "🚣‍♂️ ขอบคุณทุกความมุ่งมั่น! นักกีฬาเรือกรรเชียงชายหาดไทยในดาการ์ 2026 🇹🇭 ขอขอบคุณ ตรัยรัตน์ ปานทอง และ ทัชชภร เพ็งสว่าง สองนักกีฬาเรือกรรเชียงชายหาดเยาวชนไทย ที่ทุ่มเทความสามารถและลงแข่งขันอย่างเต็มที่ ในการแข่งขันกีฬายูธโอลิมปิกเกมส์ ครั้งที่ 4 ดาการ์ 2026 ตลอด - Facebook",
@@ -180,22 +180,22 @@
     "automated": true
   },
   {
-    "id": "auto_93d5f3b6e5da1c34b8",
+    "id": "auto_295fe2525c45ffddec",
     "category": "economy",
-    "title": "จาก Stagflation ยุค 70s ถึงยุคสงคราม ปี 2026 ทำไมน้ำมันแพง แต่หุ้นยังขึ้นได้ - วารสารการเงินธนาคาร",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_93d5f3b6e5da1c34b8.webp",
+    "title": "GCAP GOLD วางกรอบ “ทองคำ” สัปดาห์นี้ 3,950-4,100 เหรียญ จับตา GDP-เงินเฟ้อสหรัฐ | ข่าวหุ้นธุรกิจ - LINE TODAY",
+    "description": "GCAP GOLD วางกรอบ “ทองคำ” สัปดาห์นี้ 3,950-4,100 เหรียญ จับตา GDP-เงินเฟ้อสหรัฐ | ข่าวหุ้นธุรกิจ LINE TODAY",
+    "cover": "assets/news/auto_295fe2525c45ffddec.webp",
     "content": [
       {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+        "text": "GCAP GOLD วางกรอบ “ทองคำ” สัปดาห์นี้ 3,950-4,100 เหรียญ จับตา GDP-เงินเฟ้อสหรัฐ | ข่าวหุ้นธุรกิจ LINE TODAY"
       },
       {
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-02T07:50:19+00:00",
+    "publishedAt": "2026-11-02T04:08:21+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBzUW45T0JRaGYwWE94a1ZhUVV6TXM4aWRlOHJlMXcyNWd5dTJmTGNMU0o1OUtnYVctcENVZnY4UVNsekJMUVdwMnBpbkM2WUhzcUE1OQ?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1ubERaMWtNTWJNd0FlQURmR1NleEdCOE1jYU91WmI4TmlhNEpQMjZGamlabk9Wb3ZnSHB5eWdXM3I5NU1UVUo2ZEFkLWhWRTZwbm1rUDBR?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
