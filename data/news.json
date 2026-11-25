@@ -1,5 +1,45 @@
 [
   {
+    "id": "auto_706d1933370be53d20",
+    "category": "economy",
+    "title": "เงินบาทเช้านี้ “อ่อนค่า” เปิดตลาด 33.95 บ./ดอลลาร์ | ข่าวหุ้นธุรกิจ - LINE TODAY",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_706d1933370be53d20.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-25T02:05:53+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9lSzRqUmZlS2d1M3hvUHJxcEZPSGRCck1DTWItaGZnLVNIS1lIRmVnd2EzalprTzZpYkRvR1JJMWJrZFRIYTRXcDFJSzRVdk1zMmdOMEtR?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_4eb2659e9b48d81048",
+    "category": "economy",
+    "title": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ - LINE TODAY",
+    "description": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ LINE TODAY",
+    "cover": "assets/news/auto_4eb2659e9b48d81048.webp",
+    "content": [
+      {
+        "text": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ LINE TODAY"
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-25T01:30:36+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9rdFJuQlFJYW1HZFFodUFTX0lWdjRUYjJ3OVJ5RVhvZWM4cmlXXzE3N3RsRVBuNWQ2VW1mOFpNNEp5VHc5c29Pbm9wQllzMGJLQUVHa2ZRRDE2T2ZNVTRVcC1wZE1KdEhaN1pmNWhaTmdQYVRvMm9CMDkxaHlxZw?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
     "id": "auto_4c65d2fb76bab164c3",
     "category": "accident",
     "title": "ผู้ว่าฯ ภูเก็ต เปิดงานสืบสานประเพณีลอยทงไทย 2569 รัษฎาร่วมราชภัฏภูเก็ต อนุรักษ์วัฒนธรรมไทย กระตุ้นเศรษฐกิจชุมชน วันที่ 24 พฤศจิกายน 2569 ณ บริเวณขุมน้ำ มหาวิทยาลัยราชภัฏภูเก็ต นายโชตินรินทร์ เกิดสม ผู้ว่าราชการจังหวัดภูเก็ต เป็นประธานในพิธีเปิดโครงการจัดงานวันสำคัญด้านวั - Facebook",
@@ -80,11 +120,11 @@
     "automated": true
   },
   {
-    "id": "auto_5e1bcf6374b4f31106",
+    "id": "auto_cd166896ff12ffce78",
     "category": "entertainment",
-    "title": "แนะนำซีรีส์จีน เรื่องราวรักและการเยียวยา The Story Untold - TrueID InTrend",
+    "title": "[ป้ายยาซีรีส์จีนน่าดู] ปราบพยศคุณชายเสเพล - TrueID InTrend",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_5e1bcf6374b4f31106.webp",
+    "cover": "assets/news/auto_cd166896ff12ffce78.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -93,18 +133,18 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-24T05:00:31+00:00",
+    "publishedAt": "2026-11-24T05:00:32+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE95ZV92NEpVaXVIZHgxRTFJVGstUWRaTl9laEVKc0UtdFp0d1hkMThMaG1YUzNGLTl4REZTVmpfM08yTWpDUXVQWUU1OG5HWGs?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1jaFJWbE9LVWFNdFlSd2t2VzctVk1uLU83d3dfdzFPbXpUd2d6ODFtV284dzFUUW5rblY2elNvanlZc1JxM3VLeXVHQnc5cDg?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
   {
-    "id": "auto_c19cee9accbdc5f5e4",
+    "id": "auto_0bd2d9d109e1d7a8ae",
     "category": "entertainment",
-    "title": "รู้จัก 5 นักแสดง สองนครสิบห้าวัน River of No Return (2026) - TrueID InTrend",
+    "title": "[ป้ายยาซีรีส์จีนน่าดู] สองนครสิบห้าวัน (RiverOfNoReturn)2026 - TrueID InTrend",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_c19cee9accbdc5f5e4.webp",
+    "cover": "assets/news/auto_0bd2d9d109e1d7a8ae.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -113,29 +153,9 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-24T05:00:06+00:00",
+    "publishedAt": "2026-11-24T04:58:57+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE82czBaT2VPWnRzYkYzdkVVaTdGMjEzTG04dGZueW5GeUZmSTM2dE55ZlAySzFON3RZVHFKZ1d0YklVSk5sQ0dKNzdIeTdJcVE?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_cd9685511d4692dbee",
-    "category": "economy",
-    "title": "บลจ.กรุงศรี แนะเพิ่มน้ำหนักหุ้นโลก ชู AI เฮลท์แคร์ ไซเบอร์ซีเคียวริตี้ | การเงินธนาคาร - LINE TODAY",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_cd9685511d4692dbee.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-24T04:45:01+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9BQUdja2g2Zk02TEZtS3ZuS2pHWXd4a1EzMkNnaWphSjVHSjJDMXhjUkFjWDB1T1NhVnVVaU5jdEE3QXZkTndNa09RYVpvcVBzUEVMdUNn?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE40ZFJoZ18zb0FZS2t1TW1iSnBSZTdUdU5HbjN2N2huS1FXQ1VUQW1uSHNhZElhTTJBdEdyaV91ZHZlcnNjbGh0T2ItV21tcmM?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -196,26 +216,6 @@
     "publishedAt": "2026-11-23T05:56:43+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBMTi1IZXpVZkE0VEhLQ2FzVTlfMWUyZXFxRkJJbTZ6Qy0zSmVpUnBxTmlqdWJjejVvX1I3eW4xUEVxdmRwdGJ4TUcwSjIwOXBIZkFmeEF0SUhHV3lTTW43d3dxOEtYcGJfdlg4?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_79646e20b2b9afc220",
-    "category": "economy",
-    "title": "ต่างชาติเทขาย “หุ้น-บอนด์ไทย” กว่า 2.7 หมื่นล. เงินบาทเสี่ยงอ่อนค่า | ข่าวหุ้นธุรกิจ - LINE TODAY",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_79646e20b2b9afc220.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-23T03:32:09+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZDBQOWFmRWVKTjBxTG5keW1Qc2tUcjRLU0tLbWRValZjMVRhTE1SeGpvbDhscVpFQTIzcHZEWHZUd3o0X2ZuY3BEVGFadG80QmxobkJuT3FyTUtFZFJxazlPdGg2SXpkU2dKVkk4TlJ5alh1SnNBTGlRc0xIYUk4Rg?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
