@@ -1,25 +1,5 @@
 [
   {
-    "id": "auto_f2a6ce52912327c33d",
-    "category": "entertainment",
-    "title": "ไทยบันเทิง - Thai PBS",
-    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_f2a6ce52912327c33d.webp",
-    "content": [
-      {
-        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-26T09:55:05+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1QbGU2Rmx2WlBtUzBKcFhHZWRFeUFsUFhtNWo2a2lDVnNrcF9OTUFzeDVpcmo1QmZuZWdCWkVQQjNzN05IUElvSXU4MUg4UWd3eG92MWR2T0RLbUtPSlZWZVZjLTVlN2FjLXc0WGNQVjFlRnZMajJTbGlyc25vUQ?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
     "id": "auto_706d1933370be53d20",
     "category": "economy",
     "title": "เงินบาทเช้านี้ “อ่อนค่า” เปิดตลาด 33.95 บ./ดอลลาร์ | ข่าวหุ้นธุรกิจ - LINE TODAY",
@@ -33,9 +13,29 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-26T08:06:48+00:00",
+    "publishedAt": "2026-11-26T20:06:49+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9lSzRqUmZlS2d1M3hvUHJxcEZPSGRCck1DTWItaGZnLVNIS1lIRmVnd2EzalprTzZpYkRvR1JJMWJrZFRIYTRXcDFJSzRVdk1zMmdOMEtR?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_6b796ca12cc1ca35cb",
+    "category": "society",
+    "title": "ชุมชนตรันเดสร้างอาชีพและเสริมสร้างศักยภาพให้ชาวเขมรลุกขึ้นมาพัฒนาตนเอง - Vietnam.vn",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_6b796ca12cc1ca35cb.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-26T12:06:20+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNWDdBMUcxY1BCNkpEX3BkLW9PM0p5UENGcFM3OTRoWGVJT0NrdUlRSnNkUVBYanVKQnNLSXMtd2cxbWRWRFpmaURDamhCU05zclZ5czd1NFRPWUNMaUVWeFJjWE8yNnRjSmhjN21rUmZzdE5kUnlURzRxRk1pSjVxajVIQm1iTUIx?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -60,11 +60,11 @@
     "automated": true
   },
   {
-    "id": "auto_b18e8d5395622d5ea1",
+    "id": "auto_a1bdd11f7381328881",
     "category": "entertainment",
-    "title": "ประวัติ เหยียนอัน นักร้องและนักแสดงจีน อดีตสมาชิก PENTAGON - TrueID InTrend",
+    "title": "รีวิวซีรีส์จีน เรื่องราวรักและการเยียวยา The Story Untold - TrueID InTrend",
     "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
-    "cover": "assets/news/auto_b18e8d5395622d5ea1.webp",
+    "cover": "assets/news/auto_a1bdd11f7381328881.webp",
     "content": [
       {
         "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
@@ -73,9 +73,49 @@
         "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
       }
     ],
-    "publishedAt": "2026-11-26T04:49:53+00:00",
+    "publishedAt": "2026-11-26T05:03:52+00:00",
     "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9zaDJZRk9mbTZBd3RJbGlJcXVtajBoY3RkcGhxQ3k3bjlucldWcHh3MHZtcDM2MkpXUVY4dy11c21ZTmNob0V5d1p5cHBnSEk?oc=5",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5DQUF0SmlfMHA2VThpd3hnSUlrNjFZeTZFcmV5M0tjNmdINUlZVkttVTljRVVFaEROeWxscnd1bDBzM0hsSG1iVFY3SUZfSjQ?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_b0b663929b23301578",
+    "category": "entertainment",
+    "title": "รวมผลงานซีรีส์ของเหยียนอัน (Yan An) ตั้งแต่ปี2021 - 2026 - TrueID InTrend",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_b0b663929b23301578.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-26T05:00:15+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAwV3pfWWVydVQ4WGdRbjNSc1M5akdhaGROYjhZNS16WFRTSjMyQVJiQ3RuaFhXTGp6WmJKMGo0N216R1ZGdHhLZ3ZodDJMTzQ?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_9c3a751e092d502779",
+    "category": "accident",
+    "title": "ลอยกระทงไทย คึกคักทั่วกรุง! คนร่วมงานทะลุ 50,000 คน ปลุกเศรษฐกิจชุมชน 6 โซนทั่วกรุงเทพฯ - workpointTODAY",
+    "description": "ลอยกระทงไทย คึกคักทั่วกรุง! คนร่วมงานทะลุ 50,000 คน ปลุกเศรษฐกิจชุมชน 6 โซนทั่วกรุงเทพฯ workpointTODAY",
+    "cover": "assets/news/auto_9c3a751e092d502779.webp",
+    "content": [
+      {
+        "text": "ลอยกระทงไทย คึกคักทั่วกรุง! คนร่วมงานทะลุ 50,000 คน ปลุกเศรษฐกิจชุมชน 6 โซนทั่วกรุงเทพฯ workpointTODAY"
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-25T11:19:52+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE54RjZfOXp5TlZlU2k2V3FiMGJhY3JQMF9HSVdlM2JuNzlHZ3Uwd2xDcXBCNHVJbzV3N0hTQnZjNWRBcTVWQ3ZJRUFWNjZZNUozSVgyQjJqSQ?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -116,46 +156,6 @@
     "publishedAt": "2026-11-25T01:32:13+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9vUGlsU3UyMTl1WE9CT2tjSmcybjBlWEhtOGNhOGFoYzNDRkVZU0JUR01vUUtQQ0RzazhBMmJzTTh5TGpEeExXT3JzS19lZTU4amVWRmh6QWpBVkxTNEJ4SGhSWXo3V1E?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_4eb2659e9b48d81048",
-    "category": "economy",
-    "title": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ - LINE TODAY",
-    "description": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ LINE TODAY",
-    "cover": "assets/news/auto_4eb2659e9b48d81048.webp",
-    "content": [
-      {
-        "text": "ดาวโจนส์พุ่งกว่า 400 จุด สวนทาง Nasdaq ร่วง 1.5% หุ้น AI–ชิปถูกเทขาย นักลงทุนจับตาเงินเฟ้อสหรัฐฯ LINE TODAY"
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-25T01:30:36+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9rdFJuQlFJYW1HZFFodUFTX0lWdjRUYjJ3OVJ5RVhvZWM4cmlXXzE3N3RsRVBuNWQ2VW1mOFpNNEp5VHc5c29Pbm9wQllzMGJLQUVHa2ZRRDE2T2ZNVTRVcC1wZE1KdEhaN1pmNWhaTmdQYVRvMm9CMDkxaHlxZw?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_4c65d2fb76bab164c3",
-    "category": "accident",
-    "title": "ผู้ว่าฯ ภูเก็ต เปิดงานสืบสานประเพณีลอยทงไทย 2569 รัษฎาร่วมราชภัฏภูเก็ต อนุรักษ์วัฒนธรรมไทย กระตุ้นเศรษฐกิจชุมชน วันที่ 24 พฤศจิกายน 2569 ณ บริเวณขุมน้ำ มหาวิทยาลัยราชภัฏภูเก็ต นายโชตินรินทร์ เกิดสม ผู้ว่าราชการจังหวัดภูเก็ต เป็นประธานในพิธีเปิดโครงการจัดงานวันสำคัญด้านวั - Facebook",
-    "description": "ผู้ว่าฯ ภูเก็ต เปิดงานสืบสานประเพณีลอยทงไทย 2569 รัษฎาร่วมราชภัฏภูเก็ต อนุรักษ์วัฒนธรรมไทย กระตุ้นเศรษฐกิจชุมชน วันที่ 24 พฤศจิกายน 2569 ณ บริเวณขุมน้ำ มหาวิทยาลัยราชภัฏภูเก็ต นายโชตินรินทร์ เกิดสม ผู้ว่าราชการจังหวัดภูเก็ต เป็นประธานในพิธีเปิดโครงการจัดงานวันสำคัญด้านวั Facebook",
-    "cover": "assets/news/auto_4c65d2fb76bab164c3.webp",
-    "content": [
-      {
-        "text": "ผู้ว่าฯ ภูเก็ต เปิดงานสืบสานประเพณีลอยทงไทย 2569 รัษฎาร่วมราชภัฏภูเก็ต อนุรักษ์วัฒนธรรมไทย กระตุ้นเศรษฐกิจชุมชน วันที่ 24 พฤศจิกายน 2569 ณ บริเวณขุมน้ำ มหาวิทยาลัยราชภัฏภูเก็ต นายโชตินรินทร์ เกิดสม ผู้ว่าราชการจังหวัดภูเก็ต เป็นประธานในพิธีเปิดโครงการจัดงานวันสำคัญด้านวั Facebook"
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-24T12:04:51+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMizwdBVV95cUxQa2xtcTNwb2lSMkVHbF9ETFY4LTBNNUxBLXRkZ2Iwc3FZVmRVU2xvcmJyTDk4U21OTzRIa1VFNFdZN3ZOb0xURHBkV3JEbi05RUV4ckdXMEYteE42ckZXRHRCeUlBLWtzSllMUzFpWXp4YmtpUEZFUjQwRjFJX0tfa2tTLWRoVDczdGtfLWZJWmdrMHpLbHdBNnQ5T3RoUnRxSFNoeFpyWUVPblVkTEtVcjc1SmtXUzFUaUdHbEoyeEhrQk5GQWdQTExIOFZUMFdlcWQ0TmNhR2dscmNjVTdtR0hZbWFTaUk2aS1MVzVCWVQ4MTZ2RHg4bVh2SmxMNG5QRkI4MjctWjl3S09JQUNCLTVoY0VjZmloSk9PN0JTaFNFcWZzM0YtNFJndU51U0Jjdi01THhpLUZfcDM4aEtCcTNOdDRVZ1RJaTVxRVB6RVZDWUYzVTZlbmo1aXpHcm5WUThwb2dkX2UxRTRnaWRQdWRVVnhKUXNxQ3U3YUxyQVNpOVpDd1JaOGczQ1JYVG5aTkRvaWRSQnByWlg1eEpMLWcxbjNJNU1GTmp6QzhZVEIxQjB2S0pJTzA5LW44TThfNTUwRXR2UXFSbnk2dDg1bjIwZlhiZVlsRVMwR3lrLUNYLTMxSHRIYnpiRHN0OWdTNDk3ZWxGN1J6a0xVWmxjUFQ0V0FDSmRTeFoteGNOMWUwUWM2YnJ2WWdaMnVPTk9ZU2toak9ETmFBQmtJUzZ2Q3NldU5ZLS12aFlZdHdIUWluR01YOHlxZmFJOV9HdHBfM3hkZ3B2Vm1QZ2plRFhNU3EyRElvWWwxdTd6R0JYY1N3Y3B3VUZPcnc4NFF2VXlMaFotQjY2RFREdnVGQUNtUzdYczhqN1I1QkRWSVNxMGhoenl4anh4Rmp2NkV1RHFFSHRQLUhodVZtdXdOV3M4V3NBbnB0TUFnUFBneXhqa3VOQlhvZE5JR1FSSGhOYVJFeFRCVHpBdkhQU2NLdjdrcVByR0xRT3lkS2JhanJnZWtyT0ZEQTdMS2lsR2RHOVlCeW1HMjdFdHM3SjAxazFCRnNLV29QdXN6bHJNZTNFblBOck41dGg3dWU1MzQzNVlaaWxxZXZwaGpNb3JNNkstRDhnMXVUVFA0XzlGYm5Fczl1TDA3WFhRcWJvMXIwYVdQT2tnSWlYQmZSSjQ2eW91ZUdYMzhTT0U5b0RGQ0VMLXRTcW44N2h3cHBBSmwybnpZMW5MUWVBSHF6MzBpZTZrU2txdXk5QTRHQ0NsbUtRWkpZUDNxYUpFRnJCYTg0Mm8?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -216,6 +216,26 @@
     "publishedAt": "2026-11-24T07:25:34+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQM0E0MFpnZGt3TnJzN2x5a3R0eGNaRXI3TWlsdjVHOUVpWEZROC05Yjc0aURyY0FEVHA2X3NoNHIyWG05b1hXVVpYX2J5X3VHaWtjQWhWZ0JCa0xnMUEyY3hsNEdTa1oxZnJEeno2ZzF0MFJRUEpNeGFaS3puUGVpTWJtY05kd1ZOdzVFRlRVNC0tM0RlVDUwRHB6N3VGMkZSM2RZb0Qyem9jQmtveUN0b3RKVkphRkhKNkd1TVU0a215YURvU1NpOThYSjJKSl83NG1jbmhFenNaMHc?oc=5",
+    "sourceName": "Google News",
+    "automated": true
+  },
+  {
+    "id": "auto_cd9685511d4692dbee",
+    "category": "economy",
+    "title": "บลจ.กรุงศรี แนะเพิ่มน้ำหนักหุ้นโลก ชู AI เฮลท์แคร์ ไซเบอร์ซีเคียวริตี้ | การเงินธนาคาร - LINE TODAY",
+    "description": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News.",
+    "cover": "assets/news/auto_cd9685511d4692dbee.webp",
+    "content": [
+      {
+        "text": "Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News."
+      },
+      {
+        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
+      }
+    ],
+    "publishedAt": "2026-11-24T04:45:01+00:00",
+    "views": 0,
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9BQUdja2g2Zk02TEZtS3ZuS2pHWXd4a1EzMkNnaWphSjVHSjJDMXhjUkFjWDB1T1NhVnVVaU5jdEE3QXZkTndNa09RYVpvcVBzUEVMdUNn?oc=5",
     "sourceName": "Google News",
     "automated": true
   },
@@ -296,26 +316,6 @@
     "publishedAt": "2026-11-22T01:21:07+00:00",
     "views": 0,
     "sourceUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1fd0RxZGU2MF85ZHdhdnRlUzNoUmlzRDhoNEJ6TWplbE9CSkt0dDNCNV9TU0lXMTM2SldncVdBRlY3UHJLN3lnRVZUd0RFRlRRdVVaWjc1Zw?oc=5",
-    "sourceName": "Google News",
-    "automated": true
-  },
-  {
-    "id": "auto_984e1e8b84a0939f1d",
-    "category": "society",
-    "title": "ทสภ. รณรงค์งดปล่อยโคมลอย จุดพลุ ดอกไม้ไฟ ฉายแสงเลเซอร์ช่วงเทศกาลลอยกระทง จัดเจ้าหน้าที่ลงพื้นที่ชุมชน ให้ความรู้ด้านความปลอดภัยทางการบิน | สวพ.FM91 - LINE TODAY",
-    "description": "ทสภ. รณรงค์งดปล่อยโคมลอย จุดพลุ ดอกไม้ไฟ ฉายแสงเลเซอร์ช่วงเทศกาลลอยกระทง จัดเจ้าหน้าที่ลงพื้นที่ชุมชน ให้ความรู้ด้านความปลอดภัยทางการบิน | สวพ.FM91 LINE TODAY",
-    "cover": "assets/news/auto_984e1e8b84a0939f1d.webp",
-    "content": [
-      {
-        "text": "ทสภ. รณรงค์งดปล่อยโคมลอย จุดพลุ ดอกไม้ไฟ ฉายแสงเลเซอร์ช่วงเทศกาลลอยกระทง จัดเจ้าหน้าที่ลงพื้นที่ชุมชน ให้ความรู้ด้านความปลอดภัยทางการบิน | สวพ.FM91 LINE TODAY"
-      },
-      {
-        "text": "หมายเหตุ: THAI NEWS สรุป/รวบรวมจากข้อมูลที่เผยแพร่โดยแหล่งข่าวต้นทาง ควรตรวจสอบรายละเอียดกับต้นทางก่อนนำข้อมูลไปใช้อ้างอิง"
-      }
-    ],
-    "publishedAt": "2026-11-20T07:57:50+00:00",
-    "views": 0,
-    "sourceUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE56QVROS3pYcGg4VjlrRE5ua0ZIRV9TN2s4NkV0SWF4aXRUS3hxZ3JZNk1VWjlNMGowdmZjMTRmUVRleXZPWHhXS1RXN1RNOHF3b3E5ZmNB?oc=5",
     "sourceName": "Google News",
     "automated": true
   }
